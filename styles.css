@@ -209,10 +209,17 @@ a {
 }
 
 .nav-mega {
+  /* top:100% with no gap, on purpose — a gap between the link and the
+     panel is dead space that belongs to neither element, so moving the
+     mouse straight down through it drops :hover on .nav-has-mega and the
+     panel closes before the pointer ever reaches it. Flush against the
+     link, there's no such gap to lose hover in. The reveal motion instead
+     comes from a small negative margin-top that eases to 0. */
   position: absolute;
-  top: calc(100% + 10px);
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(6px);
+  transform: translateX(-50%);
+  margin-top: -6px;
   z-index: 5;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -225,17 +232,16 @@ a {
   box-shadow: 0 40px 80px -35px rgba(0, 0, 0, 0.4);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.25s ease, margin-top 0.25s ease;
 }
 
 /* :focus-within keeps this reachable via keyboard tab, not just a mouse
-   hover — the gap above is small enough that moving the cursor down into
-   it doesn't lose the hover state before it arrives. */
+   hover. */
 .nav-has-mega:hover .nav-mega,
 .nav-has-mega:focus-within .nav-mega {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
+  margin-top: 0;
 }
 
 .nav-mega-item {
@@ -1740,57 +1746,86 @@ a {
 }
 
 /* ============================================================
-   Show detail pages (show-*.html) — same visual system as the
-   homepage, reused rather than reinvented: .eyebrow, .section-title,
-   .wrap, brand gradient/colors, [data-reveal] scroll-ins.
+   Show detail pages (show-*.html) — editorial "story" format: the photo
+   stays sticky/pinned in view while the copy scrolls past beside it,
+   instead of stacking full-width horizontal sections one after another.
+   Reuses the site's existing sticky-panel technique (see #about, the
+   hero) rather than a different mechanism just for these pages.
    ============================================================ */
 
 .show-page {
   padding-top: var(--header-h);
 }
 
-/* ---------- hero ---------- */
+.show-story {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(32px, 5vw, 72px);
+  max-width: var(--container);
+  padding-inline: var(--edge);
+  margin-inline: auto;
+}
 
-.show-hero {
+.show-story-media {
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  padding-block: clamp(20px, 4vh, 40px);
+}
+
+.show-story-frame {
   position: relative;
-  min-height: 82vh;
-  display: flex;
-  align-items: flex-end;
+  isolation: isolate;
+  height: 100%;
+  border-radius: 26px;
   overflow: hidden;
-  margin-top: calc(var(--header-h) * -1);
 }
 
-.show-hero-media {
+.show-story-frame::before {
+  content: "";
   position: absolute;
-  inset: 0;
-  z-index: 0;
+  z-index: -1;
+  inset: 18px -18px -18px 18px;
+  border-radius: 26px;
+  background: var(--brand-gradient);
+  opacity: 0.9;
 }
 
-.show-hero-media img {
+.show-story-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.1);
-  animation: show-hero-zoom 14s ease-out forwards;
 }
 
-@keyframes show-hero-zoom {
-  to { transform: scale(1); }
-}
-
-.show-hero::after {
-  content: "";
+.show-story-badge {
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.08) 72%);
+  left: -14px;
+  bottom: -14px;
+  z-index: 2;
+  padding: 14px 20px;
+  border-radius: 16px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.5);
 }
 
-.show-hero-content {
-  position: relative;
-  z-index: 2;
-  padding-block: clamp(120px, 22vw, 220px) clamp(48px, 8vw, 80px);
-  color: #fff;
+.show-story-content {
+  min-width: 0;
+}
+
+.show-block {
+  padding-block: clamp(36px, 5.5vw, 60px);
+  border-top: 1px solid var(--line);
+}
+
+.show-block:first-child {
+  padding-top: clamp(28px, 8vh, 72px);
+  border-top: none;
 }
 
 .show-breadcrumb {
@@ -1798,47 +1833,54 @@ a {
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  margin: 0 0 22px;
+  margin: 0 0 20px;
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--ink-dim);
 }
 
 .show-breadcrumb a {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--ink-dim);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .show-breadcrumb a:hover,
 .show-breadcrumb a:focus-visible {
-  color: #fff;
+  color: var(--ink);
 }
 
 .show-breadcrumb [aria-current] {
-  color: #fff;
+  color: var(--ink);
   font-weight: 600;
 }
 
-.eyebrow-light {
-  color: var(--accent, #fff);
+.eyebrow-accent {
+  color: var(--accent, var(--brand-green-deep));
 }
 
-.eyebrow-light::before {
+.eyebrow-accent::before {
   background: var(--brand-gradient);
 }
 
-.show-hero h1 {
-  margin: 0 0 24px;
-  max-width: 16ch;
+.show-block-title h1 {
+  margin: 0 0 20px;
+  max-width: 18ch;
   font-family: var(--font-display);
   font-weight: 700;
   text-transform: uppercase;
   line-height: 1.14;
-  letter-spacing: 0.01em;
-  font-size: clamp(2.1rem, 5.2vw, 3.8rem);
+  font-size: clamp(2rem, 4.2vw, 3.1rem);
 }
 
-.show-hero-actions {
+.show-block-title > p {
+  margin: 0 0 28px;
+  max-width: 50ch;
+  font-size: 1.04rem;
+  line-height: 1.7;
+  color: var(--ink-dim);
+}
+
+.show-block-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
@@ -1861,7 +1903,7 @@ a {
 .show-cta-btn:hover,
 .show-cta-btn:focus-visible {
   transform: translateY(-3px);
-  box-shadow: 0 22px 44px -20px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 22px 44px -20px rgba(0, 0, 0, 0.4);
 }
 
 .show-cta-btn svg {
@@ -1881,8 +1923,8 @@ a {
   gap: 10px;
   padding: 15px 28px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #fff;
+  border: 1px solid var(--line);
+  color: var(--ink);
   text-decoration: none;
   font-weight: 700;
   font-size: 0.94rem;
@@ -1891,112 +1933,83 @@ a {
 
 .show-cta-btn-outline:hover,
 .show-cta-btn-outline:focus-visible {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: #fff;
+  background: rgba(0, 0, 0, 0.04);
+  border-color: var(--ink);
 }
 
-/* ---------- intro (copy + stats sidebar) ---------- */
-
-.show-intro {
-  padding-block: clamp(64px, 10vw, 120px);
-}
-
-.show-intro-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: clamp(32px, 5vw, 64px);
-  align-items: start;
-}
-
-.show-intro-copy p {
+.show-block-about p {
   margin: 0 0 18px;
-  max-width: 62ch;
+  max-width: 58ch;
   font-size: 1.02rem;
   line-height: 1.75;
   color: var(--ink-dim);
 }
 
-.show-stats {
+.show-story-stats {
   display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: clamp(24px, 3vw, 32px);
-  border-radius: 20px;
-  border: 1px solid var(--line);
-  background: var(--card-bg);
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 52px);
+  margin-top: 28px;
 }
 
-.show-stat {
+.show-story-stat {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding-top: 16px;
-  border-top: 2px solid var(--line);
 }
 
-.show-stat:first-child {
-  padding-top: 0;
-  border-top: none;
-}
-
-.show-stat span {
+.show-story-stat span {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: var(--ink);
 }
 
-.show-stat label {
+.show-story-stat label {
   font-size: 0.8rem;
   color: var(--ink-dim);
 }
 
-/* ---------- features ("Qué incluye") ---------- */
+/* ---------- features: checklist, not cards ---------- */
 
-.show-features {
-  padding-block: clamp(48px, 8vw, 100px);
-  background: var(--bg);
+.show-feature-list {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
 }
 
-.show-features-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(16px, 2vw, 24px);
-  margin-top: clamp(28px, 4vw, 44px);
+.show-feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding-block: 20px;
+  border-top: 1px solid var(--line);
 }
 
-.show-feature {
-  padding: clamp(22px, 2.4vw, 28px);
-  border-radius: 20px;
-  border: 1px solid var(--line);
-  background: var(--card-bg);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.show-feature:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 30px 60px -35px rgba(0, 0, 0, 0.35);
+.show-feature-list li:first-child {
+  padding-top: 0;
+  border-top: none;
 }
 
 .show-feature-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
-  margin-bottom: 16px;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--brand-gradient);
   color: #fff;
 }
 
 .show-feature-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
 }
 
-.show-feature h3 {
-  margin: 0 0 8px;
+.show-feature-list h3 {
+  margin: 0 0 6px;
   font-family: var(--font-display);
   font-weight: 700;
   text-transform: uppercase;
@@ -2004,56 +2017,48 @@ a {
   letter-spacing: 0.01em;
 }
 
-.show-feature p {
+.show-feature-list p {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   color: var(--ink-dim);
 }
 
-/* ---------- "ideal para" + CTA banner ---------- */
-
-.show-cta-banner {
-  background: var(--ink);
-  color: #fff;
-  padding-block: clamp(48px, 8vw, 90px);
-}
-
-.show-cta-banner-inner {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: clamp(28px, 4vw, 48px);
-  align-items: center;
-}
+/* ---------- "ideal para" + CTA card ---------- */
 
 .show-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   list-style: none;
-  margin: 0;
+  margin: 24px 0 0;
   padding: 0;
 }
 
 .show-tags li {
   padding: 9px 18px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid var(--line);
+  color: var(--ink);
   font-size: 0.88rem;
   font-weight: 600;
 }
 
-.show-cta-banner-action {
-  text-align: left;
+.show-cta-card {
+  margin-top: 24px;
+  padding: clamp(28px, 4vw, 40px);
+  border-radius: 24px;
+  background: var(--ink);
+  color: #fff;
 }
 
-.show-cta-banner-action h2 {
+.show-cta-card h2 {
   margin: 0 0 20px;
   font-family: var(--font-display);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
-  line-height: 1.25;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  line-height: 1.3;
 }
 
 /* ---------- related shows ---------- */
@@ -2114,17 +2119,27 @@ a {
 }
 
 @media (max-width: 900px) {
-  .show-intro-grid {
-    grid-template-columns: 1fr;
+  /* The sticky split only works with two side-by-side columns — stacked
+     single-column, the photo just goes back to being a normal block up
+     top instead of pinned. */
+  .show-story {
+    display: block;
   }
 
-  .show-features-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .show-story-media {
+    position: static;
+    height: auto;
+    padding-block: 0 0;
   }
 
-  .show-cta-banner-inner {
-    grid-template-columns: 1fr;
-    text-align: left;
+  .show-story-frame {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .show-story-badge {
+    left: 16px;
+    bottom: 16px;
   }
 
   .show-related-grid {
@@ -2133,10 +2148,6 @@ a {
 }
 
 @media (max-width: 640px) {
-  .show-features-grid {
-    grid-template-columns: 1fr;
-  }
-
   .show-related-grid {
     grid-template-columns: 1fr;
   }

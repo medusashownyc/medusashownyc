@@ -17,6 +17,17 @@ const IMAGES = [
   { src: 'images/zancos-robot.jpg', ratio: 1200 / 1800, alt: 'Performers en zancos con vestuario escénico entre el público' },
 ];
 
+// Same order as IMAGES — clicking a card navigates straight to its show
+// page instead of just snapping it to front.
+const SHOW_URLS = [
+  'show-belly-dancers.html',
+  'show-fuego.html',
+  'show-garotas.html',
+  'show-gogo-dancers.html',
+  'show-salsa.html',
+  'show-zancos-robot.html',
+];
+
 // 2:3 — matches the natural ratio of most of the source photos (1200×1800),
 // so object-fit: cover barely has to crop them. Only the wide garotas shot
 // gets cropped now (on its sides, which it can spare), instead of every
@@ -258,7 +269,16 @@ function init() {
   });
 
   container.addEventListener('pointermove', (e) => {
-    if (mode !== 'dragging') return;
+    if (mode !== 'dragging') {
+      // Not dragging — just hovering. Swap the cursor to a pointer over an
+      // actual card so it reads as clickable/navigable, 'grab' everywhere
+      // else in the scene.
+      setPointerNDC(e);
+      raycaster.setFromCamera(pointerNDC, camera);
+      const hovering = raycaster.intersectObjects(cards).length > 0;
+      container.style.cursor = hovering ? 'pointer' : 'grab';
+      return;
+    }
     const delta = e.clientX - dragStartX;
     dragMoved = Math.max(dragMoved, Math.abs(delta));
     ring.rotation.y = dragStartRotation + delta * DRAG_SENSITIVITY;
@@ -272,7 +292,11 @@ function init() {
       raycaster.setFromCamera(pointerNDC, camera);
       const hit = raycaster.intersectObjects(cards)[0];
       if (hit) {
-        snapToCard(hit.object);
+        // Straight to that show's page — this used to just snap the card
+        // to front, which meant the card itself wasn't actually a way in;
+        // only the service-row tag underneath it was.
+        const url = SHOW_URLS[hit.object.userData.imgIndex];
+        if (url) window.location.href = url;
         return;
       }
     }
