@@ -364,8 +364,11 @@ function init() {
     mode = 'snapping';
   }
 
-  container.style.touchAction = 'none'; // otherwise touch-dragging the ring
-                                         // also tries to scroll the page
+  container.style.touchAction = 'pan-y'; // only claims horizontal drags for
+                                          // spinning the ring — a vertical
+                                          // swipe still scrolls the page
+                                          // natively instead of getting
+                                          // trapped over the hero carousel
 
   container.addEventListener('pointerdown', (e) => {
     mode = 'dragging';

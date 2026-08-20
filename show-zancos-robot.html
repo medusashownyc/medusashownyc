@@ -18,14 +18,15 @@
 <header class="site-header" id="siteHeader">
   <div class="site-header-inner wrap">
     <a class="brand" href="index.html" aria-label="Medusa Show — inicio">
-      <img src="assets/Logo-negro.svg" alt="Medusa Show">
+      <img class="brand-logo brand-logo--light" src="assets/Logo-negro.svg" alt="Medusa Show">
+      <img class="brand-logo brand-logo--dark" src="assets/Logo-blanco.svg" alt="" aria-hidden="true">
     </a>
 
     <nav class="main-nav" aria-label="Principal">
       <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
       <ul class="nav-links" id="navLinks">
         <li class="nav-has-mega">
-          <a href="index.html#experiences">Shows</a>
+          <a href="index.html#top">Shows</a>
           <div class="nav-mega">
             <a class="nav-mega-item" href="show-belly-dancers.html" style="--accent: var(--brand-green)">
               <span class="nav-mega-media"><img src="images/belly-dance.jpg" alt=""></span>
@@ -76,7 +77,7 @@
 
 <div class="mobile-nav" id="mobileNav">
   <ul class="mobile-nav-links">
-    <li><a href="index.html#experiences">Shows</a></li>
+    <li><a href="index.html#top">Shows</a></li>
     <li><a href="index.html#about">Nosotros</a></li>
     <li><a href="index.html#rituales">Rituales</a></li>
     <li><a href="index.html#testimonials">Clientes</a></li>
@@ -100,13 +101,6 @@
 
     <div class="show-story-content">
       <section class="show-block show-block-title">
-        <nav class="show-breadcrumb" aria-label="Ruta de navegación" data-reveal>
-          <a href="index.html">Inicio</a>
-          <span>/</span>
-          <a href="index.html#experiences">Shows</a>
-          <span>/</span>
-          <span aria-current="page">Zancos &amp; Robot</span>
-        </nav>
         <p class="eyebrow eyebrow-accent" data-reveal>Performers itinerantes</p>
         <h1 data-reveal>Presencia escénica que recorre tu evento</h1>
         <div class="show-block-actions" data-reveal>
@@ -233,12 +227,12 @@
 
 <footer class="site-footer">
   <div class="wrap footer-grid">
-    <div class="footer-brand">
-      <img src="assets/logo-ondark.png" alt="Medusa Show">
+    <div class="footer-brand" data-reveal>
+      <img src="assets/Logo-blanco.svg" alt="Medusa Show">
       <p>Entretenimiento en vivo para bodas, clubs, aperturas y activaciones de marca.</p>
     </div>
 
-    <div class="footer-links">
+    <div class="footer-links" data-reveal>
       <h4>Navegación</h4>
       <a href="index.html#experiences">Shows</a>
       <a href="index.html#about">Nosotros</a>
@@ -246,7 +240,7 @@
       <a href="index.html#booking">Reservar cita</a>
     </div>
 
-    <div class="footer-contact">
+    <div class="footer-contact" data-reveal>
       <h4>Contacto</h4>
       <a href="mailto:hola@medusashow.com">hola@medusashow.com</a>
       <a href="https://wa.me/000000000000" target="_blank" rel="noopener">WhatsApp</a>
@@ -261,7 +255,7 @@
     </div>
   </div>
 
-  <div class="wrap footer-bottom">
+  <div class="wrap footer-bottom" data-reveal>
     <span>© 2026 Medusa Show. Todos los derechos reservados.</span>
     <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>

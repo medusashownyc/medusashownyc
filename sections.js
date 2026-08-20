@@ -4,6 +4,84 @@ gsap.registerPlugin(ScrollTrigger);
 
 const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
+/* ---------- eased wheel scroll ---------- */
+
+// styles.css's scroll-behavior:smooth only covers anchor-link jumps — plain
+// wheel/trackpad scrolling is still the browser's default, which moves the
+// page in the exact fixed steps the input device reports (a full page-stack
+// site like this one, with sticky sections riding over each other, reads
+// every one of those steps as a visible little jolt). This intercepts wheel
+// input and eases window.scrollY toward it every frame instead of jumping
+// straight there, giving scrolling actual inertia/weight — the same "hijack
+// the wheel, animate scrollTop yourself" technique behind Lenis/Locomotive,
+// done by hand here so the page doesn't need another whole scroll-library
+// dependency (and, critically, without moving any content into a
+// transform-driven virtual scroller — position:sticky, ScrollTrigger's
+// pinning and the IntersectionObserver-based nav highlighting below all
+// keep working exactly as before, since window.scrollY is still the real,
+// only scroll position on the page).
+if (!prefersReduced && window.matchMedia?.('(pointer: fine)').matches !== false) {
+  const EASE = 0.11;
+  const WHEEL_MULTIPLIER = 1;
+  let currentY = null; // lazily read on first wheel event, not at module
+                        // load — a cross-page #hash link (e.g. a show page's
+                        // "Nosotros" back to index.html#about) may still be
+                        // mid-jump when this module executes, and caching
+                        // scrollY now would race that landing position.
+  let targetY = null;
+  let raf = null;
+
+  function maxScroll() {
+    return document.documentElement.scrollHeight - window.innerHeight;
+  }
+
+  // 'instant', not 'auto' — 'auto' defers to the element's own
+  // scroll-behavior CSS, which is set to smooth site-wide above for
+  // anchor-link jumps. Left as 'auto' here, every one of these per-frame
+  // steps would itself kick off its own smooth sub-animation toward a
+  // target that's already moved by the next frame, so the real scroll
+  // position permanently lagged far behind the easing math below instead
+  // of tracking it — the page barely moved no matter how hard you
+  // scrolled. 'instant' makes each step a plain, immediate jump; the
+  // easing below is what supplies the actual smoothness.
+  function step() {
+    currentY += (targetY - currentY) * EASE;
+    if (Math.abs(targetY - currentY) < 0.5) {
+      currentY = targetY;
+      window.scrollTo({ top: currentY, behavior: 'instant' });
+      raf = null;
+      return;
+    }
+    window.scrollTo({ top: currentY, behavior: 'instant' });
+    raf = requestAnimationFrame(step);
+  }
+
+  window.addEventListener('wheel', (event) => {
+    // Lets an element that scrolls on its own (the booking form's
+    // textarea, the format <select>) keep handling its own wheel input
+    // instead of the page stealing it out from under the user.
+    if (event.target.closest('textarea, select')) return;
+    if (event.ctrlKey) return; // pinch-zoom on a trackpad, not a scroll
+
+    event.preventDefault();
+
+    if (currentY === null) {
+      currentY = window.scrollY;
+      targetY = window.scrollY;
+    }
+    targetY = Math.max(0, Math.min(maxScroll(), targetY + event.deltaY * WHEEL_MULTIPLIER));
+    if (!raf) raf = requestAnimationFrame(step);
+  }, { passive: false });
+
+  // A resize (or content settling in late — images, GSAP ScrollTrigger
+  // recalculating pin spacers) can shrink maxScroll() out from under an
+  // in-flight target set before it; re-clamping keeps the eased scroll
+  // from ever chasing a target past the page's current actual bottom.
+  window.addEventListener('resize', () => {
+    if (targetY !== null) targetY = Math.max(0, Math.min(maxScroll(), targetY));
+  });
+}
+
 /* ---------- scroll progress bar ---------- */
 
 const scrollProgress = document.getElementById('scrollProgress');
@@ -38,6 +116,26 @@ document.querySelectorAll('a[href="#about"]').forEach((a) => {
   a.addEventListener('click', scrollToAbout);
 });
 
+/* ---------- "Shows" link: jump to the actual top, not a stale sticky
+   offset ---------- */
+
+// #top is .hero itself — first element on the page, so its true position is
+// scroll offset 0. But .hero is also position:sticky (styles.css, the same
+// section-stack trick #about relies on above), and once the page has
+// scrolled past its pinned range, browsers report a native hash-jump target
+// for a sticky element based on its last "stuck" offset rather than its
+// static in-flow position — landing well down the page (around where
+// #experiences hands off to #about) instead of back at the hero. A plain
+// scrollTo(0) sidesteps that entirely.
+function scrollToTop(event) {
+  event.preventDefault();
+  window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+}
+
+document.querySelectorAll('a[href="#top"]').forEach((a) => {
+  a.addEventListener('click', scrollToTop);
+});
+
 /* ---------- header: scrolled state + active section tracking ---------- */
 
 const header = document.getElementById('siteHeader');
@@ -60,11 +158,13 @@ function isOverDarkStage() {
   return window.scrollY >= start && window.scrollY <= end;
 }
 
+let mobileNavOpen = false;
+
 function onScroll() {
   updateScrollProgress();
   if (header) {
     header.classList.toggle('is-scrolled', window.scrollY > 12);
-    header.classList.toggle('is-dark', isOverDarkStage());
+    header.classList.toggle('is-dark', isOverDarkStage() || mobileNavOpen);
   }
 }
 
@@ -172,6 +272,8 @@ function closeMobileNav() {
   navToggle?.setAttribute('aria-expanded', 'false');
   mobileNav?.classList.remove('is-open');
   document.body.style.overflow = '';
+  mobileNavOpen = false;
+  onScroll();
 }
 
 navToggle?.addEventListener('click', () => {
@@ -179,6 +281,12 @@ navToggle?.addEventListener('click', () => {
   navToggle.classList.toggle('is-open', isOpen);
   navToggle.setAttribute('aria-expanded', String(!!isOpen));
   document.body.style.overflow = isOpen ? 'hidden' : '';
+  // The overlay behind the header is dark full-bleed — reuse the same
+  // is-dark treatment (styles.css) the header gets over #experiences'
+  // dark stage, or the logo/toggle stay in their black-on-light variant
+  // and nearly disappear against it.
+  mobileNavOpen = !!isOpen;
+  onScroll();
 });
 
 mobileNav?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMobileNav));
@@ -198,6 +306,21 @@ if (revealEls.length) {
     gsap.set(revealEls, { opacity: 1, y: 0 });
   } else {
     revealEls.forEach((el) => {
+      // 'top 85%' needs ~15% of a viewport-height's worth of scroll room
+      // below the element to ever fire — true for everything on the page
+      // except .footer-bottom, the very last element in the document:
+      // there's nothing after it to scroll into, so its top never reaches
+      // 85% down the viewport and it would stay permanently at opacity:0.
+      // 'bottom bottom' (no offset) lands exactly ON max scroll for a
+      // page-end element — no room left to actually scroll past it, so
+      // ScrollTrigger's progress can never tick over from 0 and the
+      // reveal still never plays. +=60 here needs the scroller-side
+      // reference 60px past the true viewport bottom to satisfy the same
+      // comparison, which works out to needing 60px LESS scroll to reach
+      // (verified against the live ScrollTrigger instance — GSAP's offset
+      // direction here isn't the intuitive one), giving the threshold
+      // room to actually be crossed before hitting max scroll.
+      const isPageEnd = el.matches('.footer-bottom');
       gsap.to(el, {
         opacity: 1,
         y: 0,
@@ -205,7 +328,7 @@ if (revealEls.length) {
         ease: 'power3.out',
         scrollTrigger: {
           trigger: el,
-          start: 'top 85%',
+          start: isPageEnd ? 'bottom bottom+=60' : 'top 85%',
         },
       });
     });

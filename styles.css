@@ -40,6 +40,20 @@ html {
   scrollbar-width: none;
 }
 
+/* Plain in-page nav links (Rituales/Clientes/Contacto — anything without
+   its own JS handler in sections.js) ease to their target instead of
+   jumping there in one frame. #top and #about skip this: they're already
+   handled in JS with an explicit smooth scrollTo, needed because both
+   targets sit inside the sticky hero/experiences stack, where a native
+   hash jump's target position is unreliable (see sections.js). Scoped to
+   no-preference so a reduced-motion request still gets the instant jump
+   scroll-behavior would otherwise override. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 html::-webkit-scrollbar {
   display: none;
 }
@@ -596,18 +610,46 @@ a {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Same black-base, gradient-crossfades-in-on-hover treatment as
+   .booking-submit / .show-cta-btn — kept consistent across every primary
+   CTA on the site instead of this one staying permanently gradient. */
 .mobile-nav-cta {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 14px 26px;
   border-radius: 999px;
-  background: var(--brand-gradient);
+  background: var(--ink);
   color: #fff;
   text-decoration: none;
   font-weight: 700;
+  overflow: hidden;
+  isolation: isolate;
   opacity: 0;
   transform: translateY(18px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mobile-nav-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--brand-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-nav-cta:hover,
+.mobile-nav-cta:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.55);
+}
+
+.mobile-nav-cta:hover::before,
+.mobile-nav-cta:focus-visible::before {
+  opacity: 1;
 }
 
 .mobile-nav.is-open .mobile-nav-cta {
@@ -617,6 +659,12 @@ a {
 .mobile-nav-cta svg {
   width: 18px;
   height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.mobile-nav-cta:hover svg,
+.mobile-nav-cta:focus-visible svg {
+  transform: translateX(4px);
 }
 
 /* ---------- section stack ---------- */
@@ -1789,9 +1837,26 @@ a {
   transition: color 0.2s ease;
 }
 
+/* Each link cycles through the brand's full gama cromática on hover
+   instead of always landing on the same blue — same nth-of-type cycling
+   already used for the hero's service-row tags and the ritual thumbs, so
+   the footer picks up the same on-brand variety rather than one flat
+   accent everywhere. nth-of-type (not nth-child) so each list's leading
+   <h4> doesn't throw off the a-only count. */
+.footer-links a:nth-of-type(4n+1),
+.footer-contact a:nth-of-type(4n+1) { --accent: var(--brand-green); }
+.footer-links a:nth-of-type(4n+2),
+.footer-contact a:nth-of-type(4n+2) { --accent: var(--brand-magenta); }
+.footer-links a:nth-of-type(4n+3),
+.footer-contact a:nth-of-type(4n+3) { --accent: var(--brand-blue); }
+.footer-links a:nth-of-type(4n+4),
+.footer-contact a:nth-of-type(4n+4) { --accent: var(--brand-purple); }
+
 .footer-links a:hover,
-.footer-contact a:hover {
-  color: var(--brand-blue);
+.footer-links a:focus-visible,
+.footer-contact a:hover,
+.footer-contact a:focus-visible {
+  color: var(--accent, var(--brand-blue));
 }
 
 .footer-social {
@@ -1808,6 +1873,17 @@ a {
   height: 38px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.25s ease;
+}
+
+.footer-social a:nth-child(odd) { --accent: var(--brand-green); }
+.footer-social a:nth-child(even) { --accent: var(--brand-magenta); }
+
+.footer-social a:hover,
+.footer-social a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .footer-social svg {
@@ -1860,6 +1936,39 @@ a {
     display: flex;
   }
 
+  /* .site-header-inner has no horizontal margin of its own, so on a
+     narrow screen (where .wrap's max-width never actually caps anything)
+     it spans the full fixed-position .site-header edge-to-edge — fine
+     while transparent, but once .is-scrolled gives it its own background/
+     rounded corners (the floating "pill" state), that pill's own edge
+     was flush against the screen edge with nothing but its internal
+     padding between the logo/toggle and the true viewport border. margin
+     pulls the whole pill in from the screen edge; padding (kept smaller
+     now that margin is doing part of the job) keeps the logo/toggle off
+     the pill's own inner edge. Repeated for .is-scrolled since that state
+     sets its own padding-inline (styles.css above) that would otherwise
+     win over the plain .wrap rule. */
+  .site-header-inner {
+    margin-inline: 14px;
+    padding-inline: 18px;
+  }
+
+  .site-header.is-scrolled .site-header-inner {
+    margin-inline: 14px;
+    padding-inline: 16px;
+  }
+
+  /* The auto margin that pushes .header-actions to the right normally
+     lives on .main-nav (site-header-inner's flex layout: logo, then nav
+     with margin-inline-start:auto, then actions right after it) — with
+     nav hidden here, that auto margin disappears too and .header-actions
+     just sits at its own small fixed gap after the logo instead of at the
+     header's far edge. Moving the auto margin onto .header-actions itself
+     keeps the toggle pinned right regardless of whether the nav is shown. */
+  .header-actions {
+    margin-inline-start: auto;
+  }
+
   .about-grid,
   .booking-grid {
     grid-template-columns: 1fr;
@@ -1904,8 +2013,15 @@ a {
 }
 
 @media (max-width: 720px) {
+  /* Sized off vw (the stable dimension in portrait), not vh — the camera
+     framing in carousel.js widens its vertical FOV to keep the ring from
+     cropping horizontally on a narrow container, which shrinks the cards
+     the taller/narrower the box is. A vh-based height here produced a
+     very tall, narrow box (aspect well under 1) that left nearly half its
+     own height empty below the cards; this keeps the box's aspect ratio
+     close to what that framing math is actually tuned for. */
   .mq-scene {
-    height: clamp(420px, 62vh, 640px);
+    height: clamp(300px, 82vw, 460px);
   }
 
   .service-row {
@@ -2006,34 +2122,8 @@ a {
 }
 
 .show-block:first-child {
-  padding-top: clamp(28px, 8vh, 72px);
+  padding-top: clamp(16px, 3vh, 32px);
   border-top: none;
-}
-
-.show-breadcrumb {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 20px;
-  font-size: 0.82rem;
-  color: var(--ink-dim);
-}
-
-.show-breadcrumb a {
-  color: var(--ink-dim);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.show-breadcrumb a:hover,
-.show-breadcrumb a:focus-visible {
-  color: var(--ink);
-}
-
-.show-breadcrumb [aria-current] {
-  color: var(--ink);
-  font-weight: 600;
 }
 
 .eyebrow-accent {
@@ -2068,24 +2158,45 @@ a {
   gap: 14px;
 }
 
+/* Same black-base, gradient-crossfades-in-on-hover treatment as
+   .booking-submit — a plain always-on gradient here read as a different,
+   less deliberate button style from the rest of the site's primary CTAs. */
 .show-cta-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 15px 28px;
   border-radius: 999px;
-  background: var(--brand-gradient);
+  background: var(--ink);
   color: #fff;
   text-decoration: none;
   font-weight: 700;
   font-size: 0.94rem;
+  overflow: hidden;
+  isolation: isolate;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.show-cta-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--brand-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .show-cta-btn:hover,
 .show-cta-btn:focus-visible {
   transform: translateY(-3px);
   box-shadow: 0 22px 44px -20px rgba(0, 0, 0, 0.4);
+}
+
+.show-cta-btn:hover::before,
+.show-cta-btn:focus-visible::before {
+  opacity: 1;
 }
 
 .show-cta-btn svg {
@@ -2183,11 +2294,36 @@ a {
   border-radius: 50%;
   background: var(--brand-gradient);
   color: #fff;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  transition: box-shadow 0.3s ease;
 }
 
 .show-feature-icon svg {
   width: 19px;
   height: 19px;
+  transform-origin: 50%;
+}
+
+/* Hovering anywhere on the row (not just the small circle itself) pops the
+   icon — same up-bounce-with-a-twist curve as the hero's service-row icons
+   (styles.css, service-icon-bounce), reused here so the two icon rows
+   feel like one consistent motif rather than two different button
+   animations. A soft glow in the icon's own gradient lifts it off the
+   list at the same time, since a rotate/scale alone was easy to miss on
+   an icon this small. */
+.show-feature-list li:hover .show-feature-icon {
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.35);
+}
+
+.show-feature-list li:hover .show-feature-icon svg {
+  animation: show-feature-icon-bounce 0.5s ease-out;
+}
+
+@keyframes show-feature-icon-bounce {
+  0% { transform: translateY(0) scale(1) rotate(0); }
+  35% { transform: translateY(-5px) scale(1.22) rotate(-10deg); }
+  65% { transform: translateY(1px) scale(0.92) rotate(6deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
 }
 
 .show-feature-list h3 {
@@ -2231,6 +2367,21 @@ a {
   padding: clamp(28px, 4vw, 40px);
   border-radius: 24px;
   background: var(--ink);
+  color: #fff;
+}
+
+/* .show-cta-btn's own black base (above) would go invisible against this
+   card's own black background — flipped to a white base here instead,
+   still crossfading to the gradient (with the text following it to white)
+   on hover, same idea as everywhere else the button appears. */
+.show-cta-card .show-cta-btn {
+  background: #fff;
+  color: var(--ink);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.show-cta-card .show-cta-btn:hover,
+.show-cta-card .show-cta-btn:focus-visible {
   color: #fff;
 }
 
@@ -2309,7 +2460,20 @@ a {
   }
 
   .show-story-media {
-    position: static;
+    /* Stays relative (not static) — .show-story-badge is a sibling of
+       .show-story-frame, both positioned against .show-story-media itself,
+       not the frame. Dropping this to static removed the only positioned
+       ancestor in reach, so the badge fell through to the page's initial
+       containing block and rendered far down the document instead of
+       pinned to the photo's corner. */
+    position: relative;
+    /* The desktop rule's top:var(--header-h) is what holds the sticky
+       photo below the fixed header while pinned — position:relative
+       still honors top (unlike static, which ignores it), so left
+       un-reset here it pushed the whole photo down by another header's
+       worth of empty space on top of .show-page's own header-height
+       padding. */
+    top: 0;
     height: auto;
     padding-block: 0 0;
   }
