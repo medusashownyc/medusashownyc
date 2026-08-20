@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liquid Distortion Hover — Three.js + GLSL + GSAP</title>
+
+<style>
+  /* ============================================================
+     ESTILOS DE LA DEMO (no forman parte del componente en sí,
+     solo dan contexto visual tipo "hero" de agencia creativa).
+     ============================================================ */
+  :root {
+    --bg: #0b0b0d;
+    --ink: #f3f1ec;
+    --ink-dim: #9a978f;
+    --accent: #c9ff3d;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { color-scheme: dark; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1240px;
+    margin-inline: auto;
+    padding: clamp(24px, 5vw, 64px);
+  }
+
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: clamp(28px, 6vw, 56px);
+    flex-wrap: wrap;
+  }
+
+  header h1 {
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  header p {
+    margin: 0;
+    color: var(--ink-dim);
+    font-size: 0.92rem;
+    max-width: 42ch;
+  }
+
+  /* ---- El componente: contenedor + canvas WebGL ---- */
+
+  .liquid-hero {
+    position: relative;
+    width: 100%;
+    height: clamp(340px, 56vw, 640px);
+    border-radius: 18px;
+    overflow: hidden;
+    background: #111;
+    cursor: none; /* el cursor custom de abajo reemplaza al del sistema */
+  }
+
+  .liquid-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(14px, 2vw, 22px);
+    margin-top: clamp(14px, 2vw, 22px);
+  }
+
+  .liquid-card {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #111;
+    cursor: none;
+  }
+
+  /* El <canvas> lo crea Three.js dentro de cada contenedor con
+     data-liquid; solo nos aseguramos de que llene el espacio. */
+  [data-liquid] canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .liquid-label {
+    position: absolute;
+    left: 18px;
+    bottom: 16px;
+    z-index: 2;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+  }
+
+  /* Cursor custom (un puntito que sigue al mouse) — puramente estético,
+     no forma parte del efecto WebGL, se puede borrar sin problema. */
+  .liquid-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+    border-radius: 50%;
+    background: var(--accent);
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    mix-blend-mode: difference;
+  }
+
+  .controls {
+    margin-top: clamp(28px, 5vw, 44px);
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px 32px;
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+  }
+
+  .controls b { color: var(--ink); font-weight: 600; }
+
+  code {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.85em;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Liquid Distortion Hover</h1>
+    <p>Three.js + ShaderMaterial (GLSL) + GSAP. Mové el cursor sobre las imágenes.</p>
+  </header>
+
+  <div class="liquid-hero" data-liquid
+       data-image="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1600&q=80">
+    <span class="liquid-label">Hero — radius 0.32 · strength 0.11</span>
+  </div>
+
+  <div class="liquid-grid">
+    <div class="liquid-card" data-liquid
+         data-image="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80"
+         data-radius="0.24" data-strength="0.08">
+      <span class="liquid-label">01</span>
+    </div>
+    <div class="liquid-card" data-liquid
+         data-image="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
+         data-radius="0.24" data-strength="0.08">
+      <span class="liquid-label">02</span>
+    </div>
+    <div class="liquid-card" data-liquid
+         data-image="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80"
+         data-radius="0.24" data-strength="0.08">
+      <span class="liquid-label">03</span>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div><b>Ajustar fuerza:</b> <code>data-strength</code> en el contenedor, o <code>CONFIG.strength</code> en el JS.</div>
+    <div><b>Ajustar alcance:</b> <code>data-radius</code> (0–~0.7, en espacio UV).</div>
+    <div><b>Cambiar imágenes:</b> atributo <code>data-image</code> de cada <code>[data-liquid]</code>.</div>
+    <div><b>Cambiar el noise:</b> reemplazá <code>createNoiseTexture()</code> por <code>textureLoader.load('ruido.png')</code>.</div>
+  </div>
+</div>
+
+<div class="liquid-cursor" id="cursorDot"></div>
+
+<!-- ============================================================
+     CDNs: Three.js (import map, build ES module) + GSAP (UMD).
+     ============================================================ -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script type="module">
+import * as THREE from 'three';
+
+/* ================================================================
+   1) SHADERS (GLSL)
+   ================================================================ */
+
+// Vertex shader: no hace nada especial — solo pasa las UV al
+// fragment shader y proyecta la posición. Toda la magia del efecto
+// pasa en el fragment shader, distorsionando qué píxel de la
+// textura se lee para cada fragmento (no la geometría en sí).
+const vertexShader = /* glsl */ `
+  varying vec2 vUv;
+
+  void main() {
+    vUv = uv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+// Fragment shader: acá vive el efecto líquido.
+const fragmentShader = /* glsl */ `
+  precision highp float;
+
+  varying vec2 vUv;
+
+  uniform sampler2D u_texture;       // imagen principal
+  uniform sampler2D u_displacement;  // mapa de ruido (displacement)
+  uniform vec2  u_mouse;             // posición del mouse en espacio UV (0..1), suavizada
+  uniform vec2  u_velocity;          // velocidad del mouse (UV/seg), suavizada
+  uniform float u_intensity;         // 0..1 — animado por GSAP en enter/leave
+  uniform float u_time;              // para que el ruido respire aunque el mouse esté quieto
+  uniform vec2  u_imageResolution;   // tamaño natural de la imagen (para cover-fit)
+  uniform vec2  u_planeResolution;   // tamaño del canvas en pantalla
+
+  // -------- parámetros ajustables --------
+  uniform float u_radius;      // alcance del efecto alrededor del cursor (espacio UV)
+  uniform float u_strength;    // cuánto se empujan los píxeles
+  uniform float u_aberration;  // separación cromática (RGB) ligada a la velocidad
+  // ----------------------------------------
+
+  // object-fit: cover, para que la imagen no se deforme si el
+  // contenedor no tiene la misma proporción que la foto original.
+  vec2 coverUv(vec2 uv, vec2 imageRes, vec2 planeRes) {
+    float imageAspect = imageRes.x / imageRes.y;
+    float planeAspect  = planeRes.x / planeRes.y;
+    vec2 scale = vec2(1.0);
+    if (planeAspect > imageAspect) {
+      scale.y = imageAspect / planeAspect;
+    } else {
+      scale.x = planeAspect / imageAspect;
+    }
+    return (uv - 0.5) * scale + 0.5;
+  }
+
+  void main() {
+    vec2 uv = coverUv(vUv, u_imageResolution, u_planeResolution);
+
+    // Distancia del fragmento actual al cursor, corregida por el
+    // aspecto del plano para que el "charco" sea un círculo real y
+    // no un óvalo en contenedores no cuadrados.
+    vec2 aspectFix = vec2(u_planeResolution.x / u_planeResolution.y, 1.0);
+    float dist = length((vUv - u_mouse) * aspectFix);
+
+    // Máscara radial: 1.0 justo en el cursor, decae suave hasta 0
+    // en u_radius. Multiplicada por u_intensity (que GSAP anima
+    // entre 0 y 1 al entrar/salir del contenedor).
+    float mask = smoothstep(u_radius, 0.0, dist) * u_intensity;
+
+    // Ruido orgánico. Se mueve lentamente en el tiempo para que el
+    // "líquido" nunca se vea estático, incluso con el mouse quieto.
+    vec2 noiseUv = uv * 1.6 + u_time * 0.015;
+    vec2 noiseVec = (texture2D(u_displacement, noiseUv).rg - 0.5) * 2.0; // -1..1
+
+    // Desplazamiento total de UV:
+    //  a) "wobble" orgánico dado por el ruido
+    //  b) un "smear" direccional que sigue la trayectoria/velocidad
+    //     real del cursor — esto es lo que hace que se sienta líquido
+    //     y no solo un círculo pulsante.
+    vec2 offset = noiseVec * mask * u_strength;
+    offset += u_velocity * mask * 6.0;
+
+    vec2 distortedUv = uv + offset;
+
+    // Aberración cromática sutil, más fuerte cuanto más rápido se
+    // mueve el cursor — le da un toque "líquido/vidrio" al efecto.
+    float aberration = u_aberration * mask * (length(u_velocity) * 40.0 + 0.15);
+    float r = texture2D(u_texture, distortedUv + vec2(aberration, 0.0)).r;
+    float g = texture2D(u_texture, distortedUv).g;
+    vec4  b = texture2D(u_texture, distortedUv - vec2(aberration, 0.0));
+
+    gl_FragColor = vec4(r, g, b.b, b.a);
+  }
+`;
+
+/* ================================================================
+   2) TEXTURA DE RUIDO (displacement map)
+   Generada por canvas para que el archivo sea 100% autocontenido.
+   Para un resultado aún más orgánico, reemplazá esto por:
+     textureLoader.load('mi-mapa-de-ruido.png')
+   ================================================================ */
+function createNoiseTexture(size = 256) {
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const imageData = ctx.createImageData(size, size);
+
+  for (let i = 0; i < imageData.data.length; i += 4) {
+    imageData.data[i] = Math.random() * 255;     // R -> dirección X
+    imageData.data[i + 1] = Math.random() * 255; // G -> dirección Y
+    imageData.data[i + 2] = 128;
+    imageData.data[i + 3] = 255;
+  }
+  ctx.putImageData(imageData, 0, 0);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  texture.minFilter = THREE.LinearFilter;
+  return texture;
+}
+
+// Una sola textura de ruido, reutilizada por todas las instancias.
+const sharedNoiseTexture = createNoiseTexture();
+
+/* ================================================================
+   3) COMPONENTE: LiquidImage
+   Encapsula escena, cámara, render y eventos de un contenedor.
+   Se puede instanciar tantas veces como haga falta (ver el grid
+   de abajo en el HTML).
+   ================================================================ */
+class LiquidImage {
+  constructor(container) {
+    this.container = container;
+
+    // -------- CONFIG: valores por defecto, sobreescribibles con
+    // data-radius / data-strength / data-aberration en el HTML --------
+    this.config = {
+      radius: parseFloat(container.dataset.radius) || 0.3,
+      strength: parseFloat(container.dataset.strength) || 0.1,
+      aberration: parseFloat(container.dataset.aberration) || 0.015,
+      easeIn: 0.9,
+      easeOut: 1.1,
+    };
+
+    this.mouseUv = { x: 0.5, y: 0.5 };       // suavizado por GSAP
+    this.lastMouseUv = { x: 0.5, y: 0.5 };   // para calcular velocidad
+    this.velocity = { x: 0, y: 0 };          // suavizada a mano en _tick
+    this.targetVelocity = { x: 0, y: 0 };
+
+    this._buildScene();
+    this._loadTexture();
+    this._bindEvents();
+
+    this.resizeObserver = new ResizeObserver(() => this._resize());
+    this.resizeObserver.observe(this.container);
+    this._resize();
+
+    this.clock = new THREE.Clock();
+    this._tick();
+  }
+
+  _buildScene() {
+    this.scene = new THREE.Scene();
+
+    // Cámara ortográfica fija a un plano de -1..1: el "cover fit"
+    // real (que la imagen no se deforme) lo resuelve el shader con
+    // u_imageResolution / u_planeResolution, así que la cámara no
+    // necesita recalcularse en cada resize.
+    this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.container.appendChild(this.renderer.domElement);
+
+    this.uniforms = {
+      u_texture: { value: null },
+      u_displacement: { value: sharedNoiseTexture },
+      u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
+      u_velocity: { value: new THREE.Vector2(0, 0) },
+      u_intensity: { value: 0 },
+      u_time: { value: 0 },
+      u_imageResolution: { value: new THREE.Vector2(1, 1) },
+      u_planeResolution: { value: new THREE.Vector2(1, 1) },
+      u_radius: { value: this.config.radius },
+      u_strength: { value: this.config.strength },
+      u_aberration: { value: this.config.aberration },
+    };
+
+    const material = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      uniforms: this.uniforms,
+      transparent: true,
+    });
+
+    const geometry = new THREE.PlaneGeometry(2, 2);
+    this.mesh = new THREE.Mesh(geometry, material);
+    this.scene.add(this.mesh);
+  }
+
+  _loadTexture() {
+    const loader = new THREE.TextureLoader();
+    loader.load(this.container.dataset.image, (texture) => {
+      texture.colorSpace = THREE.SRGBColorSpace;
+      this.uniforms.u_texture.value = texture;
+      this.uniforms.u_imageResolution.value.set(
+        texture.image.width,
+        texture.image.height
+      );
+    });
+  }
+
+  _bindEvents() {
+    // Entrar: la intensidad del efecto sube suavemente con GSAP.
+    this.container.addEventListener('pointerenter', () => {
+      gsap.to(this.uniforms.u_intensity, {
+        value: 1,
+        duration: this.config.easeIn,
+        ease: 'power2.out',
+        overwrite: true,
+      });
+    });
+
+    // Salir: la intensidad baja y el "punto de mira" vuelve al
+    // centro — así la próxima entrada siempre arranca prolija.
+    this.container.addEventListener('pointerleave', () => {
+      gsap.to(this.uniforms.u_intensity, {
+        value: 0,
+        duration: this.config.easeOut,
+        ease: 'power3.out',
+        overwrite: true,
+      });
+      this.targetVelocity.x = 0;
+      this.targetVelocity.y = 0;
+    });
+
+    // Mover: convertimos la posición del mouse a espacio UV (0..1,
+    // con Y invertido porque en UV el 0 es abajo) y animamos
+    // u_mouse.value con gsap.to() para que el "charco" tenga un
+    // pequeño delay/inercia en vez de saltar de golpe.
+    this.container.addEventListener('pointermove', (event) => {
+      const rect = this.container.getBoundingClientRect();
+      const uvX = (event.clientX - rect.left) / rect.width;
+      const uvY = 1 - (event.clientY - rect.top) / rect.height;
+
+      gsap.to(this.uniforms.u_mouse.value, {
+        x: uvX,
+        y: uvY,
+        duration: 0.55,
+        ease: 'power3.out',
+        overwrite: true,
+      });
+
+      // Velocidad "cruda" = distancia recorrida desde el último
+      // frame de movimiento. Se suaviza en _tick() para que no
+      // tiemble.
+      this.targetVelocity.x = (uvX - this.lastMouseUv.x) * 2;
+      this.targetVelocity.y = (uvY - this.lastMouseUv.y) * 2;
+      this.lastMouseUv.x = uvX;
+      this.lastMouseUv.y = uvY;
+    });
+  }
+
+  _resize() {
+    const rect = this.container.getBoundingClientRect();
+    const width = Math.max(1, Math.round(rect.width));
+    const height = Math.max(1, Math.round(rect.height));
+    this.renderer.setSize(width, height, false);
+    this.uniforms.u_planeResolution.value.set(width, height);
+  }
+
+  _tick() {
+    this._raf = requestAnimationFrame(() => this._tick());
+
+    // Suaviza la velocidad "a mano" (lerp) para que el smear del
+    // shader no tiemble con cada evento pointermove.
+    this.velocity.x += (this.targetVelocity.x - this.velocity.x) * 0.15;
+    this.velocity.y += (this.targetVelocity.y - this.velocity.y) * 0.15;
+    this.uniforms.u_velocity.value.set(this.velocity.x, this.velocity.y);
+
+    // La velocidad "cruda" decae sola si el mouse deja de moverse
+    // (no llega más pointermove, así que hay que apagarla a mano).
+    this.targetVelocity.x *= 0.9;
+    this.targetVelocity.y *= 0.9;
+
+    this.uniforms.u_time.value = this.clock.getElapsedTime();
+    this.renderer.render(this.scene, this.camera);
+  }
+}
+
+// Instanciar el componente en cada contenedor marcado con data-liquid.
+document.querySelectorAll('[data-liquid]').forEach((el) => new LiquidImage(el));
+
+/* ================================================================
+   4) Cursor custom (puramente decorativo, no forma parte del
+   componente WebGL — se puede eliminar sin afectar el efecto).
+   ================================================================ */
+const cursorDot = document.getElementById('cursorDot');
+let cursorVisible = false;
+
+document.querySelectorAll('[data-liquid]').forEach((el) => {
+  el.addEventListener('pointerenter', () => {
+    cursorVisible = true;
+    cursorDot.style.opacity = '1';
+  });
+  el.addEventListener('pointerleave', () => {
+    cursorVisible = false;
+    cursorDot.style.opacity = '0';
+  });
+});
+
+window.addEventListener('pointermove', (event) => {
+  gsap.to(cursorDot, {
+    x: event.clientX,
+    y: event.clientY,
+    duration: 0.35,
+    ease: 'power3.out',
+    overwrite: true,
+  });
+});
+</script>
+
+</body>
+</html>

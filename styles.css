@@ -1,0 +1,2511 @@
+/* Medusa Show — hero (coverflow layout, after Weichie reference)
+   Colors, type and tagline from the brand manual (assets/Manual Medusa.pdf):
+   gama cromática (Verde Esmeralda / Magenta Púrpura / Cyber Blue / purple,
+   plus black + white), Cinzel Decorative (display) + Satoshi (body). */
+
+:root {
+  --bg: #ffffff;
+  --ink: #000000;
+  --ink-dim: rgba(0, 0, 0, 0.58);
+  --line: rgba(0, 0, 0, 0.12);
+  --card-bg: #ffffff;
+
+  --brand-green: #00b87e;
+  --brand-green-deep: #00925f;
+  --brand-green-tint: #e0f8ef;
+  --brand-magenta: #ff0d73;
+  --brand-blue: #00b6ff;
+  --brand-purple: #8a2cff;
+
+  --font-display: "Cinzel Decorative", "Iowan Old Style", ui-serif, Georgia, serif;
+  --font-body: "Satoshi", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+
+  --container: 1320px;
+  --edge: clamp(20px, 5vw, 64px);
+  --header-h: clamp(72px, 9vw, 92px);
+
+  --brand-gradient: linear-gradient(100deg, var(--brand-green), var(--brand-blue) 45%, var(--brand-magenta) 75%, var(--brand-purple));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+  /* Scrolling stays fully functional (JS scrollTo, wheel, keys, drag) —
+     only the visible track/thumb is hidden, so the snap transitions read
+     as a clean cinematic hand-off instead of a scrollbar visibly hunting
+     for its resting position mid-snap. */
+  scrollbar-width: none;
+}
+
+/* Plain in-page nav links (Rituales/Clientes/Contacto — anything without
+   its own JS handler in sections.js) ease to their target instead of
+   jumping there in one frame. #top and #about skip this: they're already
+   handled in JS with an explicit smooth scrollTo, needed because both
+   targets sit inside the sticky hero/experiences stack, where a native
+   hash jump's target position is unreliable (see sections.js). Scoped to
+   no-preference so a reduced-motion request still gets the instant jump
+   scroll-behavior would otherwise override. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--edge);
+}
+
+.page {
+  min-height: 100vh;
+  background:
+    radial-gradient(60% 40% at 50% 0%, rgba(0, 184, 126, 0.08), transparent 70%),
+    var(--bg);
+}
+
+/* ---------- scroll progress ---------- */
+
+/* A slim glowing thread rather than a flat, full-height loading-bar
+   stripe — the old 3px hard-edged block read like a browser chrome
+   element bolted onto the page rather than a deliberate design detail.
+   Thinner, with a soft brand-colored glow and a rounded leading tip
+   (the trailing edge stays flush/square against the viewport's left
+   edge, where it's anchored). */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: 0%;
+  height: 2px;
+  background: var(--brand-gradient);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 12px 1px rgba(0, 184, 126, 0.5);
+  transition: width 0.08s linear;
+}
+
+/* ---------- header ---------- */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding-block: clamp(14px, 0.8vw + 11px, 24px);
+  pointer-events: none;
+  transition: padding-block 0.35s ease;
+}
+
+.site-header.is-scrolled {
+  padding-block: clamp(10px, 0.6vw + 8px, 18px);
+}
+
+/* Invisible over the hero — the header reads as text floating on the
+   page, not a bar. Once the page has scrolled, .site-header-inner itself
+   (not a full-bleed pseudo-element) becomes a rounded, floating pill with
+   a soft shadow and a thin brand-gradient ring, so it visually lifts off
+   the page instead of pinning a bar edge-to-edge. Same disposition
+   (logo left, links/CTA right) either way — only the backing changes. */
+.site-header.is-scrolled .site-header-inner {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding-block: 10px;
+  padding-inline: clamp(18px, 2vw, 32px);
+  box-shadow:
+    0 14px 36px -10px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Thin gradient ring in the brand colors, drawn as a border via mask so
+   it follows the pill's rounded corners exactly. */
+.site-header.is-scrolled .site-header-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: var(--brand-gradient);
+  opacity: 0.55;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Sections.js toggles .is-dark while #experiences' black stage is what's
+   actually pinned behind the header (see isOverDarkStage there) — the
+   light glass pill/dark logo/dark nav text otherwise read as a washed-out
+   grey smear over the tunnel's black instead of the deliberate light
+   panel they are over the rest of the (light-background) page. */
+.site-header.is-dark.is-scrolled .site-header-inner {
+  background: rgba(10, 10, 12, 0.62);
+  box-shadow:
+    0 14px 36px -10px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.site-header.is-dark .nav-links,
+.site-header.is-dark .nav-links a,
+.site-header.is-dark .nav-cta {
+  color: #fff;
+}
+
+.site-header.is-dark .nav-cta {
+  --pill-bg: rgba(255, 255, 255, 0.14);
+  --pill-bg-hover: rgba(255, 255, 255, 0.22);
+}
+
+.site-header.is-dark .nav-toggle {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.site-header.is-dark .nav-toggle:hover,
+.site-header.is-dark .nav-toggle:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.site-header.is-dark .nav-toggle span {
+  background: #fff;
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  border-radius: 999px;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+}
+
+.brand,
+.header-actions,
+.main-nav {
+  pointer-events: auto;
+}
+
+/* inline-grid + each logo sharing grid-area 1/1 (below) is what stacks
+   the light/dark logo files on top of each other so .is-dark can
+   crossfade between them via opacity — smoother and flicker-free
+   compared to swapping one <img>'s src via JS. */
+.brand {
+  display: inline-grid;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.brand:hover,
+.brand:focus-visible {
+  transform: scale(1.05);
+}
+
+.brand img {
+  height: 40px;
+  width: auto;
+  transition: height 0.35s ease;
+}
+
+.brand-logo {
+  grid-area: 1 / 1;
+  transition: height 0.35s ease, opacity 0.3s ease;
+}
+
+.brand-logo--dark {
+  opacity: 0;
+}
+
+.site-header.is-dark .brand-logo--light {
+  opacity: 0;
+}
+
+.site-header.is-dark .brand-logo--dark {
+  opacity: 1;
+}
+
+.site-header.is-scrolled .brand img {
+  height: 34px;
+}
+
+/* ---------- nav (desktop) ---------- */
+
+/* Grouped with .header-actions via the shared margin-inline-start:auto
+   below — logo sits alone on the left, everything else (links, CTA,
+   hamburger) clusters together on the right, same disposition as the
+   reference rather than an evenly-spaced three-up layout. */
+.main-nav {
+  margin-inline-start: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02rem;
+  color: var(--ink);
+}
+
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--ink);
+  opacity: 1;
+  transition: opacity 0.2s ease, color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.nav-links a.is-active {
+  opacity: 0.6;
+}
+
+/* Per-letter hover "pop" (sections.js splits each top-level link's text
+   into these on load) — each character hops up in a left-to-right wave
+   instead of the link just sitting there while it dims, per the
+   reference. */
+.nav-chars {
+  display: inline-flex;
+}
+
+.nav-char {
+  display: inline-block;
+}
+
+.nav-char.is-hopping {
+  animation: nav-char-hop 0.42s cubic-bezier(0.33, 1, 0.68, 1);
+  animation-delay: calc(var(--i) * 28ms);
+}
+
+@keyframes nav-char-hop {
+  0% { transform: translateY(0); }
+  35% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- "Shows" mega menu ---------- */
+
+.nav-has-mega {
+  position: relative;
+}
+
+.nav-mega {
+  /* top:100% with no gap, on purpose — a gap between the link and the
+     panel is dead space that belongs to neither element, so moving the
+     mouse straight down through it drops :hover on .nav-has-mega and the
+     panel closes before the pointer ever reaches it. Flush against the
+     link, there's no such gap to lose hover in. The reveal motion instead
+     comes from a small negative margin-top that eases to 0. */
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: -6px;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  width: 560px;
+  padding: 14px;
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 40px 80px -35px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, margin-top 0.25s ease;
+}
+
+/* :focus-within keeps this reachable via keyboard tab, not just a mouse
+   hover. */
+.nav-has-mega:hover .nav-mega,
+.nav-has-mega:focus-within .nav-mega {
+  opacity: 1;
+  pointer-events: auto;
+  margin-top: 0;
+}
+
+.nav-mega-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background-color 0.2s ease;
+}
+
+.nav-mega-item:hover,
+.nav-mega-item:focus-visible {
+  background: rgba(0, 0, 0, 0.045);
+}
+
+.nav-mega-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.nav-mega-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 2px transparent;
+  transition: box-shadow 0.25s ease;
+}
+
+.nav-mega-item:hover .nav-mega-media::after,
+.nav-mega-item:focus-visible .nav-mega-media::after {
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+.nav-mega-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-mega-item:hover .nav-mega-media img,
+.nav-mega-item:focus-visible .nav-mega-media img {
+  transform: scale(1.08);
+}
+
+.nav-mega-text {
+  position: relative;
+  padding-left: 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.nav-mega-text::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ---------- header actions / CTA ---------- */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-inline-start: clamp(1.25rem, 0.9vw + 1rem, 2rem);
+  pointer-events: auto;
+}
+
+/* Pill CTA, after the reference: a soft, blurred capsule with the label
+   in plain text and the only spot of brand colour on the whole header
+   confined to the small icon circle — everything else here stays
+   neutral so that circle is what the eye lands on. */
+.nav-cta {
+  --pill-bg: rgba(0, 0, 0, 0.045);
+  --pill-bg-hover: rgba(0, 0, 0, 0.075);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.375rem 0.375rem 0.375rem 1.125rem;
+  border-radius: 999px;
+  background: var(--pill-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02rem;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.3s ease;
+}
+
+.nav-cta:hover,
+.nav-cta:focus-visible {
+  background: var(--pill-bg-hover);
+}
+
+.nav-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--brand-green);
+  color: #fff;
+  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.nav-cta:hover .nav-cta-badge,
+.nav-cta:focus-visible .nav-cta-badge {
+  transform: scale(1.2);
+}
+
+.nav-cta-badge svg,
+.nav-cta-badge img {
+  width: 20px;
+  height: auto;
+  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.nav-cta:hover .nav-cta-badge svg,
+.nav-cta:focus-visible .nav-cta-badge svg,
+.nav-cta:hover .nav-cta-badge img,
+.nav-cta:focus-visible .nav-cta-badge img {
+  transform: scale(0.92) rotate(-12deg);
+}
+
+/* ---------- mobile nav toggle + overlay ---------- */
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 0, 0, 0.045);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+  background: rgba(0, 0, 0, 0.075);
+}
+
+.nav-toggle span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s ease, background-color 0.3s ease;
+}
+
+.nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+.nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 8vh, 56px);
+  padding: 100px 24px 48px;
+  background: linear-gradient(160deg, #0a0a0a, #150b1d 55%, #06131a);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-16px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s linear 0.4s;
+}
+
+.mobile-nav.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s linear 0s;
+}
+
+.mobile-nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-nav-links a {
+  display: block;
+  padding: 10px 0;
+  text-decoration: none;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.mobile-nav.is-open .mobile-nav-links a {
+  animation: mobile-link-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.mobile-nav-links li:nth-child(1) a { animation-delay: 0.08s; }
+.mobile-nav-links li:nth-child(2) a { animation-delay: 0.14s; }
+.mobile-nav-links li:nth-child(3) a { animation-delay: 0.2s; }
+.mobile-nav-links li:nth-child(4) a { animation-delay: 0.26s; }
+.mobile-nav-links li:nth-child(5) a { animation-delay: 0.32s; }
+
+@keyframes mobile-link-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Same black-base, gradient-crossfades-in-on-hover treatment as
+   .booking-submit / .show-cta-btn — kept consistent across every primary
+   CTA on the site instead of this one staying permanently gradient. */
+.mobile-nav-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  overflow: hidden;
+  isolation: isolate;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mobile-nav-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--brand-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-nav-cta:hover,
+.mobile-nav-cta:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.55);
+}
+
+.mobile-nav-cta:hover::before,
+.mobile-nav-cta:focus-visible::before {
+  opacity: 1;
+}
+
+.mobile-nav.is-open .mobile-nav-cta {
+  animation: mobile-link-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
+}
+
+.mobile-nav-cta svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.mobile-nav-cta:hover svg,
+.mobile-nav-cta:focus-visible svg {
+  transform: translateX(4px);
+}
+
+/* ---------- section stack ---------- */
+
+/* Each top-level section sticks to the top of the viewport and stays
+   pinned there while the document keeps scrolling underneath it — the
+   next section (later in the DOM, higher z-index) rides up over it,
+   covering it like a new card dropped on top of a stack, instead of the
+   usual "scroll past and it's gone" behavior. */
+
+.hero,
+.experiences {
+  position: sticky;
+  top: 0;
+}
+
+.hero {
+  min-height: 100vh;
+  z-index: 1;
+}
+
+.experiences {
+  /* Taller than one screen on purpose: the tunnel (experiences.js) plays
+     on its own regardless of scroll position, but this extra height is
+     what keeps .experiences-stage sticky-pinned, full-screen, for a
+     while as you scroll through it instead of the section flicking past
+     in a single screen-height. Kept short (rather than the ~220vh this
+     used to be) so the whole hand-off — in via scroll-snap above, out via
+     .about-wrap's own snap point below — stays quick. */
+  min-height: 145vh;
+  z-index: 2;
+  /* Without an opaque background here, any gap between this box and the
+     stage inside it would show whatever sits behind — the hero, still
+     mid-scroll-away at z-index:1 — instead of a clean hand-off to #about. */
+  background: var(--bg);
+}
+
+/* ---------- hero / WebGL scene ---------- */
+
+.hero {
+  display: grid;
+  align-content: start;
+  padding-block: calc(var(--header-h) + clamp(20px, 5vw, 44px)) clamp(28px, 4vw, 48px);
+}
+
+/* Entrance choreography (see intro.js): the title punches in, then
+   dissolves away entirely, then the ring slides up from below as the
+   text fades, then the service tags fade in last. Base/initial states
+   only live here — intro.js (GSAP) drives the actual motion so the
+   timing/easing can match the reference exactly.
+
+   The title and the ring share the same grid cell (stacked, not stacked
+   in normal flow) so the title dissolving away doesn't leave the ring
+   sitting lower than it did before the title existed — the ring keeps
+   its own top-of-hero position regardless of the text overlaid on it. */
+
+.hero-title {
+  grid-area: 1 / 1;
+  align-self: center;
+  z-index: 2;
+  pointer-events: none;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.hero-title-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.mq-scene {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: clamp(420px, 62vh, 720px);
+  opacity: 0;
+  cursor: grab;
+}
+
+.mq-scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- service tag row ---------- */
+
+.service-row {
+  grid-area: 2 / 1;
+  list-style: none;
+  margin: clamp(16px, 2.5vw, 32px) 0 0;
+  padding: 0;
+  opacity: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 24px);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* The <a> inside each tag is display:contents — it renders no box of its
+   own, so its svg/text children stay direct flex children of the <li>
+   here and every rule below keeps working exactly as before. It just
+   makes the whole tag a real, navigable link to that show's page instead
+   of only a JS click target. */
+.service-row a {
+  display: contents;
+  color: inherit;
+  text-decoration: none;
+}
+
+.service-row li {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+  padding: 7px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Each tag takes its accent from the brand's full gama cromática, cycling
+   through the four colors instead of a single fixed accent everywhere. */
+.service-row li:nth-child(4n+1) { --accent: var(--brand-green); }
+.service-row li:nth-child(4n+2) { --accent: var(--brand-magenta); }
+.service-row li:nth-child(4n+3) { --accent: var(--brand-blue); }
+.service-row li:nth-child(4n+4) { --accent: var(--brand-purple); }
+
+/* Click/tap feedback: a quick squash on press, then the transition above
+   springs it back past 1 and settles — no held background change. */
+.service-row li:active {
+  transform: scale(0.9);
+  transition: transform 0.1s ease;
+}
+
+.service-row li.is-active {
+  color: var(--accent);
+}
+
+.service-row svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+  flex-shrink: 0;
+  transform-origin: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* Icon hover animation, same curve as weichie.com's hero label icons
+   (pulled from their compiled CSS): a quick up-pop with a bit of squash
+   and tilt, not just a static scale. */
+.service-row li:hover svg {
+  animation: service-icon-bounce 0.45s ease-out;
+}
+
+@keyframes service-icon-bounce {
+  0% { transform: translateY(0) scale(1) rotate(0); }
+  35% { transform: translateY(-4px) scale(1.22) rotate(-8deg); }
+  65% { transform: translateY(1px) scale(0.94) rotate(5deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
+}
+
+.service-row li.is-active svg {
+  transform: scale(1.08);
+}
+
+/* ---------- experiences (3D image tunnel) ---------- */
+
+/* The visible, always-centered "screen" — sticky inside the taller
+   .experiences spacer so it stays put and fills the viewport while the
+   section is scrolled through. `perspective` here is what turns the
+   tunnel's children (each positioned with its own translateZ) into a
+   real receding 3D corridor instead of a flat stack — its value is
+   echoed as PERSPECTIVE in experiences.js so the JS depth math and the
+   CSS projection agree on the same vanishing point. Flex centering here
+   is also what centers .experiences-tunnel-text (see below) with zero
+   extra positioning of its own. */
+.experiences-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 250vmin;
+  perspective-origin: 50% 50%;
+}
+
+/* Holds every wall frame, positioned in experiences.js via GSAP
+   translate3d. Unlike the text plane, this stays put — it's each
+   frame's own Z that's continuously animated (and wrapped, for the
+   endless-loop effect) rather than the tunnel itself moving, so
+   preserve-3d just needs to keep the children's individual depth intact
+   here. */
+.experiences-tunnel {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* The tunnel's wireframe is drawn on this canvas (see experiences.js),
+   not built from CSS/DOM elements — it used to be, first as a repeating-
+   gradient texture and then as real 3D-transformed line elements, but
+   both still flickered: they lived in the same preserve-3d stacking
+   context as the ~70 continuously-moving photo frames, and browsers
+   don't guarantee stable paint ordering between that many overlapping,
+   independently-animating 3D elements — which of two things painted "in
+   front" could flip from frame to frame. A canvas sidesteps that
+   entirely: it's a single flat surface we redraw ourselves every tick,
+   with an explicit, self-decided draw order — nothing for the browser to
+   get inconsistent about. Sits behind .experiences-tunnel (DOM order)
+   so photos always read as mounted in front of the wall lines. */
+.experiences-grid-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Positioned entirely by experiences.js (top/left 50% is just the
+   center anchor that its xPercent/yPercent: -50 centers against). Depth
+   (z) is updated every animation frame there; rotation is set once,
+   since it depends only on which wall the frame belongs to. No border/
+   shadow — a plain edge reads cleanest against the black background. */
+.experiences-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.experiences-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The destination at the tunnel's vanishing point — a flat overlay, not
+   part of the 3D flight, so it's always crisp and fully visible instead
+   of cycling through the fade the wall frames do. Sits as .experiences-
+   stage's only normal-flow child (the tunnel and vignette are both
+   position:absolute, out of flow), so the stage's own flex centering is
+   what places it dead-center with no positioning of its own needed. */
+.experiences-tunnel-text {
+  position: relative;
+  z-index: 4;
+  width: 62vmin;
+  text-align: center;
+  pointer-events: none;
+}
+
+.experiences-tunnel-text h2 {
+  margin: 0 0 0.5em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: clamp(1.8rem, 6vmin, 4.2rem);
+  line-height: 1.2;
+  color: #fff;
+}
+
+/* Darkens the tunnel toward the edges/depth so frames read as receding
+   into fog rather than having a hard, visible clipping boundary. */
+/* No edge darkening — frames now stay fully visible out to the screen
+   edge and leave by sliding out of the clipped stage (overflow:hidden),
+   not by fading into a vignette first. */
+.experiences-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Full-size photo viewer, opened by clicking any frame in the tunnel —
+   sits above everything else on the page (including the floating header)
+   so it reads as a proper modal regardless of which section is behind it. */
+.experiences-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vh 5vw;
+  background: rgba(5, 5, 8, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  cursor: zoom-out;
+}
+
+.experiences-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.experiences-lightbox figure {
+  margin: 0;
+  max-width: 100%;
+  max-height: 100%;
+  line-height: 0;
+  position: relative;
+  transform: scale(0.94);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experiences-lightbox.is-open figure {
+  transform: scale(1);
+}
+
+.experiences-lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+}
+
+.experiences-lightbox-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.experiences-lightbox-close:hover,
+.experiences-lightbox-close:focus-visible {
+  transform: scale(1.08);
+}
+
+/* ---------- shared section chrome ---------- */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-green-deep);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--brand-gradient);
+}
+
+.section-title {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.2;
+}
+
+/* Scroll-triggered reveal target (see sections.js): starts hidden/offset,
+   GSAP ScrollTrigger animates each into place as it enters the viewport. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(36px);
+}
+
+/* ---------- about ---------- */
+
+/* Gives #about's sticky positioning a containing block sized to exactly
+   one viewport — without this, the containing block defaults to
+   everything else in the document below it, and a stuck sticky element
+   never gets released until its self-computed "room" runs out, which
+   here would mean never (it would just sit pinned over #elenco and
+   everything after it forever). */
+.about-wrap {
+  height: 100vh;
+  /* Without this, #about's negative top margin collapses straight through
+     to .about-wrap itself (no padding/border in the way), silently
+     shifting the wrapper's own position and quietly breaking the sticky
+     math above. flow-root contains the margin without clipping the
+     content that's deliberately rendered above the wrapper's own top
+     edge (unlike overflow:hidden, which would just cut it off). */
+  display: flow-root;
+}
+
+/* Pulled up by margin-top:-100vh so its natural document position lands
+   one viewport-height earlier than "right after #experiences" — into the
+   last viewport-height of #experiences' own sticky range instead of only
+   starting once #experiences has fully scrolled away. That overlap plus
+   its own position:sticky is what lets it sit pinned, already fully laid
+   out, directly behind #experiences' still-opaque stage (z-index below
+   it) — the same trick that keeps #hero pinned behind #experiences for
+   the whole photo run (see the shared ".hero, .experiences" rule above)
+   — instead of growing/fading in from below as you scroll. Once the
+   stage scrolls away naturally, this is just already there. */
+.about {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin-top: -100vh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+}
+
+.about-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(36px, 6vw, 80px);
+  align-items: center;
+}
+
+.about-media {
+  position: relative;
+  isolation: isolate;
+}
+
+.about-media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: 0 40px 70px -36px rgba(0, 0, 0, 0.45);
+}
+
+.about-media-ring {
+  position: absolute;
+  z-index: -1;
+  inset: 18px -18px -18px 18px;
+  border-radius: 22px;
+  background: var(--brand-gradient);
+  opacity: 0.9;
+}
+
+.about-media-badge {
+  position: absolute;
+  left: -18px;
+  bottom: -18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.55);
+}
+
+.about-media-badge strong {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.about-media-badge em {
+  font-style: normal;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.about-copy h2 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  line-height: 1.22;
+}
+
+.about-lead {
+  margin: 0 0 clamp(28px, 4vw, 44px);
+  max-width: 46ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--ink-dim);
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 3vw, 32px);
+  max-width: 30rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 16px;
+  border-top: 2px solid var(--line);
+}
+
+/* .stat is flex-direction:column (stacking the value above the label) —
+   without this wrapper, .stat-number and .stat-suffix were direct
+   children of that same column flex, so each landed on its own line
+   instead of sitting side by side. */
+.stat-value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.stat-number,
+.stat-suffix {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.stat-label {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+}
+
+/* ---------- rituales ---------- */
+
+.rituales {
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+  background:
+    radial-gradient(50% 45% at 12% 0%, rgba(138, 44, 255, 0.08), transparent 70%),
+    radial-gradient(45% 40% at 100% 100%, rgba(0, 182, 255, 0.07), transparent 70%),
+    var(--bg);
+  padding-block: clamp(60px, 10vw, 120px);
+}
+
+.rituales-lead {
+  margin: 0 0 clamp(32px, 5vw, 52px);
+  max-width: 56ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--ink-dim);
+}
+
+.rituales-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.5vw, 32px);
+}
+
+/* ---- feature panel: crossfades between rituals (sections.js) ---- */
+
+.ritual-feature {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  height: clamp(420px, 44vw, 480px);
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  box-shadow: 0 40px 80px -50px rgba(0, 0, 0, 0.35);
+}
+
+.ritual-feature-media {
+  position: relative;
+  isolation: isolate;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ritual-feature-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), transparent 55%);
+}
+
+.ritual-feature-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* A large, faint roman numeral over each ritual's photo — a bit of
+   ceremonial texture (I, II, III, IV) rather than a plain arabic index. */
+.ritual-feature-numeral {
+  position: absolute;
+  z-index: 1;
+  right: 16px;
+  bottom: -0.15em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(4rem, 9vw, 6.5rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+}
+
+.ritual-feature-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(28px, 3.4vw, 44px);
+}
+
+.ritual-feature-body h3 {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+}
+
+.ritual-feature-body > p {
+  margin: 0 0 18px;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+/* ---- thumb strip: also the picker (sections.js swaps the feature
+   panel's content on click, and auto-advances through them) ---- */
+
+.ritual-thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+.ritual-thumb {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--card-bg);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ritual-thumb:hover,
+.ritual-thumb:focus-visible {
+  transform: translateY(-3px);
+}
+
+.ritual-thumb.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px -28px rgba(0, 0, 0, 0.35);
+}
+
+.ritual-thumb:nth-child(4n+1) { --accent: var(--brand-green); }
+.ritual-thumb:nth-child(4n+2) { --accent: var(--brand-magenta); }
+.ritual-thumb:nth-child(4n+3) { --accent: var(--brand-blue); }
+.ritual-thumb:nth-child(4n+4) { --accent: var(--brand-purple); }
+
+.ritual-thumb-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.ritual-thumb-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+  transition: filter 0.3s ease;
+}
+
+.ritual-thumb.is-active .ritual-thumb-media img,
+.ritual-thumb:hover .ritual-thumb-media img,
+.ritual-thumb:focus-visible .ritual-thumb-media img {
+  filter: brightness(1);
+}
+
+/* Fills over the autoplay interval while a thumb is active — a visual
+   countdown to the next auto-advance, reset (sections.js) on every
+   switch whether manual or automatic. */
+.ritual-thumb-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.ritual-thumb-progress.is-filling {
+  transition: transform 6s linear;
+  transform: scaleX(1);
+}
+
+.ritual-thumb-text {
+  padding: 10px 12px 12px;
+}
+
+.ritual-thumb-text em {
+  display: block;
+  margin-bottom: 2px;
+  font-style: normal;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.ritual-thumb-text strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.ritual-card-tag {
+  margin: 0 0 10px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.ritual-card-includes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+}
+
+.ritual-card-includes li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.ritual-card-includes svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.ritual-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  width: fit-content;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.ritual-card-cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.ritual-card-cta:hover,
+.ritual-card-cta:focus-visible {
+  color: var(--accent);
+}
+
+.ritual-card-cta:hover svg,
+.ritual-card-cta:focus-visible svg {
+  transform: translateX(4px);
+}
+
+/* ---------- testimonials marquee ---------- */
+
+.testimonials {
+  position: relative;
+  z-index: 3;
+  background: var(--ink);
+  color: #fff;
+  padding-block: clamp(60px, 10vw, 110px);
+  overflow: hidden;
+}
+
+.testimonials .eyebrow {
+  color: var(--brand-blue);
+}
+
+.testimonials .section-title {
+  color: #fff;
+}
+
+.marquee {
+  margin-top: clamp(36px, 5vw, 56px);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: clamp(20px, 2.5vw, 32px);
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-track blockquote {
+  flex: none;
+  width: min(70vw, 420px);
+  margin: 0;
+  padding: 22px 26px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.marquee-track blockquote cite {
+  display: block;
+  margin-top: 14px;
+  font-style: normal;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+@keyframes marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- booking ---------- */
+
+.booking {
+  position: relative;
+  z-index: 3;
+  background: var(--bg);
+  padding-block: clamp(72px, 12vw, 140px);
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(36px, 6vw, 80px);
+  align-items: start;
+}
+
+.booking-intro h2 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.22;
+}
+
+.booking-intro > p {
+  margin: 0 0 26px;
+  max-width: 44ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-dim);
+}
+
+.booking-points {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.booking-points li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 0.94rem;
+  color: var(--ink);
+}
+
+.booking-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--brand-gradient);
+}
+
+.booking-direct {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.booking-direct a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.booking-direct a:hover,
+.booking-direct a:focus-visible {
+  border-color: var(--brand-green);
+  transform: translateY(-2px);
+}
+
+.booking-direct svg {
+  width: 16px;
+  height: 16px;
+  color: var(--brand-green-deep);
+}
+
+.booking-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  box-shadow: 0 40px 80px -50px rgba(0, 0, 0, 0.45);
+}
+
+.field {
+  position: relative;
+}
+
+.field-full {
+  grid-column: 1 / -1;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 18px 14px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fbfbfb;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  appearance: none;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.field label {
+  position: absolute;
+  left: 15px;
+  top: 17px;
+  font-size: 0.95rem;
+  color: var(--ink-dim);
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform 0.2s ease, top 0.2s ease, color 0.2s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--brand-green);
+  box-shadow: 0 0 0 4px rgba(0, 184, 126, 0.12);
+}
+
+.field input:focus + label,
+.field select:focus + label,
+.field textarea:focus + label,
+.field input:not(:placeholder-shown) + label,
+.field textarea:not(:placeholder-shown) + label,
+.field select:valid + label,
+.field.has-value label {
+  top: 7px;
+  transform: scale(0.72);
+  color: var(--brand-green-deep);
+}
+
+.field select {
+  padding-top: 18px;
+}
+
+.booking-submit {
+  grid-column: 1 / -1;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  font-weight: 700;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.booking-submit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--brand-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.booking-submit:hover,
+.booking-submit:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.55);
+}
+
+.booking-submit:hover::before,
+.booking-submit:focus-visible::before {
+  opacity: 1;
+}
+
+.booking-submit svg {
+  width: 17px;
+  height: 17px;
+  transition: transform 0.3s ease;
+}
+
+.booking-submit:hover svg {
+  transform: translateX(4px);
+}
+
+.booking-status {
+  grid-column: 1 / -1;
+  margin: 0;
+  min-height: 1.2em;
+  font-size: 0.86rem;
+  color: var(--brand-green-deep);
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  position: relative;
+  z-index: 3;
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.72);
+  padding-block: clamp(48px, 7vw, 72px) 24px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: clamp(28px, 5vw, 60px);
+  padding-bottom: clamp(32px, 5vw, 56px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-brand img {
+  height: 40px;
+  width: auto;
+  margin-bottom: 16px;
+}
+
+.footer-brand p {
+  max-width: 32ch;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-links,
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  margin: 0 0 6px;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.footer-links a,
+.footer-contact a {
+  width: fit-content;
+  text-decoration: none;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.72);
+  transition: color 0.2s ease;
+}
+
+/* Each link cycles through the brand's full gama cromática on hover
+   instead of always landing on the same blue — same nth-of-type cycling
+   already used for the hero's service-row tags and the ritual thumbs, so
+   the footer picks up the same on-brand variety rather than one flat
+   accent everywhere. nth-of-type (not nth-child) so each list's leading
+   <h4> doesn't throw off the a-only count. */
+.footer-links a:nth-of-type(4n+1),
+.footer-contact a:nth-of-type(4n+1) { --accent: var(--brand-green); }
+.footer-links a:nth-of-type(4n+2),
+.footer-contact a:nth-of-type(4n+2) { --accent: var(--brand-magenta); }
+.footer-links a:nth-of-type(4n+3),
+.footer-contact a:nth-of-type(4n+3) { --accent: var(--brand-blue); }
+.footer-links a:nth-of-type(4n+4),
+.footer-contact a:nth-of-type(4n+4) { --accent: var(--brand-purple); }
+
+.footer-links a:hover,
+.footer-links a:focus-visible,
+.footer-contact a:hover,
+.footer-contact a:focus-visible {
+  color: var(--accent, var(--brand-blue));
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.25s ease;
+}
+
+.footer-social a:nth-child(odd) { --accent: var(--brand-green); }
+.footer-social a:nth-child(even) { --accent: var(--brand-magenta); }
+
+.footer-social a:hover,
+.footer-social a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.footer-social svg {
+  width: 17px;
+  height: 17px;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 22px;
+  font-size: 0.82rem;
+}
+
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.back-to-top:hover {
+  background: var(--brand-gradient);
+  transform: translateY(-3px);
+}
+
+.back-to-top svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .main-nav,
+  .header-actions .nav-cta {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* .site-header-inner has no horizontal margin of its own, so on a
+     narrow screen (where .wrap's max-width never actually caps anything)
+     it spans the full fixed-position .site-header edge-to-edge — fine
+     while transparent, but once .is-scrolled gives it its own background/
+     rounded corners (the floating "pill" state), that pill's own edge
+     was flush against the screen edge with nothing but its internal
+     padding between the logo/toggle and the true viewport border. margin
+     pulls the whole pill in from the screen edge; padding (kept smaller
+     now that margin is doing part of the job) keeps the logo/toggle off
+     the pill's own inner edge. Repeated for .is-scrolled since that state
+     sets its own padding-inline (styles.css above) that would otherwise
+     win over the plain .wrap rule. */
+  .site-header-inner {
+    margin-inline: 14px;
+    padding-inline: 18px;
+  }
+
+  .site-header.is-scrolled .site-header-inner {
+    margin-inline: 14px;
+    padding-inline: 16px;
+  }
+
+  /* The auto margin that pushes .header-actions to the right normally
+     lives on .main-nav (site-header-inner's flex layout: logo, then nav
+     with margin-inline-start:auto, then actions right after it) — with
+     nav hidden here, that auto margin disappears too and .header-actions
+     just sits at its own small fixed gap after the logo instead of at the
+     header's far edge. Moving the auto margin onto .header-actions itself
+     keeps the toggle pinned right regardless of whether the nav is shown. */
+  .header-actions {
+    margin-inline-start: auto;
+  }
+
+  .about-grid,
+  .booking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-media {
+    max-width: 420px;
+  }
+
+  /* The sticky/negative-margin overlap trick needs .about's content to
+     fit inside one screen — in the single-column layout it routinely
+     doesn't, and a taller-than-viewport sticky element just holds its
+     first screenful in place and hides the rest rather than scrolling
+     it into view. Drop back to a normal, non-overlapping block here. */
+  .about-wrap {
+    height: auto;
+  }
+
+  .about {
+    position: static;
+    margin-top: 0;
+    min-height: 0;
+    padding-block: clamp(56px, 12vw, 96px);
+  }
+
+  .ritual-feature {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .ritual-feature-media {
+    aspect-ratio: 16 / 9;
+  }
+
+  .ritual-thumbs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  /* Sized off vw (the stable dimension in portrait), not vh — the camera
+     framing in carousel.js widens its vertical FOV to keep the ring from
+     cropping horizontally on a narrow container, which shrinks the cards
+     the taller/narrower the box is. A vh-based height here produced a
+     very tall, narrow box (aspect well under 1) that left nearly half its
+     own height empty below the cards; this keeps the box's aspect ratio
+     close to what that framing math is actually tuned for. */
+  .mq-scene {
+    height: clamp(300px, 82vw, 460px);
+  }
+
+  .service-row {
+    gap: 14px 26px;
+    font-size: 0.85rem;
+  }
+
+  .about-stats {
+    max-width: none;
+  }
+
+  .booking-form {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ============================================================
+   Show detail pages (show-*.html) — editorial "story" format: the photo
+   stays sticky/pinned in view while the copy scrolls past beside it,
+   instead of stacking full-width horizontal sections one after another.
+   Reuses the site's existing sticky-panel technique (see #about, the
+   hero) rather than a different mechanism just for these pages.
+   ============================================================ */
+
+.show-page {
+  padding-top: var(--header-h);
+}
+
+.show-story {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(32px, 5vw, 72px);
+  max-width: var(--container);
+  padding-inline: var(--edge);
+  margin-inline: auto;
+}
+
+.show-story-media {
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  padding-block: clamp(20px, 4vh, 40px);
+}
+
+.show-story-frame {
+  position: relative;
+  isolation: isolate;
+  height: 100%;
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+.show-story-frame::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 18px -18px -18px 18px;
+  border-radius: 26px;
+  background: var(--brand-gradient);
+  opacity: 0.9;
+}
+
+.show-story-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.show-story-badge {
+  position: absolute;
+  left: -14px;
+  bottom: -14px;
+  z-index: 2;
+  padding: 14px 20px;
+  border-radius: 16px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.5);
+}
+
+.show-story-content {
+  min-width: 0;
+}
+
+.show-block {
+  padding-block: clamp(36px, 5.5vw, 60px);
+  border-top: 1px solid var(--line);
+}
+
+.show-block:first-child {
+  padding-top: clamp(16px, 3vh, 32px);
+  border-top: none;
+}
+
+.eyebrow-accent {
+  color: var(--accent, var(--brand-green-deep));
+}
+
+.eyebrow-accent::before {
+  background: var(--brand-gradient);
+}
+
+.show-block-title h1 {
+  margin: 0 0 20px;
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.14;
+  font-size: clamp(2rem, 4.2vw, 3.1rem);
+}
+
+.show-block-title > p {
+  margin: 0 0 28px;
+  max-width: 50ch;
+  font-size: 1.04rem;
+  line-height: 1.7;
+  color: var(--ink-dim);
+}
+
+.show-block-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* Same black-base, gradient-crossfades-in-on-hover treatment as
+   .booking-submit — a plain always-on gradient here read as a different,
+   less deliberate button style from the rest of the site's primary CTAs. */
+.show-cta-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 28px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.94rem;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.show-cta-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--brand-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.show-cta-btn:hover,
+.show-cta-btn:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 44px -20px rgba(0, 0, 0, 0.4);
+}
+
+.show-cta-btn:hover::before,
+.show-cta-btn:focus-visible::before {
+  opacity: 1;
+}
+
+.show-cta-btn svg {
+  width: 17px;
+  height: 17px;
+  transition: transform 0.3s ease;
+}
+
+.show-cta-btn:hover svg,
+.show-cta-btn:focus-visible svg {
+  transform: translateX(4px);
+}
+
+.show-cta-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 28px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.94rem;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.show-cta-btn-outline:hover,
+.show-cta-btn-outline:focus-visible {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: var(--ink);
+}
+
+.show-block-about p {
+  margin: 0 0 18px;
+  max-width: 58ch;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--ink-dim);
+}
+
+.show-story-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 52px);
+  margin-top: 28px;
+}
+
+.show-story-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.show-story-stat span {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--ink);
+}
+
+.show-story-stat label {
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+}
+
+/* ---------- features: checklist, not cards ---------- */
+
+.show-feature-list {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+}
+
+.show-feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding-block: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.show-feature-list li:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.show-feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--brand-gradient);
+  color: #fff;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  transition: box-shadow 0.3s ease;
+}
+
+.show-feature-icon svg {
+  width: 19px;
+  height: 19px;
+  transform-origin: 50%;
+}
+
+/* Hovering anywhere on the row (not just the small circle itself) pops the
+   icon — same up-bounce-with-a-twist curve as the hero's service-row icons
+   (styles.css, service-icon-bounce), reused here so the two icon rows
+   feel like one consistent motif rather than two different button
+   animations. A soft glow in the icon's own gradient lifts it off the
+   list at the same time, since a rotate/scale alone was easy to miss on
+   an icon this small. */
+.show-feature-list li:hover .show-feature-icon {
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.35);
+}
+
+.show-feature-list li:hover .show-feature-icon svg {
+  animation: show-feature-icon-bounce 0.5s ease-out;
+}
+
+@keyframes show-feature-icon-bounce {
+  0% { transform: translateY(0) scale(1) rotate(0); }
+  35% { transform: translateY(-5px) scale(1.22) rotate(-10deg); }
+  65% { transform: translateY(1px) scale(0.92) rotate(6deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
+}
+
+.show-feature-list h3 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.show-feature-list p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+/* ---------- "ideal para" + CTA card ---------- */
+
+.show-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+}
+
+.show-tags li {
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.show-cta-card {
+  margin-top: 24px;
+  padding: clamp(28px, 4vw, 40px);
+  border-radius: 24px;
+  background: var(--ink);
+  color: #fff;
+}
+
+/* .show-cta-btn's own black base (above) would go invisible against this
+   card's own black background — flipped to a white base here instead,
+   still crossfading to the gradient (with the text following it to white)
+   on hover, same idea as everywhere else the button appears. */
+.show-cta-card .show-cta-btn {
+  background: #fff;
+  color: var(--ink);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.show-cta-card .show-cta-btn:hover,
+.show-cta-card .show-cta-btn:focus-visible {
+  color: #fff;
+}
+
+.show-cta-card h2 {
+  margin: 0 0 20px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  line-height: 1.3;
+}
+
+/* ---------- related shows ---------- */
+
+.show-related {
+  padding-block: clamp(56px, 9vw, 110px);
+}
+
+.show-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 2.2vw, 28px);
+  margin-top: clamp(28px, 4vw, 44px);
+}
+
+.show-related-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 3 / 4;
+  border-radius: 18px;
+  overflow: hidden;
+  isolation: isolate;
+  text-decoration: none;
+}
+
+.show-related-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -2;
+}
+
+.show-related-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 60%);
+}
+
+.show-related-card:hover img,
+.show-related-card:focus-visible img {
+  transform: scale(1.08);
+}
+
+.show-related-card span {
+  padding: clamp(16px, 2vw, 22px);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 900px) {
+  /* The sticky split only works with two side-by-side columns — stacked
+     single-column, the photo just goes back to being a normal block up
+     top instead of pinned. */
+  .show-story {
+    display: block;
+  }
+
+  .show-story-media {
+    /* Stays relative (not static) — .show-story-badge is a sibling of
+       .show-story-frame, both positioned against .show-story-media itself,
+       not the frame. Dropping this to static removed the only positioned
+       ancestor in reach, so the badge fell through to the page's initial
+       containing block and rendered far down the document instead of
+       pinned to the photo's corner. */
+    position: relative;
+    /* The desktop rule's top:var(--header-h) is what holds the sticky
+       photo below the fixed header while pinned — position:relative
+       still honors top (unlike static, which ignores it), so left
+       un-reset here it pushed the whole photo down by another header's
+       worth of empty space on top of .show-page's own header-height
+       padding. */
+    top: 0;
+    height: auto;
+    padding-block: 0 0;
+  }
+
+  .show-story-frame {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .show-story-badge {
+    left: 16px;
+    bottom: 16px;
+  }
+
+  .show-related-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .show-related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .show-related-card {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
