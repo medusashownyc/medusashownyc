@@ -42,28 +42,84 @@ document.querySelectorAll('a[href="#about"]').forEach((a) => {
 
 const header = document.getElementById('siteHeader');
 const navLinks = document.getElementById('navLinks');
-const navIndicator = document.getElementById('navIndicator');
 const navAnchors = navLinks ? Array.from(navLinks.querySelectorAll('a')) : [];
+
+// The header goes dark (light logo/text, dark glass backing instead of
+// white) for exactly the stretch where #experiences' own black stage is
+// what's actually pinned full-screen behind it — the same "sticky
+// release" window described above scrollToAbout, computed live off
+// offsetTop/offsetHeight each call rather than cached, so it stays
+// correct across resizes with no separate listener needed. The ±40px
+// pad covers the brief rise/fall right at each edge, where the stage is
+// still animating into/out of place rather than fully covering the
+// screen yet.
+function isOverDarkStage() {
+  if (!experiencesEl) return false;
+  const start = experiencesEl.offsetTop - 40;
+  const end = experiencesEl.offsetTop + experiencesEl.offsetHeight - window.innerHeight + 40;
+  return window.scrollY >= start && window.scrollY <= end;
+}
 
 function onScroll() {
   updateScrollProgress();
-  if (header) header.classList.toggle('is-scrolled', window.scrollY > 12);
+  if (header) {
+    header.classList.toggle('is-scrolled', window.scrollY > 12);
+    header.classList.toggle('is-dark', isOverDarkStage());
+  }
 }
 
 window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', onScroll);
 onScroll();
 
-function moveIndicatorTo(link) {
-  if (!navIndicator || !link) return;
-  const linkRect = link.getBoundingClientRect();
-  const parentRect = link.closest('.nav-links').getBoundingClientRect();
-  navIndicator.style.width = `${linkRect.width}px`;
-  navIndicator.style.transform = `translateX(${linkRect.left - parentRect.left}px)`;
-  navIndicator.classList.add('is-visible');
+/* ---------- "Universo Medusa" entry + exit snap ---------- */
+
+// Both hand-offs get assisted — hero → tunnel (entry) and tunnel → about
+// (exit) — each as its own independent, one-sided check: "still
+// approaching this boundary from above, within reach? snap to it."
+// Two one-sided checks instead of one combined direction-aware system on
+// purpose: a combined system kept cascading — landing exactly on one
+// point re-satisfied its own "continue toward the other point" branch on
+// the very next scrollend, firing a second unrequested jump with no real
+// user input in between. Landing exactly ON a point here never re-enters
+// either check (both require y strictly LESS than their own target), so
+// there's nothing left for either to cascade into.
+let isSnapping = false;
+
+function trySnap() {
+  if (isSnapping || !experiencesEl) return;
+  const enter = experiencesEl.offsetTop;
+  const exit = enter + experiencesEl.offsetHeight;
+  const buffer = window.innerHeight * 0.4;
+  const y = window.scrollY;
+  let target = null;
+  if (y < enter && y > enter - buffer) target = enter;
+  else if (y < exit && y > exit - buffer) target = exit;
+  if (target === null) return;
+  isSnapping = true;
+  window.scrollTo({ top: target, behavior: prefersReduced ? 'auto' : 'smooth' });
+  const finish = () => { isSnapping = false; };
+  if ('onscrollend' in window) {
+    window.addEventListener('scrollend', finish, { once: true });
+  } else {
+    window.setTimeout(finish, 500);
+  }
 }
 
-let activeLink = null;
+if ('onscrollend' in window) {
+  window.addEventListener('scrollend', trySnap, { passive: true });
+} else {
+  let fallbackTimer = null;
+  window.addEventListener('scroll', () => {
+    if (isSnapping) return;
+    window.clearTimeout(fallbackTimer);
+    fallbackTimer = window.setTimeout(trySnap, 220);
+  }, { passive: true });
+}
 
+// The current section's link just dims to match the reference's resting
+// "is-active" state (styles.css: opacity .6) — same treatment hover
+// already gets, no separate pill/indicator element to keep in sync.
 const trackedSections = navAnchors
   .map((a) => document.getElementById(a.dataset.nav))
   .filter(Boolean);
@@ -75,10 +131,8 @@ if (trackedSections.length) {
         if (!entry.isIntersecting) return;
         const link = navAnchors.find((a) => a.dataset.nav === entry.target.id);
         if (!link) return;
-        navAnchors.forEach((a) => a.classList.remove('is-active', 'is-uncovered'));
+        navAnchors.forEach((a) => a.classList.remove('is-active'));
         link.classList.add('is-active');
-        activeLink = link;
-        moveIndicatorTo(link);
       });
     },
     { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
@@ -86,36 +140,26 @@ if (trackedSections.length) {
   trackedSections.forEach((section) => sectionObserver.observe(section));
 }
 
-// Hovering/focusing any link drags the one shared pill over to it. When
-// that link isn't the active one, the active link loses its pill and
-// would otherwise sit there as plain white text on the light header —
-// invisible. .is-uncovered (styles.css) is exactly that fallback state,
-// toggled on/off as the pill leaves/returns.
-navAnchors.forEach((a) => {
+// Per-letter hover "pop" — top-level links only (:scope > li > a skips the
+// "Shows" mega-menu's own image links, which stay plain text/images).
+// Splitting happens once on load rather than hand-writing the spans in
+// index.html, same approach as the reference.
+const topNavLinks = navLinks ? Array.from(navLinks.querySelectorAll(':scope > li > a')) : [];
+
+topNavLinks.forEach((a) => {
+  const label = a.textContent.trim();
+  const chars = Array.from(label)
+    .map((ch, i) => `<span class="nav-char" style="--i:${i}">${ch === ' ' ? '&nbsp;' : ch}</span>`)
+    .join('');
+  a.innerHTML = `<span class="nav-chars" aria-hidden="true">${chars}</span><span class="sr-only">${label}</span>`;
+
   a.addEventListener('mouseenter', () => {
-    moveIndicatorTo(a);
-    activeLink?.classList.toggle('is-uncovered', a !== activeLink);
+    a.querySelectorAll('.nav-char').forEach((c) => {
+      c.classList.remove('is-hopping');
+      void c.offsetWidth; // restart the animation on a fast re-hover
+      c.classList.add('is-hopping');
+    });
   });
-  a.addEventListener('focus', () => {
-    moveIndicatorTo(a);
-    activeLink?.classList.toggle('is-uncovered', a !== activeLink);
-  });
-});
-
-navLinks?.addEventListener('mouseleave', () => {
-  if (!activeLink) return;
-  moveIndicatorTo(activeLink);
-  activeLink.classList.remove('is-uncovered');
-});
-
-navLinks?.addEventListener('focusout', (event) => {
-  if (!activeLink || navLinks.contains(event.relatedTarget)) return;
-  moveIndicatorTo(activeLink);
-  activeLink.classList.remove('is-uncovered');
-});
-
-window.addEventListener('resize', () => {
-  if (activeLink) moveIndicatorTo(activeLink);
 });
 
 /* ---------- mobile nav ---------- */

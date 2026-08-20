@@ -1,0 +1,675 @@
+ INFO  Accepting connections at http://localhost:8000
+ HTTP  17/8/2026 4:31:41 p. m. ::1 HEAD /index.html
+ HTTP  17/8/2026 4:31:41 p. m. ::1 Returned 301 in 68 ms
+ HTTP  17/8/2026 4:31:49 p. m. ::1 HEAD /
+ HTTP  17/8/2026 4:31:49 p. m. ::1 Returned 200 in 3 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 6 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 3 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /carousel.js
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /intro.js
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /experiences.js
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 5 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 17 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 16 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 13 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 18 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 24 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 5 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 7 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 7 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 7 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 7 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 200 in 19 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:32:11 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:32:11 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:32:12 p. m. ::1 GET /favicon.ico
+ HTTP  17/8/2026 4:32:12 p. m. ::1 Returned 404 in 1 ms
+ HTTP  17/8/2026 4:32:17 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:32:17 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:32:23 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:32:23 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:32:29 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:32:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:11 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:33:11 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:11 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:33:11 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:21 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:33:21 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:23 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:33:23 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /carousel.js
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /intro.js
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /experiences.js
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 19 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 16 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 15 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 15 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 14 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 15 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:26 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:33:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:33 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:33:33 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:39 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:33:39 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:45 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:33:45 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:51 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:33:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:33:57 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:33:57 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 4:34:03 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:34:03 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:09 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:34:09 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:34:15 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:34:15 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:21 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:34:21 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:27 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:34:27 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /carousel.js
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /intro.js
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /experiences.js
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:29 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:34:29 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:34:35 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:34:35 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:34:41 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:34:41 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:34:47 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:34:47 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:34:53 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:34:53 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 4:34:59 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:34:59 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:35:36 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:35:36 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:35:37 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:35:37 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:35:39 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:35:39 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:35:58 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:35:58 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:36:09 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:36:09 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:36:15 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:36:15 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:36:27 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:36:27 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:36:33 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:36:33 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:36:39 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:36:39 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:36:45 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:36:45 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:36:51 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:36:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:05 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:37:05 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:13 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:37:13 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:28 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:37:28 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /show-salsa.html
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 301 in 1 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /show-salsa
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 200 in 3 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:37:30 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 4:37:30 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /index.html
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 301 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /index
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 301 in 0 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /carousel.js
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /experiences.js
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /intro.js
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:46 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:37:46 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:37:53 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:37:53 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:37:59 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:37:59 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 4:38:05 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:38:05 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:38:11 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:38:11 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:38:17 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:38:17 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:38:23 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:38:23 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:38:29 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:38:29 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:38:43 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 4:38:43 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 4:38:49 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 4:38:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:38:55 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:38:55 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:39:01 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 4:39:01 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 4:40:22 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 4:40:22 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 2 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /carousel.js
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 2 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /intro.js
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /experiences.js
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 2 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 0 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 7:54:02 p. m. ::1 GET /favicon.ico
+ HTTP  17/8/2026 7:54:02 p. m. ::1 Returned 404 in 2 ms
+ HTTP  17/8/2026 7:54:08 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 7:54:08 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 7:54:14 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 7:54:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 7:54:20 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 7:54:20 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:15:38 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:15:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 200 in 0 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /carousel.js
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /intro.js
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 200 in 0 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /experiences.js
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:26:18 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:26:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:26:24 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:26:24 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:26:43 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:26:43 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:26:48 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:26:48 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:27:02 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:27:02 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:27:33 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:27:33 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:27:39 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:27:39 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:27:44 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:27:44 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:02 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:28:02 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:28:14 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:28:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /carousel.js
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /intro.js
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /experiences.js
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 3 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 3 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:18 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:28:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /carousel.js
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /intro.js
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /experiences.js
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:28:22 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:28:22 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:28:29 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:28:29 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:28:35 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:28:35 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:28:41 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:28:41 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:28:47 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:28:47 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:02 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:29:02 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /show-belly-dancers.html
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 301 in 0 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /show-belly-dancers
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 200 in 9 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:19 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 8:29:19 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:36 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 8:29:36 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:36 p. m. ::1 GET /.well-known/appspecific/com.chrome.devtools.json
+ HTTP  17/8/2026 8:29:36 p. m. ::1 Returned 404 in 1 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /show-belly-dancers
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /.well-known/appspecific/com.chrome.devtools.json
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 404 in 1 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:41 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /index.html
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 301 in 0 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /index
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 301 in 0 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 200 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /.well-known/appspecific/com.chrome.devtools.json
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 404 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /carousel.js
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /intro.js
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /experiences.js
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:29:51 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:29:51 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:29:58 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:29:58 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:04 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:30:04 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:30:10 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:30:10 p. m. ::1 Returned 304 in 2 ms
+ HTTP  17/8/2026 8:30:34 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:30:34 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /styles.css
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /experiences.js
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /carousel.js
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /intro.js
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /sections.js
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /assets/logo-ondark.png
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/garotas.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:30:38 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:30:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:51 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:30:51 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:30:57 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:30:57 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:31:06 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:31:06 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:31:37 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:31:37 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:31:43 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:31:43 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:31:49 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:31:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:31:55 p. m. ::1 GET /images/fuego.jpg
+ HTTP  17/8/2026 8:31:55 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:32:01 p. m. ::1 GET /images/salsa.jpg
+ HTTP  17/8/2026 8:32:01 p. m. ::1 Returned 304 in 0 ms
+ HTTP  17/8/2026 8:32:07 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  17/8/2026 8:32:07 p. m. ::1 Returned 304 in 1 ms
+ HTTP  17/8/2026 8:32:13 p. m. ::1 GET /images/gogo.jpg
+ HTTP  17/8/2026 8:32:13 p. m. ::1 Returned 304 in 2 ms

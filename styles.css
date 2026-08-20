@@ -33,6 +33,15 @@
 
 html {
   color-scheme: light;
+  /* Scrolling stays fully functional (JS scrollTo, wheel, keys, drag) —
+     only the visible track/thumb is hidden, so the snap transitions read
+     as a clean cinematic hand-off instead of a scrollbar visibly hunting
+     for its resting position mid-snap. */
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -68,14 +77,22 @@ a {
 
 /* ---------- scroll progress ---------- */
 
+/* A slim glowing thread rather than a flat, full-height loading-bar
+   stripe — the old 3px hard-edged block read like a browser chrome
+   element bolted onto the page rather than a deliberate design detail.
+   Thinner, with a soft brand-colored glow and a rounded leading tip
+   (the trailing edge stays flush/square against the viewport's left
+   edge, where it's anchored). */
 .scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 60;
   width: 0%;
-  height: 3px;
+  height: 2px;
   background: var(--brand-gradient);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 12px 1px rgba(0, 184, 126, 0.5);
   transition: width 0.08s linear;
 }
 
@@ -87,32 +104,108 @@ a {
   left: 0;
   right: 0;
   z-index: 50;
-  padding-block: 14px;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  transition: background-color 0.35s ease, border-color 0.35s ease,
-    box-shadow 0.35s ease, padding-block 0.35s ease;
+  padding-block: clamp(14px, 0.8vw + 11px, 24px);
+  pointer-events: none;
+  transition: padding-block 0.35s ease;
 }
 
 .site-header.is-scrolled {
+  padding-block: clamp(10px, 0.6vw + 8px, 18px);
+}
+
+/* Invisible over the hero — the header reads as text floating on the
+   page, not a bar. Once the page has scrolled, .site-header-inner itself
+   (not a full-bleed pseudo-element) becomes a rounded, floating pill with
+   a soft shadow and a thin brand-gradient ring, so it visually lifts off
+   the page instead of pinning a bar edge-to-edge. Same disposition
+   (logo left, links/CTA right) either way — only the backing changes. */
+.site-header.is-scrolled .site-header-inner {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   padding-block: 10px;
-  background: rgba(255, 255, 255, 0.86);
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 30px -20px rgba(0, 0, 0, 0.35);
+  padding-inline: clamp(18px, 2vw, 32px);
+  box-shadow:
+    0 14px 36px -10px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Thin gradient ring in the brand colors, drawn as a border via mask so
+   it follows the pill's rounded corners exactly. */
+.site-header.is-scrolled .site-header-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: var(--brand-gradient);
+  opacity: 0.55;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Sections.js toggles .is-dark while #experiences' black stage is what's
+   actually pinned behind the header (see isOverDarkStage there) — the
+   light glass pill/dark logo/dark nav text otherwise read as a washed-out
+   grey smear over the tunnel's black instead of the deliberate light
+   panel they are over the rest of the (light-background) page. */
+.site-header.is-dark.is-scrolled .site-header-inner {
+  background: rgba(10, 10, 12, 0.62);
+  box-shadow:
+    0 14px 36px -10px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.site-header.is-dark .nav-links,
+.site-header.is-dark .nav-links a,
+.site-header.is-dark .nav-cta {
+  color: #fff;
+}
+
+.site-header.is-dark .nav-cta {
+  --pill-bg: rgba(255, 255, 255, 0.14);
+  --pill-bg-hover: rgba(255, 255, 255, 0.22);
+}
+
+.site-header.is-dark .nav-toggle {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.site-header.is-dark .nav-toggle:hover,
+.site-header.is-dark .nav-toggle:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.site-header.is-dark .nav-toggle span {
+  background: #fff;
 }
 
 .site-header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  gap: 8px;
+  position: relative;
+  border-radius: 999px;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
 }
 
+.brand,
+.header-actions,
+.main-nav {
+  pointer-events: auto;
+}
+
+/* inline-grid + each logo sharing grid-area 1/1 (below) is what stacks
+   the light/dark logo files on top of each other so .is-dark can
+   crossfade between them via opacity — smoother and flicker-free
+   compared to swapping one <img>'s src via JS. */
 .brand {
-  display: inline-flex;
+  display: inline-grid;
   text-decoration: none;
+  position: relative;
+  z-index: 2;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -122,84 +215,104 @@ a {
 }
 
 .brand img {
-  height: 46px;
+  height: 40px;
   width: auto;
   transition: height 0.35s ease;
 }
 
-.site-header.is-scrolled .brand img {
-  height: 38px;
+.brand-logo {
+  grid-area: 1 / 1;
+  transition: height 0.35s ease, opacity 0.3s ease;
 }
 
-/* ---------- nav (desktop, sliding pill indicator) ---------- */
+.brand-logo--dark {
+  opacity: 0;
+}
 
+.site-header.is-dark .brand-logo--light {
+  opacity: 0;
+}
+
+.site-header.is-dark .brand-logo--dark {
+  opacity: 1;
+}
+
+.site-header.is-scrolled .brand img {
+  height: 34px;
+}
+
+/* ---------- nav (desktop) ---------- */
+
+/* Grouped with .header-actions via the shared margin-inline-start:auto
+   below — logo sits alone on the left, everything else (links, CTA,
+   hamburger) clusters together on the right, same disposition as the
+   reference rather than an evenly-spaced three-up layout. */
 .main-nav {
-  position: relative;
+  margin-inline-start: auto;
 }
 
 .nav-links {
-  position: relative;
-  z-index: 2;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 2rem;
   list-style: none;
   margin: 0;
-  padding: 4px;
-  font-size: 0.9rem;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
   font-weight: 600;
+  letter-spacing: -0.02rem;
   color: var(--ink);
 }
 
 .nav-links a {
-  position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 9px 18px;
-  border-radius: 999px;
   text-decoration: none;
-  color: var(--ink-dim);
-  transition: color 0.25s ease, background-color 0.25s ease;
-}
-
-/* Back to the original effect: hovering/focusing any link drags the one
-   shared .nav-indicator pill over to it (sections.js), text turning
-   white to read against it. */
-.nav-links a:hover,
-.nav-links a:focus-visible {
-  color: #fff;
-}
-
-.nav-links a.is-active {
-  color: #fff;
-}
-
-/* Fallback for the moment the pill isn't on the active link anymore
-   (it's currently over whatever's being hovered/focused instead) —
-   sections.js toggles this class on it for exactly that window. Without
-   it the active link would sit there as plain white text on the light
-   header, unreadable. */
-.nav-links a.is-active.is-uncovered {
   color: var(--ink);
-  background: rgba(0, 0, 0, 0.08);
-}
-
-.nav-indicator {
-  position: absolute;
-  top: 4px;
-  left: 0;
-  z-index: 1;
-  height: calc(100% - 8px);
-  width: 0;
-  border-radius: 999px;
-  background: var(--ink);
-  opacity: 0;
-  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1),
-    width 0.45s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s ease;
-}
-
-.nav-indicator.is-visible {
   opacity: 1;
+  transition: opacity 0.2s ease, color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.nav-links a.is-active {
+  opacity: 0.6;
+}
+
+/* Per-letter hover "pop" (sections.js splits each top-level link's text
+   into these on load) — each character hops up in a left-to-right wave
+   instead of the link just sitting there while it dims, per the
+   reference. */
+.nav-chars {
+  display: inline-flex;
+}
+
+.nav-char {
+  display: inline-block;
+}
+
+.nav-char.is-hopping {
+  animation: nav-char-hop 0.42s cubic-bezier(0.33, 1, 0.68, 1);
+  animation-delay: calc(var(--i) * 28ms);
+}
+
+@keyframes nav-char-hop {
+  0% { transform: translateY(0); }
+  35% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ---------- "Shows" mega menu ---------- */
@@ -320,78 +433,70 @@ a {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 0.5rem;
+  margin-inline-start: clamp(1.25rem, 0.9vw + 1rem, 2rem);
+  pointer-events: auto;
 }
 
+/* Pill CTA, after the reference: a soft, blurred capsule with the label
+   in plain text and the only spot of brand colour on the whole header
+   confined to the small icon circle — everything else here stays
+   neutral so that circle is what the eye lands on. */
 .nav-cta {
+  --pill-bg: rgba(0, 0, 0, 0.045);
+  --pill-bg-hover: rgba(0, 0, 0, 0.075);
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 8px 8px 22px;
+  gap: 1rem;
+  padding: 0.375rem 0.375rem 0.375rem 1.125rem;
   border-radius: 999px;
-  background: var(--ink);
-  color: #fff;
+  background: var(--pill-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--ink);
   text-decoration: none;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 600;
+  letter-spacing: -0.02rem;
   white-space: nowrap;
-  overflow: hidden;
-  isolation: isolate;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.nav-cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: var(--brand-gradient);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: background-color 0.2s ease, color 0.3s ease;
 }
 
 .nav-cta:hover,
 .nav-cta:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.55);
-}
-
-.nav-cta:hover::before,
-.nav-cta:focus-visible::before {
-  opacity: 1;
+  background: var(--pill-bg-hover);
 }
 
 .nav-cta-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.16);
-  color: #ffffff;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  background: var(--brand-green);
+  color: #fff;
+  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* A little "slither" on hover — echoes the brand mark's own serpentine
-   curve instead of a generic rotate, so the button's icon feels drawn
-   from the same visual language as the logo rather than a stock arrow. */
-.nav-cta:hover .nav-cta-badge {
-  animation: nav-cta-slither 0.6s ease-in-out;
-  background: rgba(255, 255, 255, 0.24);
+.nav-cta:hover .nav-cta-badge,
+.nav-cta:focus-visible .nav-cta-badge {
+  transform: scale(1.2);
 }
 
-@keyframes nav-cta-slither {
-  0%, 100% { transform: rotate(0deg) scale(1); }
-  25% { transform: rotate(-14deg) scale(1.05); }
-  55% { transform: rotate(10deg) scale(1.08); }
-  80% { transform: rotate(-4deg) scale(1.03); }
+.nav-cta-badge svg,
+.nav-cta-badge img {
+  width: 20px;
+  height: auto;
+  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.nav-cta-badge svg {
-  width: 22px;
-  height: 22px;
+.nav-cta:hover .nav-cta-badge svg,
+.nav-cta:focus-visible .nav-cta-badge svg,
+.nav-cta:hover .nav-cta-badge img,
+.nav-cta:focus-visible .nav-cta-badge img {
+  transform: scale(0.92) rotate(-12deg);
 }
 
 /* ---------- mobile nav toggle + overlay ---------- */
@@ -402,22 +507,30 @@ a {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: #fff;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 0, 0, 0.045);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   cursor: pointer;
   padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+  background: rgba(0, 0, 0, 0.075);
 }
 
 .nav-toggle span {
   display: block;
-  width: 18px;
+  width: 16px;
   height: 2px;
   border-radius: 2px;
   background: var(--ink);
-  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s ease;
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s ease, background-color 0.3s ease;
 }
 
 .nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -526,21 +639,17 @@ a {
 }
 
 .experiences {
-  /* Taller than one screen on purpose: that extra height is the scroll
-     distance the scrub reveal (experiences.js) animates across. Without
-     it, this section's top reaches the viewport top at the same moment
-     the page hits its scroll limit — there'd be no room left to actually
-     scroll from the animation's start to its end. 300vh gives the 3-phase
-     sequence (title alone → photos fly in → everything exits) room to
-     breathe instead of feeling rushed. Bumped up further since the
-     photos still felt like they were rushing past at 300vh. */
-  min-height: 450vh;
+  /* Taller than one screen on purpose: the tunnel (experiences.js) plays
+     on its own regardless of scroll position, but this extra height is
+     what keeps .experiences-stage sticky-pinned, full-screen, for a
+     while as you scroll through it instead of the section flicking past
+     in a single screen-height. Kept short (rather than the ~220vh this
+     used to be) so the whole hand-off — in via scroll-snap above, out via
+     .about-wrap's own snap point below — stays quick. */
+  min-height: 145vh;
   z-index: 2;
-  /* The exit animation (experiences.js) slides .experiences-stage up
-     faster than this box itself scrolls away, so there's a brief window
-     where the stage has already vacated part of this box but the box
-     hasn't scrolled off yet. Without an opaque background here, that gap
-     shows whatever sits behind at that screen position — the hero, still
+  /* Without an opaque background here, any gap between this box and the
+     stage inside it would show whatever sits behind — the hero, still
      mid-scroll-away at z-index:1 — instead of a clean hand-off to #about. */
   background: var(--bg);
 }
@@ -688,11 +797,17 @@ a {
   transform: scale(1.08);
 }
 
-/* ---------- experiences (image grid + word) ---------- */
+/* ---------- experiences (3D image tunnel) ---------- */
 
 /* The visible, always-centered "screen" — sticky inside the taller
-   .experiences spacer so it stays put and fills the viewport for the
-   whole scroll distance the photos travel across. */
+   .experiences spacer so it stays put and fills the viewport while the
+   section is scrolled through. `perspective` here is what turns the
+   tunnel's children (each positioned with its own translateZ) into a
+   real receding 3D corridor instead of a flat stack — its value is
+   echoed as PERSPECTIVE in experiences.js so the JS depth math and the
+   CSS projection agree on the same vanishing point. Flex centering here
+   is also what centers .experiences-tunnel-text (see below) with zero
+   extra positioning of its own. */
 .experiences-stage {
   position: sticky;
   top: 0;
@@ -702,106 +817,173 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  perspective: 250vmin;
+  perspective-origin: 50% 50%;
 }
 
-/* No entrance animation — it's always there behind the photos. Instead,
-   a slow shine sweeps across the letters on an endless loop, so it
-   reads as alive without ever "arriving". */
-.experiences-word {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2.6rem, 11vw, 8.5rem);
-  letter-spacing: 0.03em;
-  pointer-events: none;
-  background: linear-gradient(100deg, #fff 40%, rgba(255, 255, 255, 0.35) 50%, #fff 60%);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: experiences-shine 6s linear infinite;
-}
-
-@keyframes experiences-shine {
-  0% { background-position: 120% 0; }
-  100% { background-position: -120% 0; }
-}
-
-.experiences-items {
+/* Holds every wall frame, positioned in experiences.js via GSAP
+   translate3d. Unlike the text plane, this stays put — it's each
+   frame's own Z that's continuously animated (and wrapped, for the
+   endless-loop effect) rather than the tunnel itself moving, so
+   preserve-3d just needs to keep the children's individual depth intact
+   here. */
+.experiences-tunnel {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* The tunnel's wireframe is drawn on this canvas (see experiences.js),
+   not built from CSS/DOM elements — it used to be, first as a repeating-
+   gradient texture and then as real 3D-transformed line elements, but
+   both still flickered: they lived in the same preserve-3d stacking
+   context as the ~70 continuously-moving photo frames, and browsers
+   don't guarantee stable paint ordering between that many overlapping,
+   independently-animating 3D elements — which of two things painted "in
+   front" could flip from frame to frame. A canvas sidesteps that
+   entirely: it's a single flat surface we redraw ourselves every tick,
+   with an explicit, self-decided draw order — nothing for the browser to
+   get inconsistent about. Sits behind .experiences-tunnel (DOM order)
+   so photos always read as mounted in front of the wall lines. */
+.experiences-grid-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }
 
-/* All six share one dead-center anchor (top/left 50%) — experiences.js
-   positions each one purely via its own y-transform (GSAP xPercent/
-   yPercent handle the centering, y drives the bottom-to-top travel), so
-   they all rise up the same central path one after another. */
-.experiences-item {
+/* Positioned entirely by experiences.js (top/left 50% is just the
+   center anchor that its xPercent/yPercent: -50 centers against). Depth
+   (z) is updated every animation frame there; rotation is set once,
+   since it depends only on which wall the frame belongs to. No border/
+   shadow — a plain edge reads cleanest against the black background. */
+.experiences-frame {
   position: absolute;
   top: 50%;
   left: 50%;
   margin: 0;
-  width: min(28vw, 360px);
-  padding: 3px;
-  border-radius: 9px;
-  /* Clips the (deliberately oversized, always-square) spinner below down
-     to this card's own rounded-rect shape. */
   overflow: hidden;
-  isolation: isolate;
+  backface-visibility: hidden;
 }
 
-/* Each photo takes its own single accent from the brand's gama
-   cromática (same cycle as the service tags) — not a shadow, but a
-   thin comet of color that continuously travels around the card's
-   rounded edge.
-
-   conic-gradient's angle only maps cleanly onto a SQUARE — on our
-   portrait cards it used to stretch into a lopsided wedge (wide on one
-   side, a sliver on the other), which is what read as "a square
-   rotating". Fixed by spinning a large, always-square, centered element
-   instead and letting the card's own overflow:hidden (above) crop it
-   down to a clean, uniform-width ring. */
-.experiences-item:nth-child(4n+1) { --glow: var(--brand-green); }
-.experiences-item:nth-child(4n+2) { --glow: var(--brand-magenta); }
-.experiences-item:nth-child(4n+3) { --glow: var(--brand-blue); }
-.experiences-item:nth-child(4n+4) { --glow: var(--brand-purple); }
-
-.experiences-item-spin {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  height: 600px;
-  margin-top: -300px;
-  margin-left: -300px;
-  background: conic-gradient(from 0deg, transparent 0deg, var(--glow) 20deg, transparent 55deg, transparent 360deg);
-  animation: experiences-item-spin 3.5s linear infinite;
-}
-
-.experiences-item:nth-child(2) .experiences-item-spin { animation-delay: -0.6s; }
-.experiences-item:nth-child(3) .experiences-item-spin { animation-delay: -1.2s; }
-.experiences-item:nth-child(4) .experiences-item-spin { animation-delay: -1.8s; }
-.experiences-item:nth-child(5) .experiences-item-spin { animation-delay: -2.4s; }
-.experiences-item:nth-child(6) .experiences-item-spin { animation-delay: -3s; }
-
-@keyframes experiences-item-spin {
-  to { transform: rotate(360deg); }
-}
-
-.experiences-item img {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: 6px;
+.experiences-frame img {
   display: block;
-  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The destination at the tunnel's vanishing point — a flat overlay, not
+   part of the 3D flight, so it's always crisp and fully visible instead
+   of cycling through the fade the wall frames do. Sits as .experiences-
+   stage's only normal-flow child (the tunnel and vignette are both
+   position:absolute, out of flow), so the stage's own flex centering is
+   what places it dead-center with no positioning of its own needed. */
+.experiences-tunnel-text {
+  position: relative;
+  z-index: 4;
+  width: 62vmin;
+  text-align: center;
+  pointer-events: none;
+}
+
+.experiences-tunnel-text h2 {
+  margin: 0 0 0.5em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: clamp(1.8rem, 6vmin, 4.2rem);
+  line-height: 1.2;
+  color: #fff;
+}
+
+/* Darkens the tunnel toward the edges/depth so frames read as receding
+   into fog rather than having a hard, visible clipping boundary. */
+/* No edge darkening — frames now stay fully visible out to the screen
+   edge and leave by sliding out of the clipped stage (overflow:hidden),
+   not by fading into a vignette first. */
+.experiences-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Full-size photo viewer, opened by clicking any frame in the tunnel —
+   sits above everything else on the page (including the floating header)
+   so it reads as a proper modal regardless of which section is behind it. */
+.experiences-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vh 5vw;
+  background: rgba(5, 5, 8, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  cursor: zoom-out;
+}
+
+.experiences-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.experiences-lightbox figure {
+  margin: 0;
+  max-width: 100%;
+  max-height: 100%;
+  line-height: 0;
+  position: relative;
+  transform: scale(0.94);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experiences-lightbox.is-open figure {
+  transform: scale(1);
+}
+
+.experiences-lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+}
+
+.experiences-lightbox-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.experiences-lightbox-close:hover,
+.experiences-lightbox-close:focus-visible {
+  transform: scale(1.08);
 }
 
 /* ---------- shared section chrome ---------- */

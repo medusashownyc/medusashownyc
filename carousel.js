@@ -9,11 +9,11 @@ import * as THREE from 'three';
 // not a faked gradient.
 
 const IMAGES = [
-  { src: 'images/belly-dance.jpg', ratio: 1200 / 1706, alt: 'Bailarina de danza árabe girando sobre el escenario' },
-  { src: 'images/fuego.jpg', ratio: 1200 / 1800, alt: 'Performer de fuego girando antorchas encendidas en la oscuridad' },
-  { src: 'images/garotas.jpg', ratio: 1200 / 798, alt: 'Garota de carnaval brasileño con tocado de plumas turquesa' },
-  { src: 'images/gogo.jpg', ratio: 1200 / 1800, alt: 'Gogo dancer en silueta sobre plataforma con luces de club' },
-  { src: 'images/salsa.jpg', ratio: 1200 / 1800, alt: 'Pareja de baile profesional en pose de salsa' },
+  { src: 'images/belly-dance.jpg', ratio: 690 / 1035, alt: 'Bailarina de danza árabe girando sobre el escenario' },
+  { src: 'images/fuego.jpg', ratio: 690 / 1035, alt: 'Performer de fuego girando antorchas encendidas en la oscuridad' },
+  { src: 'images/garotas.jpg', ratio: 684 / 1024, alt: 'Garota de carnaval brasileño con tocado de plumas turquesa' },
+  { src: 'images/gogo.jpg', ratio: 686 / 1028, alt: 'Gogo dancer en silueta sobre plataforma con luces de club' },
+  { src: 'images/salsa.jpg', ratio: 690 / 1035, alt: 'Pareja de baile profesional en pose de salsa' },
   { src: 'images/zancos-robot.jpg', ratio: 1200 / 1800, alt: 'Performers en zancos con vestuario escénico entre el público' },
 ];
 
@@ -28,45 +28,92 @@ const SHOW_URLS = [
   'show-zancos-robot.html',
 ];
 
-// 2:3 — matches the natural ratio of most of the source photos (1200×1800),
-// so object-fit: cover barely has to crop them. Only the wide garotas shot
-// gets cropped now (on its sides, which it can spare), instead of every
-// photo losing head/feet room to a squarer 4:5 frame.
-const CARD_W = 3.4;
-const CARD_H = 5.1;
-const GAP = 0.8;
-const BEND = 0.08; // barely-there curl — reads as a clean flat card, not a
-                    // rendered 3D surface
+// 1:1 — square cards, per reference. object-fit: cover crops each source
+// photo to fit (they're mostly portrait), same as before.
+const CARD_W = 5.6;
+const CARD_H = 5.6;
+const GAP = 0.5;
+// No fixed BEND constant — each card's curve is derived from RADIUS
+// (below) so it follows the ring's own arc exactly. Adjacent cards then
+// continue one unbroken circle instead of reading as flat facets joined
+// at angles.
 const SEGMENTS_X = 32; // the bend runs left-to-right across each card now,
                         // not top-to-bottom — matches the reference.
-const RING_COUNT = 20; // positions around the ring (images repeat) — this
-                        // sets the ring's actual radius (below), which is
-                        // what controls how far the side cards recede into
-                        // the background; a smaller count keeps the whole
-                        // ring compact instead of sprawling back in depth.
-                        // It does NOT change how big the front card reads
-                        // (that's CAMERA_DISTANCE, further down) — with a
-                        // flat/untilted ring the two are independent.
+const RING_COUNT = 18; // positions around the ring (images repeat). This is
+                        // the actual lever for how much of the frame's
+                        // *width* the ring fills at a fixed CAMERA_DISTANCE:
+                        // RADIUS (below) grows with it, and a card's max
+                        // possible apparent angle from the camera is capped
+                        // by the RADIUS:CAMERA_DISTANCE ratio — past that
+                        // cap, no amount of extra FOV reveals more cards,
+                        // it just adds empty margin either side. Doesn't
+                        // change how big any individual card reads (that's
+                        // CARD_W vs. CAMERA_DISTANCE) — the two are
+                        // independent levers for size vs. spread.
 const ANGLE_STEP = (Math.PI * 2) / RING_COUNT;
 const RADIUS = (CARD_W + GAP) / ANGLE_STEP;
-const ROTATE_SPEED = 0.05; // radians / second — scaled with ANGLE_STEP so
+const ROTATE_SPEED = 0.04; // radians / second — scaled with ANGLE_STEP so
                             // each card still spends a proportional amount
-                            // of time near the front
-const CAMERA_DISTANCE = 4.1; // from the ring's edge, not its centre — the
-                              // main lever for how big the front card reads;
-                              // tight enough that the card fills almost the
-                              // whole frame top-to-bottom, so there's no
-                              // dead canvas space between it and the row
-                              // of service tags underneath
-const RING_TILT_DEG = 0; // flat, upright ring — no tilt. A tilt reads as
-                          // the cards "reclining" once the camera sits
-                          // close/wide enough to fill the frame; a flat
-                          // ring stays vertical no matter how it's framed.
-const CAMERA_FOV_DEG = 70; // moderate — wide enough for a full-bleed hero
-                            // without the fisheye stretch a very wide FOV
-                            // puts on the side cards
-const FOCUS_SCALE = 1.08; // must match the scale bump applied to the
-                           // front-facing card in the animation loop below
+                            // of time near the front. Roughly half the old
+                            // speed's rate of "new card arriving up front" —
+                            // reads as a slow, deliberate drift.
+const CAMERA_DISTANCE = 10; // from the ring's edge, not its centre — kept
+                              // large relative to RADIUS (a "telephoto"
+                              // shot) so the ratio between the front card's
+                              // distance and a side card's distance stays
+                              // close to 1:1. That's what actually kills
+                              // the up/down "bobbing": with the camera
+                              // sitting right at the ring's edge (old
+                              // value: 3), a card swinging from the side to
+                              // the front changes distance ~6x, and that
+                              // swing — combined with the camera's pitch —
+                              // reads as vertical motion, not just a spin.
+const RING_TILT_DEG = 0; // flat, upright ring — no tilt. The "look up into
+                          // it" effect instead comes purely from the
+                          // camera's pitch below (CAMERA_LOOK_UP), so the
+                          // cards themselves stay vertical, not tipped
+                          // back.
+const CAMERA_LOOK_UP = 1.1; // how far below the look-at point the camera
+                             // sits, in world units — this is what angles
+                             // the *view* upward without touching the
+                             // ring's own geometry.
+const CAMERA_FOV_DEG = 33; // narrow — paired with the large CAMERA_DISTANCE
+                            // above to keep the front card's on-screen size
+                            // the same while flattening the perspective
+                            // (a telephoto lens, not a wide-angle one close
+                            // up). Narrower FOV also means less keystoning
+                            // at the card's own left/right edges. This is a
+                            // *vertical* FOV (three.js convention) — on a
+                            // narrow/portrait container the resulting
+                            // horizontal FOV shrinks along with the aspect
+                            // ratio, so it's only the floor for wide
+                            // screens; see MIN_HORIZONTAL_FOV_DEG below.
+const MIN_HORIZONTAL_FOV_DEG = 50; // on a narrow/portrait screen, holding
+                                    // the vertical FOV fixed at
+                                    // CAMERA_FOV_DEG starves the horizontal
+                                    // FOV — it can end up narrower than a
+                                    // single card's own angular width, so
+                                    // the "front card" can't fully fit
+                                    // between the frame edges and the ring
+                                    // reads as stuck/off-centre rather than
+                                    // a card properly framed dead-centre.
+                                    // updateCameraFraming() widens the
+                                    // vertical FOV as needed (never
+                                    // narrows it) so the horizontal FOV
+                                    // never drops below this floor.
+const FOCUS_SCALE = 1.04; // must match the scale bump applied to the
+                           // front-facing card in the animation loop below.
+                           // Kept subtle — a big scale pop reads as the
+                           // same unwanted "bounce" as the vertical bob.
+const FOG_NEAR = CAMERA_DISTANCE + RADIUS * 0.75; // held off well past the
+                                       // side cards — those should still
+                                       // read clearly, not just the front.
+const FOG_FAR = CAMERA_DISTANCE + RADIUS * 2.4; // fully white only out near
+                                                  // the back of the ring —
+                                                  // the fade is a late,
+                                                  // narrow tail, not
+                                                  // something that starts
+                                                  // eating into the sides.
 
 const container = document.getElementById('mqScene');
 if (container && !prefersNoWebGL()) {
@@ -86,13 +133,20 @@ function init() {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const scene = new THREE.Scene();
+  // Matches the page's white background (styles.css --bg), so cards don't
+  // fade to a visible grey/black box — they genuinely dissolve into the
+  // page behind the canvas, reading as "lost in the distance" rather than
+  // just dimmed. FOG_NEAR sits just past the front card so it stays fully
+  // crisp; by FOG_FAR (out past where the ring curves toward edge-on) a
+  // card is fully white and its own fading opacity finishes the job.
+  scene.fog = new THREE.Fog(0xffffff, FOG_NEAR, FOG_FAR);
 
   // The ring group rotates around its own local origin (0,0,0) — so that
   // origin MUST be the circle's true centre, or cards swing through the
   // wrong arc as the ring spins (some passing much closer to the camera
   // than intended, ballooning in size). Camera distance is measured from
   // that same centre, out past the ring's radius.
-  const camera = new THREE.PerspectiveCamera(CAMERA_FOV_DEG, 1, 1, 60);
+  const camera = new THREE.PerspectiveCamera(CAMERA_FOV_DEG, 1, 1, 120);
 
   // RING_TILT_DEG is kept generic (rather than hard-coding a flat ring) so
   // a tilt can be reintroduced later without touching this math — only the
@@ -100,20 +154,74 @@ function init() {
   // ring is one rigid disk, tilted or not.
   const tiltRad = THREE.MathUtils.degToRad(RING_TILT_DEG);
   const frontY = RADIUS * Math.sin(tiltRad);
-
-  // Solved, not guessed: how much world-space height the camera actually
-  // sees at the front card's depth, given its FOV and distance —
-  // then aim just high enough that the (scaled-up, focused) card's own
-  // top edge clears the frame by a small margin, instead of leaving a lot
-  // of unused headroom above it.
-  const halfVFov = THREE.MathUtils.degToRad(CAMERA_FOV_DEG) / 2;
-  const distanceToCard = RADIUS + CAMERA_DISTANCE - RADIUS * Math.cos(tiltRad);
-  const visibleHalfHeight = distanceToCard * Math.tan(halfVFov);
+  const camZ = RADIUS + CAMERA_DISTANCE; // camera's world Z — fixed regardless of tilt/pitch/FOV
+  const frontCardZ = RADIUS * Math.cos(tiltRad);
   const cardTopY = frontY + (CARD_H / 2) * FOCUS_SCALE;
   const topMargin = 0.1;
-  const lookY = cardTopY - visibleHalfHeight + topMargin;
-  camera.position.set(0, lookY + 0.15, RADIUS + CAMERA_DISTANCE);
-  camera.lookAt(0, lookY, 0);
+
+  // Solved, not guessed: how much world-space height the camera actually
+  // sees at the front card's depth, given its FOV, distance AND pitch —
+  // then aim just high enough that the (scaled-up, focused) card's own
+  // top edge clears the frame by a small margin, instead of leaving a lot
+  // of unused headroom above it (or, if this math is skipped, cropping the
+  // card outright once CAMERA_LOOK_UP tilts the view enough to matter).
+  //
+  // CAMERA_LOOK_UP moves the camera below its look-at point, which pitches
+  // the whole view upward — so the frustum's top edge is no longer simply
+  // "distance × tan(halfFOV)" above the look-at height the way it is for a
+  // level camera. It's derived properly here instead of eyeballed: find
+  // the camera's actual (pitched) up vector and forward vector, project
+  // the top-of-frustum ray out to the front card's depth, and solve for
+  // the lookY that lands that ray's world-space Y exactly on the card's
+  // top edge (plus topMargin).
+  //
+  // Takes the *vertical* FOV to use as a parameter (rather than always
+  // reading CAMERA_FOV_DEG) because updateCameraFraming() below widens it
+  // per-aspect-ratio — re-run on every resize, not just once at startup,
+  // since the same fixed vertical FOV that frames things properly on a
+  // wide desktop window starves the horizontal FOV on a narrow/portrait
+  // one (see MIN_HORIZONTAL_FOV_DEG).
+  function frameCamera(verticalFovDeg) {
+    const halfVFov = THREE.MathUtils.degToRad(verticalFovDeg) / 2;
+    const tanHalfVFov = Math.tan(halfVFov);
+    // L: length of the (CAMERA_LOOK_UP, camZ) leg — i.e. the camera-to-lookAt
+    // distance projected into the Y-Z plane (X=0 throughout, no roll).
+    const L = Math.hypot(CAMERA_LOOK_UP, camZ);
+    // d: camera-space depth (along the pitched forward axis) at which the
+    // view ray reaches the front card's Z plane.
+    const d = (L * (camZ - frontCardZ)) / (camZ - tanHalfVFov * CAMERA_LOOK_UP);
+    const lookY =
+      cardTopY +
+      topMargin +
+      CAMERA_LOOK_UP -
+      (d / L) * (CAMERA_LOOK_UP + tanHalfVFov * camZ);
+    camera.fov = verticalFovDeg;
+    camera.position.set(0, lookY - CAMERA_LOOK_UP, camZ);
+    camera.lookAt(0, lookY, 0);
+  }
+
+  // Widen the vertical FOV just enough that the horizontal FOV — which
+  // shrinks along with a narrow/portrait aspect ratio even with the
+  // vertical FOV held fixed — never drops below MIN_HORIZONTAL_FOV_DEG.
+  // Never narrows below the base CAMERA_FOV_DEG (that's the desktop
+  // framing, already tuned). Math mirrors three.js's own vertical↔aspect
+  // relationship: horizontalHalf = atan(aspect × tan(verticalHalf)), so
+  // solved the other way: verticalHalf = atan(tan(horizontalHalf) / aspect).
+  function verticalFovForAspect(aspect) {
+    const minHorizontalHalfRad = THREE.MathUtils.degToRad(MIN_HORIZONTAL_FOV_DEG) / 2;
+    const neededVerticalDeg = THREE.MathUtils.radToDeg(
+      Math.atan(Math.tan(minHorizontalHalfRad) / aspect)
+    ) * 2;
+    return Math.max(CAMERA_FOV_DEG, neededVerticalDeg);
+  }
+
+  function updateCameraFraming() {
+    const rect = container.getBoundingClientRect();
+    const aspect = rect.width / rect.height;
+    camera.aspect = aspect;
+    frameCamera(verticalFovForAspect(aspect));
+    camera.updateProjectionMatrix();
+  }
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setClearColor(0x000000, 0);
@@ -308,8 +416,7 @@ function init() {
 
   function resize() {
     const rect = container.getBoundingClientRect();
-    camera.aspect = rect.width / rect.height;
-    camera.updateProjectionMatrix();
+    updateCameraFraming();
     renderer.setSize(rect.width, rect.height);
   }
 
@@ -355,16 +462,13 @@ function init() {
       const targetScale = 1 + focus * (FOCUS_SCALE - 1);
       mesh.scale.setScalar(THREE.MathUtils.lerp(mesh.scale.x, targetScale, 0.1));
 
-      // Fade cards out the further round the ring they sit, over a much
-      // wider window than the scale spotlight above — so the ones trailing
-      // into the background stay visible (you can still tell what they
-      // are) but read as dimmer, receding depth rather than fully lit,
-      // instead of popping at full brightness right up until they're
-      // edge-on.
-      const fadeRange = Math.PI * 0.46;
+      // Per reference: side/background cards read fully opaque, cropped by
+      // the canvas edge rather than dissolving into it — only cards well
+      // round toward the back actually dim, and only a little.
+      const fadeRange = Math.PI * 0.85;
       let fade = THREE.MathUtils.clamp(1 - absAngle / fadeRange, 0, 1);
       fade = fade * fade * (3 - 2 * fade); // smoothstep
-      const minOpacity = 0.32;
+      const minOpacity = 0.9;
       const targetOpacity = THREE.MathUtils.lerp(minOpacity, 1, fade);
       mesh.material.opacity = THREE.MathUtils.lerp(mesh.material.opacity, targetOpacity, 0.08);
     });
@@ -385,8 +489,13 @@ function buildBentGeometry() {
   const pos = geo.attributes.position;
   for (let i = 0; i < pos.count; i++) {
     const x = pos.getX(i);
-    const t = x / (CARD_W / 2); // -1 (left) .. 1 (right)
-    const z = -BEND * (1 - Math.cos((t * Math.PI) / 2));
+    // x is arc-length along the ring's own circumference (that's how
+    // RADIUS was derived from CARD_W in the first place), so treating it
+    // as an angle swept at that RADIUS and sagging back by the circle's
+    // own cosine reproduces the ring's exact curvature — this card's
+    // surface sits flush on the same circle its neighbours do, instead of
+    // approximating it with an arbitrary curve.
+    const z = RADIUS * (Math.cos(x / RADIUS) - 1);
     pos.setZ(i, z);
   }
   geo.computeVertexNormals();
