@@ -12,8 +12,13 @@ const IMAGES = [
   { src: 'images/belly-dance.jpg', ratio: 690 / 1035, alt: 'Belly dance performer spinning on stage' },
   { src: 'images/fuego.jpg', ratio: 690 / 1035, alt: 'Fire performer spinning lit torches in the dark' },
   { src: 'images/garotas.jpg', ratio: 684 / 1024, alt: 'Brazilian carnival dancer with a turquoise feather headdress' },
-  { src: 'images/gogo.jpg', ratio: 686 / 1028, alt: 'Gogo dancer in silhouette on a platform with club lights' },
-  { src: 'images/salsa.jpg', ratio: 690 / 1035, alt: 'Professional dance couple in a salsa pose' },
+  // gogo/salsa are tall, tightly-framed photos where the dancers sit near
+  // the top of frame — centering the square crop (the default below) cuts
+  // into their heads. topBias: 1 keeps the top of the photo fully in frame
+  // and crops from the bottom instead, matching the object-position: 50% 0%
+  // bias already used for these same two photos elsewhere on the site.
+  { src: 'images/gogo.jpg', ratio: 686 / 1028, alt: 'Gogo dancer in silhouette on a platform with club lights', topBias: 1 },
+  { src: 'images/salsa.jpg', ratio: 690 / 1035, alt: 'Professional dance couple in a salsa pose', topBias: 1 },
   { src: 'images/zancos-robot.jpg', ratio: 1200 / 1800, alt: 'Stilt performers in stage costume among the crowd' },
 ];
 
@@ -427,10 +432,39 @@ function init() {
   ro.observe(container);
   resize();
 
+  // The ring keeps spinning and rendering forever by default — nothing
+  // stopped it once the page scrolled past it, so it kept doing full
+  // WebGL renders (shader program lookups, draw calls) every single frame
+  // deep into later sections, competing with #experiences' own tunnel
+  // animation for the main thread and showing up as that tunnel visibly
+  // stalling mid-scroll.
+  //
+  // Not an IntersectionObserver against this canvas's own bounding box —
+  // .hero is sticky (styles.css), so #experiences' opaque, higher-z-index
+  // stage sliding up over it (the section-stack hand-off) fully hides the
+  // hero well before this canvas's own rect actually leaves the viewport;
+  // an IntersectionObserver here would report "visible" the whole time
+  // it's sitting there completely covered. #experiences' own box is
+  // sticky top:0 too, so it starts covering the hero the instant
+  // window.scrollY reaches its static (pre-sticky) offsetTop — cached on
+  // load/resize, not read per-scroll (that forces a synchronous layout;
+  // see sections.js's isOverDarkStage for the same fix applied there).
+  const experiencesEl = document.getElementById('experiences');
+  let coverAtY = Infinity;
+  function updateCoverThreshold() {
+    coverAtY = experiencesEl ? experiencesEl.offsetTop : Infinity;
+  }
+  updateCoverThreshold();
+  window.addEventListener('resize', updateCoverThreshold);
+
   let last = performance.now();
 
   function frame(now) {
     requestAnimationFrame(frame);
+    if (window.scrollY >= coverAtY) {
+      last = now;
+      return;
+    }
     const dt = Math.min((now - last) / 1000, 0.05);
     last = now;
 
@@ -568,7 +602,10 @@ function buildCard(img, geometry, maskTexture, loader) {
       tex.offset.set((1 - tex.repeat.x) / 2, 0);
     } else {
       tex.repeat.set(1, img.ratio / cardRatio);
-      tex.offset.set(0, (1 - tex.repeat.y) / 2);
+      // topBias 1 = keep the top of the photo fully in frame, cropping only
+      // from the bottom; 0.5 (default) = crop evenly from both edges.
+      const topBias = img.topBias ?? 0.5;
+      tex.offset.set(0, (1 - tex.repeat.y) * topBias);
     }
     material.map = tex;
     material.needsUpdate = true;

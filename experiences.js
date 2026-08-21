@@ -58,6 +58,16 @@ const IMAGES = [
   { src: 'assets/images/img_0516_jpg_1.webp', alt: 'Twin contortionists with red hair' },
   { src: 'assets/images/img_0528_jpg_1.webp', alt: 'Gogo dancers in neon platform boots' },
   { src: 'assets/images/img_0514_jpg_1.webp', alt: 'Twin contortionists in a bridge pose' },
+  { src: 'assets/images/0dc19839_241e_48a9_a5f3_4cf65d5574fe_1.webp', alt: 'Carnival dancer in a pink feather headdress under a stone archway' },
+  { src: 'assets/images/0edf344e_baa2_4c08_a809_d0294c0f4416_1.webp', alt: 'Carnival couple dancing on the beach in red and black costuming' },
+  { src: 'assets/images/11_1.webp', alt: 'Carnival dancer in a red feather headdress, close portrait' },
+  { src: 'assets/images/2256b4f7_415b_466d_bdf9_1d61b94cb812_1.webp', alt: 'Carnival couple dancing on the beach in red and white costuming' },
+  { src: 'assets/images/26e217df_fd31_4280_bd3f_0575dabbff16_1.webp', alt: 'Carnival dancer lifted onto her partner\'s shoulders on the beach' },
+  { src: 'assets/images/28c9a3c8_8591_4790_8a82_e1ea50002239_1.webp', alt: 'Performer posing with a large snake' },
+  { src: 'assets/images/46364ad4_cc3c_4db7_a543_413f7603ffe5_1.webp', alt: 'Stilt walkers in sombreros posing under a floral archway' },
+  { src: 'assets/images/689e8e9e_381b_4440_919d_07f7dfeeecff_1.webp', alt: 'Carnival dancer in a pink feather headdress at a stone doorway' },
+  { src: 'assets/images/d01f49b6_7ac1_4524_bb25_2aef26aaba10_1.webp', alt: 'Performer in Egyptian-inspired costume with a snake' },
+  { src: 'assets/images/img_5329_1.webp', alt: 'Carnival parade dancers in blue feathered costumes' },
 ];
 
 if (outer && stage && tunnel && !prefersReduced) {
@@ -344,7 +354,11 @@ if (outer && stage && tunnel && !prefersReduced) {
         // slots per row now, a max-size frame bigger than that overlapped
         // its neighbor regardless of how little the jitter budget was.
         const sizeRand = rand() * rand();
-        const size = (isSideWall ? 8 : 10) + sizeRand * (isSideWall ? 14 : 22); // vmin, width
+        // Raised floor (was 8/10) — at the old minimum, small-side frames
+        // read as illegible thumbnails rather than actual photos; this
+        // keeps the same "mostly small, occasional large standout" mix
+        // but nothing shrinks below a size the photo is still readable at.
+        const size = (isSideWall ? 13 : 16) + sizeRand * (isSideWall ? 13 : 21); // vmin, width
         const jitterScale = 1 - sizeRand * 0.7;
         const alongCenter = -1 + (a + 0.5) * alongStep;
         const along = alongCenter + (rand() - 0.5) * alongStep * 0.4 * jitterScale;

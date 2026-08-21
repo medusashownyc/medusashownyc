@@ -157,17 +157,26 @@ const navAnchors = navLinks ? Array.from(navLinks.querySelectorAll('a')) : [];
 // The header goes dark (light logo/text, dark glass backing instead of
 // white) for exactly the stretch where #experiences' own black stage is
 // what's actually pinned full-screen behind it — the same "sticky
-// release" window described above scrollToAbout, computed live off
-// offsetTop/offsetHeight each call rather than cached, so it stays
-// correct across resizes with no separate listener needed. The ±40px
+// release" window described above scrollToAbout. offsetTop/offsetHeight
+// are cached (recomputed only on resize) rather than read live on every
+// scroll tick — reading them forces a synchronous layout, and doing that
+// on every native 'scroll' event (fired far more often than once per
+// frame during a fling) was a real source of main-thread jank: it showed
+// up as the #experiences tunnel (experiences.js) visibly stalling
+// mid-scroll, competing with this for the same frame budget. The ±40px
 // pad covers the brief rise/fall right at each edge, where the stage is
 // still animating into/out of place rather than fully covering the
 // screen yet.
+let darkStageStart = 0;
+let darkStageEnd = 0;
+function updateDarkStageBounds() {
+  if (!experiencesEl) return;
+  darkStageStart = experiencesEl.offsetTop - 40;
+  darkStageEnd = experiencesEl.offsetTop + experiencesEl.offsetHeight - window.innerHeight + 40;
+}
 function isOverDarkStage() {
   if (!experiencesEl) return false;
-  const start = experiencesEl.offsetTop - 40;
-  const end = experiencesEl.offsetTop + experiencesEl.offsetHeight - window.innerHeight + 40;
-  return window.scrollY >= start && window.scrollY <= end;
+  return window.scrollY >= darkStageStart && window.scrollY <= darkStageEnd;
 }
 
 let mobileNavOpen = false;
@@ -180,9 +189,14 @@ function onScroll() {
   }
 }
 
+function onResize() {
+  updateDarkStageBounds();
+  onScroll();
+}
+
 window.addEventListener('scroll', onScroll, { passive: true });
-window.addEventListener('resize', onScroll);
-onScroll();
+window.addEventListener('resize', onResize);
+onResize();
 
 /* ---------- "Universo Medusa" entry + exit snap ---------- */
 
@@ -208,6 +222,15 @@ function trySnap() {
   if (y < enter && y > enter - buffer) target = enter;
   else if (y < exit && y > exit - buffer) target = exit;
   if (target === null) return;
+  // A smooth scrollTo rarely settles on the exact target pixel (sub-pixel
+  // rounding), so "y < target" alone doesn't actually stop a snap that
+  // just finished from re-triggering itself on the very next scrollend —
+  // y is still a hair below target, re-satisfying the same branch above.
+  // That was firing this repeatedly (a fresh smooth scrollTo to the same
+  // target every scrollend) for as long as the user's scroll gesture kept
+  // producing scrollend events near the boundary, which is what read as
+  // the page/tunnel stuttering rather than a single clean snap.
+  if (Math.abs(y - target) < 2) return;
   isSnapping = true;
   window.scrollTo({ top: target, behavior: prefersReduced ? 'auto' : 'smooth' });
   const finish = () => { isSnapping = false; };
@@ -425,6 +448,20 @@ const FORMAT_ICONS = {
   'Zancos & Robot': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H9"/><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M1 14h2M21 14h2M9 13v2M15 13v2"/></svg>',
 };
 
+// Same lookup shape as FORMAT_ICONS above (English + Spanish spelling of
+// each format), pointing each included format at its own show page so the
+// ritual panel's chips can link straight there instead of just naming it.
+const FORMAT_LINKS = {
+  'Belly Dancers': 'show-belly-dancers.html',
+  Fire: 'show-fuego.html',
+  Fuego: 'show-fuego.html',
+  Garotas: 'show-garotas.html',
+  'Gogo Dancers': 'show-gogo-dancers.html',
+  Salsa: 'show-salsa.html',
+  'Stilt Walkers & Robot': 'show-zancos-robot.html',
+  'Zancos & Robot': 'show-zancos-robot.html',
+};
+
 const ritualFeature = document.getElementById('ritualFeature');
 const ritualThumbsEl = document.getElementById('ritualThumbs');
 const ritualThumbs = ritualThumbsEl ? Array.from(ritualThumbsEl.querySelectorAll('.ritual-thumb')) : [];
@@ -481,7 +518,16 @@ if (ritualFeature && ritualThumbs.length) {
     featureDesc.textContent = desc || '';
     featureIncludes.innerHTML = (includes || '')
       .split(',')
-      .map((name) => `<li>${FORMAT_ICONS[name] || ''}${name}</li>`)
+      .map((raw) => {
+        const name = raw.trim();
+        // Strip a trailing "(closer)" / "(cierre)" qualifier so it still
+        // matches the plain format name in FORMAT_ICONS/FORMAT_LINKS, while
+        // the qualifier itself stays visible in the label text.
+        const base = name.replace(/\s*\([^)]*\)\s*$/, '');
+        const label = `${FORMAT_ICONS[base] || ''}${name}`;
+        const href = FORMAT_LINKS[base];
+        return href ? `<li><a href="${href}">${label}</a></li>` : `<li>${label}</li>`;
+      })
       .join('');
     ritualFeature.style.setProperty('--accent', `var(--brand-${accent})`);
 

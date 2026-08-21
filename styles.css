@@ -1391,6 +1391,16 @@ a {
   object-fit: cover;
 }
 
+/* Salsa/gogo/zancos-robot are all tall, tightly-framed photos where the
+   tightest cover-crop (narrow panel, or the 16:9 mobile crop below) reaches
+   into the performers' heads before it reaches empty space — bias the crop
+   upward so the floor gets cropped instead of a face. */
+#ritualFeatureImg[src$="salsa.jpg"],
+#ritualFeatureImg[src$="gogo.jpg"],
+#ritualFeatureImg[src$="zancos-robot.jpg"] {
+  object-position: 50% 0%;
+}
+
 /* A large, faint roman numeral over each ritual's photo — a bit of
    ceremonial texture (I, II, III, IV) rather than a plain arabic index. */
 .ritual-feature-numeral {
@@ -1553,13 +1563,27 @@ a {
 .ritual-card-includes li {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px 6px 10px;
+  padding: 0;
   border-radius: 999px;
   border: 1px solid var(--line);
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--ink);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.ritual-card-includes li:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.ritual-card-includes li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px 6px 10px;
+  color: inherit;
+  text-decoration: none;
 }
 
 .ritual-card-includes svg {
@@ -1656,6 +1680,38 @@ a {
 
 @keyframes marquee-scroll {
   to { transform: translateX(-50%); }
+}
+
+.marquee-photos {
+  margin-top: clamp(16px, 2vw, 24px);
+}
+
+/* Runs the opposite way from the quote ticker above — starts already
+   shifted -50% and animates back to 0, instead of reusing marquee-scroll
+   forward, so the two rows visibly counter-scroll rather than mirroring
+   each other. */
+.marquee-photos-track {
+  animation-name: marquee-scroll-reverse;
+}
+
+@keyframes marquee-scroll-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.marquee-photo {
+  flex: none;
+  width: clamp(96px, 12vw, 160px);
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.marquee-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ---------- booking ---------- */
@@ -1767,41 +1823,93 @@ a {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 6px;
-  padding: clamp(36px, 5vw, 56px) clamp(24px, 3vw, 36px);
+  gap: 14px;
+  padding: clamp(32px, 4.5vw, 44px) clamp(24px, 3vw, 36px);
   border-radius: 24px;
   background: var(--card-bg);
   border: 1px solid var(--line);
   box-shadow: 0 40px 80px -50px rgba(0, 0, 0, 0.45);
 }
 
-.booking-cal-trigger-icon {
+/* Mimics the host/event header of a cal.com booking page (avatar + org
+   name + event title) so the trigger card reads as "a cal.com booking",
+   not just a generic CTA panel, before the modal ever opens. */
+.cal-card-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cal-card-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  margin-bottom: 6px;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background: var(--brand-gradient);
-  color: #fff;
 }
 
-.booking-cal-trigger-icon svg {
-  width: 24px;
-  height: 24px;
+.cal-card-avatar img {
+  width: 26px;
+  height: 26px;
 }
 
-.booking-cal-trigger h3 {
-  margin: 0;
+.cal-card-brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  text-align: left;
+}
+
+.cal-card-org {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.cal-card-event {
   font-family: var(--font-display);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.2;
+}
+
+/* Duration / format / timezone row, the same three facts cal.com always
+   surfaces above its own calendar grid. */
+.cal-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 18px;
+  margin: 0;
+  padding: 12px 0;
+  list-style: none;
+  border-block: 1px solid var(--line);
+}
+
+.cal-card-meta li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-dim);
+}
+
+.cal-card-meta svg {
+  width: 15px;
+  height: 15px;
+  color: var(--brand-green-deep);
 }
 
 .booking-cal-trigger > p {
-  margin: 0 0 12px;
+  margin: 0;
   max-width: 34ch;
   font-size: 0.94rem;
   line-height: 1.6;
