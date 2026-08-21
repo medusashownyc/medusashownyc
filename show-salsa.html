@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salsa — Medusa Show</title>
-<meta name="description" content="Pareja profesional de salsa con show coreografiado y clase exprés opcional. La forma perfecta de abrir la pista en bodas y eventos corporativos.">
+<title data-es="Salsa — Medusa Show">Salsa — Medusa Show</title>
+<meta name="description" content="A professional salsa couple with a choreographed show and an optional express class. The perfect way to open the dance floor at weddings and corporate events." data-es-content="Pareja profesional de salsa con show coreografiado y clase exprés opcional. La forma perfecta de abrir la pista en bodas y eventos corporativos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
@@ -17,12 +17,12 @@
 
 <header class="site-header" id="siteHeader">
   <div class="site-header-inner wrap">
-    <a class="brand" href="index.html" aria-label="Medusa Show — inicio">
+    <a class="brand" href="index.html" aria-label="Medusa Show — home" data-es-aria-label="Medusa Show — inicio">
       <img class="brand-logo brand-logo--light" src="assets/Logo-negro.svg" alt="Medusa Show">
       <img class="brand-logo brand-logo--dark" src="assets/Logo-blanco.svg" alt="" aria-hidden="true">
     </a>
 
-    <nav class="main-nav" aria-label="Principal">
+    <nav class="main-nav" aria-label="Main" data-es-aria-label="Principal">
       <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
       <ul class="nav-links" id="navLinks">
         <li class="nav-has-mega">
@@ -34,7 +34,7 @@
             </a>
             <a class="nav-mega-item" href="show-fuego.html" style="--accent: var(--brand-magenta)">
               <span class="nav-mega-media"><img src="images/fuego.jpg" alt=""></span>
-              <span class="nav-mega-text">Fuego</span>
+              <span class="nav-mega-text" data-es="Fuego">Fire</span>
             </a>
             <a class="nav-mega-item" href="show-garotas.html" style="--accent: var(--brand-blue)">
               <span class="nav-mega-media"><img src="images/garotas.jpg" alt=""></span>
@@ -50,25 +50,34 @@
             </a>
             <a class="nav-mega-item" href="show-zancos-robot.html" style="--accent: var(--brand-magenta)">
               <span class="nav-mega-media"><img src="images/zancos-robot.jpg" alt=""></span>
-              <span class="nav-mega-text">Zancos &amp; Robot</span>
+              <span class="nav-mega-text" data-es="Zancos &amp; Robot">Stilt Walkers &amp; Robot</span>
             </a>
           </div>
         </li>
-        <li><a href="index.html#about">Nosotros</a></li>
-        <li><a href="index.html#rituales">Rituales</a></li>
-        <li><a href="index.html#testimonials">Clientes</a></li>
-        <li><a href="index.html#booking">Contacto</a></li>
+        <li><a href="index.html#about" data-es="Nosotros">About</a></li>
+        <li><a href="index.html#rituales" data-es="Rituales">Rituals</a></li>
+        <li><a href="index.html#testimonials" data-es="Clientes">Clients</a></li>
+        <li><a href="index.html#booking" data-es="Contacto">Contact</a></li>
       </ul>
     </nav>
 
     <div class="header-actions">
       <a class="nav-cta" href="index.html#booking">
-        <span>Reservar cita</span>
+        <span data-es="Reservar cita">Book now</span>
         <span class="nav-cta-badge" aria-hidden="true">
           <img src="assets/simbolo-blanco.svg" alt="">
         </span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+      <div class="lang-switch" role="group" aria-label="Language / Idioma">
+        <span class="lang-switch-highlight" aria-hidden="true"></span>
+        <button type="button" class="lang-switch-option" data-lang="en" aria-pressed="true" aria-label="English">
+          <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#B22234"/><rect y="1.85" width="24" height="1.85" fill="#fff"/><rect y="5.54" width="24" height="1.85" fill="#fff"/><rect y="9.23" width="24" height="1.85" fill="#fff"/><rect y="12.92" width="24" height="1.85" fill="#fff"/><rect y="16.62" width="24" height="1.85" fill="#fff"/><rect y="20.31" width="24" height="1.85" fill="#fff"/><rect width="10.5" height="13" fill="#3C3B6E"/></svg></span>
+        </button>
+        <button type="button" class="lang-switch-option" data-lang="es" aria-pressed="false" aria-label="Español">
+          <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#AA151B"/><rect y="6" width="24" height="12" fill="#F1BF00"/></svg></span>
+        </button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" data-es-aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -78,13 +87,22 @@
 <div class="mobile-nav" id="mobileNav">
   <ul class="mobile-nav-links">
     <li><a href="index.html#top">Shows</a></li>
-    <li><a href="index.html#about">Nosotros</a></li>
-    <li><a href="index.html#rituales">Rituales</a></li>
-    <li><a href="index.html#testimonials">Clientes</a></li>
-    <li><a href="index.html#booking">Contacto</a></li>
+    <li><a href="index.html#about" data-es="Nosotros">About</a></li>
+    <li><a href="index.html#rituales" data-es="Rituales">Rituals</a></li>
+    <li><a href="index.html#testimonials" data-es="Clientes">Clients</a></li>
+    <li><a href="index.html#booking" data-es="Contacto">Contact</a></li>
   </ul>
+  <div class="lang-switch" role="group" aria-label="Language / Idioma">
+    <span class="lang-switch-highlight" aria-hidden="true"></span>
+    <button type="button" class="lang-switch-option" data-lang="en" aria-pressed="true" aria-label="English">
+      <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#B22234"/><rect y="1.85" width="24" height="1.85" fill="#fff"/><rect y="5.54" width="24" height="1.85" fill="#fff"/><rect y="9.23" width="24" height="1.85" fill="#fff"/><rect y="12.92" width="24" height="1.85" fill="#fff"/><rect y="16.62" width="24" height="1.85" fill="#fff"/><rect y="20.31" width="24" height="1.85" fill="#fff"/><rect width="10.5" height="13" fill="#3C3B6E"/></svg></span>
+    </button>
+    <button type="button" class="lang-switch-option" data-lang="es" aria-pressed="false" aria-label="Español">
+      <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#AA151B"/><rect y="6" width="24" height="12" fill="#F1BF00"/></svg></span>
+    </button>
+  </div>
   <a class="mobile-nav-cta" href="index.html#booking">
-    <span>Reservar cita</span>
+    <span data-es="Reservar cita">Book now</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 </div>
@@ -94,63 +112,64 @@
   <div class="show-story">
     <div class="show-story-media">
       <div class="show-story-frame">
-        <img src="images/salsa.jpg" alt="Pareja de baile profesional en pose de salsa">
+        <img src="images/salsa.jpg" alt="Professional dance couple in a salsa pose" data-es-alt="Pareja de baile profesional en pose de salsa">
       </div>
       <span class="show-story-badge">Salsa</span>
     </div>
 
     <div class="show-story-content">
       <section class="show-block show-block-title">
-        <p class="eyebrow eyebrow-accent" data-reveal>Baile de salón en vivo</p>
-        <h1 data-reveal>Una pista que se llena en segundos</h1>
+        <p class="eyebrow eyebrow-accent" data-reveal data-es="Baile de salón en vivo">Live ballroom dance</p>
+        <h1 data-reveal data-es="Una pista que se llena en segundos">A dance floor that fills in seconds</h1>
         <div class="show-block-actions" data-reveal>
           <a class="show-cta-btn" href="index.html#booking">
-            <span>Reservar este show</span>
+            <span data-es="Reservar este show">Book this show</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a class="show-cta-btn-outline" href="index.html#experiences">Ver todos los shows</a>
+          <a class="show-cta-btn-outline" href="index.html#experiences" data-es="Ver todos los shows">See all shows</a>
         </div>
       </section>
 
       <section class="show-block show-block-about">
-        <p class="eyebrow" data-reveal>Sobre el show</p>
+        <p class="eyebrow" data-reveal data-es="Sobre el show">About the show</p>
         <h2 class="section-title" data-reveal>Salsa</h2>
-        <p data-reveal>
-          Una pareja profesional de baile de salón abre la pista con un show coreografiado
-          — elegante, sincronizado y con la energía justa para invitar a todos a sumarse
-          después.
+        <p data-reveal data-es="Una pareja profesional de baile de salón abre la pista con un show coreografiado — elegante, sincronizado y con la energía justa para invitar a todos a sumarse después.">
+          A professional ballroom dance couple opens the floor with a
+          choreographed show — elegant, synchronized and with just the
+          right energy to invite everyone to join in afterward.
         </p>
-        <p data-reveal>
-          Si quieres ir un paso más allá, ofrecemos una clase exprés para los invitados
-          antes o después del show, para que la pista se mantenga activa toda la noche.
+        <p data-reveal data-es="Si quieres ir un paso más allá, ofrecemos una clase exprés para los invitados antes o después del show, para que la pista se mantenga activa toda la noche.">
+          If you want to take it a step further, we offer an express class
+          for guests before or after the show, keeping the floor active all
+          night.
         </p>
         <div class="show-story-stats" data-reveal>
           <div class="show-story-stat">
             <span>5–8 min</span>
-            <label>Duración show</label>
+            <label data-es="Duración show">Show duration</label>
           </div>
           <div class="show-story-stat">
             <span>2</span>
-            <label>Performers (pareja)</label>
+            <label data-es="Performers (pareja)">Performers (couple)</label>
           </div>
           <div class="show-story-stat">
             <span>+15 min</span>
-            <label>Clase exprés opcional</label>
+            <label data-es="Clase exprés opcional">Optional express class</label>
           </div>
         </div>
       </section>
 
       <section class="show-block show-block-features">
-        <p class="eyebrow" data-reveal>Qué incluye</p>
-        <h2 class="section-title" data-reveal>Todo listo para que solo disfrutes el show</h2>
+        <p class="eyebrow" data-reveal data-es="Qué incluye">What's included</p>
+        <h2 class="section-title" data-reveal data-es="Todo listo para que solo disfrutes el show">Everything's ready — just enjoy the show</h2>
         <ul class="show-feature-list">
           <li data-reveal>
             <span class="show-feature-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
             </span>
             <div>
-              <h3>Show coreografiado</h3>
-              <p>Una rutina de salón lista para abrir la pista con impacto.</p>
+              <h3 data-es="Show coreografiado">Choreographed show</h3>
+              <p data-es="Una rutina de salón lista para abrir la pista con impacto.">A ballroom routine ready to open the floor with impact.</p>
             </div>
           </li>
           <li data-reveal>
@@ -158,8 +177,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </span>
             <div>
-              <h3>Clase exprés (opcional)</h3>
-              <p>5–10 minutos de clase para que tus invitados se animen a bailar.</p>
+              <h3 data-es="Clase exprés (opcional)">Express class (optional)</h3>
+              <p data-es="5–10 minutos de clase para que tus invitados se animen a bailar.">5–10 minutes of instruction to get your guests dancing.</p>
             </div>
           </li>
           <li data-reveal>
@@ -167,8 +186,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 17 3 8l4.8 3.6L12 5l4.2 6.6L21 8l-1.5 9Z"/><path d="M5 20h14"/></svg>
             </span>
             <div>
-              <h3>Vestuario elegante</h3>
-              <p>A juego con la paleta y el tono de tu evento.</p>
+              <h3 data-es="Vestuario elegante">Elegant costuming</h3>
+              <p data-es="A juego con la paleta y el tono de tu evento.">Matched to your event's palette and tone.</p>
             </div>
           </li>
           <li data-reveal>
@@ -176,25 +195,25 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
             </span>
             <div>
-              <h3>Ideal para abrir pista</h3>
-              <p>Pensado como puente entre la cena y la fiesta.</p>
+              <h3 data-es="Ideal para abrir pista">Ideal to open the floor</h3>
+              <p data-es="Pensado como puente entre la cena y la fiesta.">Built as the bridge between dinner and the party.</p>
             </div>
           </li>
         </ul>
       </section>
 
       <section class="show-block show-block-cta">
-        <p class="eyebrow" data-reveal>Ideal para</p>
+        <p class="eyebrow" data-reveal data-es="Ideal para">Ideal for</p>
         <ul class="show-tags" data-reveal>
-          <li>Bodas</li>
-          <li>Cenas de gala</li>
-          <li>Eventos corporativos</li>
-          <li>Celebraciones privadas</li>
+          <li data-es="Bodas">Weddings</li>
+          <li data-es="Cenas de gala">Gala dinners</li>
+          <li data-es="Eventos corporativos">Corporate events</li>
+          <li data-es="Celebraciones privadas">Private celebrations</li>
         </ul>
         <div class="show-cta-card" data-reveal>
-          <h2>¿Lo sumamos a tu evento?</h2>
+          <h2 data-es="¿Lo sumamos a tu evento?">Ready to add it to your event?</h2>
           <a class="show-cta-btn" href="index.html#booking">
-            <span>Reservar cita</span>
+            <span data-es="Reservar cita">Book now</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -204,19 +223,19 @@
 
   <section class="show-related">
     <div class="wrap">
-      <p class="eyebrow" data-reveal>Descubre más</p>
-      <h2 class="section-title" data-reveal>Otros shows del elenco</h2>
+      <p class="eyebrow" data-reveal data-es="Descubre más">Discover more</p>
+      <h2 class="section-title" data-reveal data-es="Otros shows del elenco">Other shows in the cast</h2>
       <div class="show-related-grid">
         <a class="show-related-card" href="show-belly-dancers.html" data-reveal>
-          <img src="images/belly-dance.jpg" alt="Bailarina de danza árabe girando sobre el escenario">
+          <img src="images/belly-dance.jpg" alt="Belly dance performer spinning on stage" data-es-alt="Bailarina de danza árabe girando sobre el escenario">
           <span>Belly Dancers</span>
         </a>
         <a class="show-related-card" href="show-gogo-dancers.html" data-reveal>
-          <img src="images/gogo.jpg" alt="Gogo dancer en silueta sobre plataforma con luces de club">
+          <img src="images/gogo.jpg" alt="Gogo dancer in silhouette on a platform with club lights" data-es-alt="Gogo dancer en silueta sobre plataforma con luces de club">
           <span>Gogo Dancers</span>
         </a>
         <a class="show-related-card" href="show-garotas.html" data-reveal>
-          <img src="images/garotas.jpg" alt="Garota de carnaval brasileño con tocado de plumas turquesa">
+          <img src="images/garotas.jpg" alt="Brazilian carnival dancer with a turquoise feather headdress" data-es-alt="Garota de carnaval brasileño con tocado de plumas turquesa">
           <span>Garotas</span>
         </a>
       </div>
@@ -229,23 +248,23 @@
   <div class="wrap footer-grid">
     <div class="footer-brand" data-reveal>
       <img src="assets/Logo-blanco.svg" alt="Medusa Show">
-      <p>Entretenimiento en vivo para bodas, clubs, aperturas y activaciones de marca.</p>
+      <p data-es="Entretenimiento en vivo para bodas, clubs, aperturas y activaciones de marca.">Live entertainment for weddings, clubs, openings and brand activations.</p>
     </div>
 
     <div class="footer-links" data-reveal>
-      <h4>Navegación</h4>
+      <h4 data-es="Navegación">Navigation</h4>
       <a href="index.html#experiences">Shows</a>
-      <a href="index.html#about">Nosotros</a>
-      <a href="index.html#rituales">Rituales</a>
-      <a href="index.html#booking">Reservar cita</a>
+      <a href="index.html#about" data-es="Nosotros">About</a>
+      <a href="index.html#rituales" data-es="Rituales">Rituals</a>
+      <a href="index.html#booking" data-es="Reservar cita">Book now</a>
     </div>
 
     <div class="footer-contact" data-reveal>
-      <h4>Contacto</h4>
-      <a href="mailto:hola@medusashow.com">hola@medusashow.com</a>
+      <h4 data-es="Contacto">Contact</h4>
+      <a href="mailto:medusashowny@gmail.com">medusashowny@gmail.com</a>
       <a href="https://wa.me/000000000000" target="_blank" rel="noopener">WhatsApp</a>
       <div class="footer-social">
-        <a href="#" aria-label="Instagram">
+        <a href="https://www.instagram.com/medusa_showsnyc" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
         </a>
         <a href="#" aria-label="TikTok">
@@ -256,8 +275,8 @@
   </div>
 
   <div class="wrap footer-bottom" data-reveal>
-    <span>© 2026 Medusa Show. Todos los derechos reservados.</span>
-    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <span data-es="© 2026 Medusa Show. Todos los derechos reservados.">© 2026 Medusa Show. All rights reserved.</span>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" data-es-aria-label="Volver arriba">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
   </div>
@@ -265,6 +284,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="i18n.js"></script>
 <script type="module" src="sections.js"></script>
 
 </body>

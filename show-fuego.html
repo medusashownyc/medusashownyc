@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fuego — Medusa Show</title>
-<meta name="description" content="Antorchas, poi y bastón de fuego en una coreografía de alto impacto. El clímax perfecto para aperturas de marca, bodas y festivales al aire libre.">
+<title data-es="Fuego — Medusa Show">Fire — Medusa Show</title>
+<meta name="description" content="Torches, poi and fire staff in a high-impact choreography. The perfect climax for brand openings, weddings and outdoor festivals." data-es-content="Antorchas, poi y bastón de fuego en una coreografía de alto impacto. El clímax perfecto para aperturas de marca, bodas y festivales al aire libre.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
@@ -17,12 +17,12 @@
 
 <header class="site-header" id="siteHeader">
   <div class="site-header-inner wrap">
-    <a class="brand" href="index.html" aria-label="Medusa Show — inicio">
+    <a class="brand" href="index.html" aria-label="Medusa Show — home" data-es-aria-label="Medusa Show — inicio">
       <img class="brand-logo brand-logo--light" src="assets/Logo-negro.svg" alt="Medusa Show">
       <img class="brand-logo brand-logo--dark" src="assets/Logo-blanco.svg" alt="" aria-hidden="true">
     </a>
 
-    <nav class="main-nav" aria-label="Principal">
+    <nav class="main-nav" aria-label="Main" data-es-aria-label="Principal">
       <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
       <ul class="nav-links" id="navLinks">
         <li class="nav-has-mega">
@@ -34,7 +34,7 @@
             </a>
             <a class="nav-mega-item" href="show-fuego.html" style="--accent: var(--brand-magenta)">
               <span class="nav-mega-media"><img src="images/fuego.jpg" alt=""></span>
-              <span class="nav-mega-text">Fuego</span>
+              <span class="nav-mega-text" data-es="Fuego">Fire</span>
             </a>
             <a class="nav-mega-item" href="show-garotas.html" style="--accent: var(--brand-blue)">
               <span class="nav-mega-media"><img src="images/garotas.jpg" alt=""></span>
@@ -50,25 +50,34 @@
             </a>
             <a class="nav-mega-item" href="show-zancos-robot.html" style="--accent: var(--brand-magenta)">
               <span class="nav-mega-media"><img src="images/zancos-robot.jpg" alt=""></span>
-              <span class="nav-mega-text">Zancos &amp; Robot</span>
+              <span class="nav-mega-text" data-es="Zancos &amp; Robot">Stilt Walkers &amp; Robot</span>
             </a>
           </div>
         </li>
-        <li><a href="index.html#about">Nosotros</a></li>
-        <li><a href="index.html#rituales">Rituales</a></li>
-        <li><a href="index.html#testimonials">Clientes</a></li>
-        <li><a href="index.html#booking">Contacto</a></li>
+        <li><a href="index.html#about" data-es="Nosotros">About</a></li>
+        <li><a href="index.html#rituales" data-es="Rituales">Rituals</a></li>
+        <li><a href="index.html#testimonials" data-es="Clientes">Clients</a></li>
+        <li><a href="index.html#booking" data-es="Contacto">Contact</a></li>
       </ul>
     </nav>
 
     <div class="header-actions">
       <a class="nav-cta" href="index.html#booking">
-        <span>Reservar cita</span>
+        <span data-es="Reservar cita">Book now</span>
         <span class="nav-cta-badge" aria-hidden="true">
           <img src="assets/simbolo-blanco.svg" alt="">
         </span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+      <div class="lang-switch" role="group" aria-label="Language / Idioma">
+        <span class="lang-switch-highlight" aria-hidden="true"></span>
+        <button type="button" class="lang-switch-option" data-lang="en" aria-pressed="true" aria-label="English">
+          <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#B22234"/><rect y="1.85" width="24" height="1.85" fill="#fff"/><rect y="5.54" width="24" height="1.85" fill="#fff"/><rect y="9.23" width="24" height="1.85" fill="#fff"/><rect y="12.92" width="24" height="1.85" fill="#fff"/><rect y="16.62" width="24" height="1.85" fill="#fff"/><rect y="20.31" width="24" height="1.85" fill="#fff"/><rect width="10.5" height="13" fill="#3C3B6E"/></svg></span>
+        </button>
+        <button type="button" class="lang-switch-option" data-lang="es" aria-pressed="false" aria-label="Español">
+          <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#AA151B"/><rect y="6" width="24" height="12" fill="#F1BF00"/></svg></span>
+        </button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" data-es-aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -78,13 +87,22 @@
 <div class="mobile-nav" id="mobileNav">
   <ul class="mobile-nav-links">
     <li><a href="index.html#top">Shows</a></li>
-    <li><a href="index.html#about">Nosotros</a></li>
-    <li><a href="index.html#rituales">Rituales</a></li>
-    <li><a href="index.html#testimonials">Clientes</a></li>
-    <li><a href="index.html#booking">Contacto</a></li>
+    <li><a href="index.html#about" data-es="Nosotros">About</a></li>
+    <li><a href="index.html#rituales" data-es="Rituales">Rituals</a></li>
+    <li><a href="index.html#testimonials" data-es="Clientes">Clients</a></li>
+    <li><a href="index.html#booking" data-es="Contacto">Contact</a></li>
   </ul>
+  <div class="lang-switch" role="group" aria-label="Language / Idioma">
+    <span class="lang-switch-highlight" aria-hidden="true"></span>
+    <button type="button" class="lang-switch-option" data-lang="en" aria-pressed="true" aria-label="English">
+      <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#B22234"/><rect y="1.85" width="24" height="1.85" fill="#fff"/><rect y="5.54" width="24" height="1.85" fill="#fff"/><rect y="9.23" width="24" height="1.85" fill="#fff"/><rect y="12.92" width="24" height="1.85" fill="#fff"/><rect y="16.62" width="24" height="1.85" fill="#fff"/><rect y="20.31" width="24" height="1.85" fill="#fff"/><rect width="10.5" height="13" fill="#3C3B6E"/></svg></span>
+    </button>
+    <button type="button" class="lang-switch-option" data-lang="es" aria-pressed="false" aria-label="Español">
+      <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#AA151B"/><rect y="6" width="24" height="12" fill="#F1BF00"/></svg></span>
+    </button>
+  </div>
   <a class="mobile-nav-cta" href="index.html#booking">
-    <span>Reservar cita</span>
+    <span data-es="Reservar cita">Book now</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 </div>
@@ -94,63 +112,64 @@
   <div class="show-story">
     <div class="show-story-media">
       <div class="show-story-frame">
-        <img src="images/fuego.jpg" alt="Performer de fuego girando antorchas encendidas en la oscuridad">
+        <img src="images/fuego.jpg" alt="Fire performer spinning lit torches in the dark" data-es-alt="Performer de fuego girando antorchas encendidas en la oscuridad">
       </div>
-      <span class="show-story-badge">Fuego</span>
+      <span class="show-story-badge" data-es="Fuego">Fire</span>
     </div>
 
     <div class="show-story-content">
       <section class="show-block show-block-title">
-        <p class="eyebrow eyebrow-accent" data-reveal>Acto de fuego en vivo</p>
-        <h1 data-reveal>El clímax que enciende cualquier noche</h1>
+        <p class="eyebrow eyebrow-accent" data-reveal data-es="Acto de fuego en vivo">Live fire act</p>
+        <h1 data-reveal data-es="El clímax que enciende cualquier noche">The climax that ignites any night</h1>
         <div class="show-block-actions" data-reveal>
           <a class="show-cta-btn" href="index.html#booking">
-            <span>Reservar este show</span>
+            <span data-es="Reservar este show">Book this show</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a class="show-cta-btn-outline" href="index.html#experiences">Ver todos los shows</a>
+          <a class="show-cta-btn-outline" href="index.html#experiences" data-es="Ver todos los shows">See all shows</a>
         </div>
       </section>
 
       <section class="show-block show-block-about">
-        <p class="eyebrow" data-reveal>Sobre el show</p>
-        <h2 class="section-title" data-reveal>Fuego</h2>
-        <p data-reveal>
-          Antorchas, poi y bastón de fuego en una coreografía sincronizada con la música
-          — pensada para ser EL momento que todos recuerdan del evento. Funciona como
-          apertura de alto impacto o como cierre dramático.
+        <p class="eyebrow" data-reveal data-es="Sobre el show">About the show</p>
+        <h2 class="section-title" data-reveal data-es="Fuego">Fire</h2>
+        <p data-reveal data-es="Antorchas, poi y bastón de fuego en una coreografía sincronizada con la música — pensada para ser EL momento que todos recuerdan del evento. Funciona como apertura de alto impacto o como cierre dramático.">
+          Torches, poi and fire staff in a choreography synced to the music
+          — built to be THE moment everyone remembers from the event. Works
+          as a high-impact opener or a dramatic closer.
         </p>
-        <p data-reveal>
-          Todo el acto sigue protocolos de seguridad profesionales: material ignífugo,
-          extintores en sitio y coordinación previa con el lugar del evento.
+        <p data-reveal data-es="Todo el acto sigue protocolos de seguridad profesionales: material ignífugo, extintores en sitio y coordinación previa con el lugar del evento.">
+          The whole act follows professional safety protocols: fire-rated
+          gear, on-site extinguishers and advance coordination with the
+          venue.
         </p>
         <div class="show-story-stats" data-reveal>
           <div class="show-story-stat">
             <span>5–12 min</span>
-            <label>Duración</label>
+            <label data-es="Duración">Duration</label>
           </div>
           <div class="show-story-stat">
             <span>1–2</span>
-            <label>Performers</label>
+            <label data-es="Performers">Performers</label>
           </div>
           <div class="show-story-stat">
-            <span>Aire libre</span>
-            <label>Espacio requerido</label>
+            <span data-es="Aire libre">Outdoors</span>
+            <label data-es="Espacio requerido">Space required</label>
           </div>
         </div>
       </section>
 
       <section class="show-block show-block-features">
-        <p class="eyebrow" data-reveal>Qué incluye</p>
-        <h2 class="section-title" data-reveal>Todo listo para que solo disfrutes el show</h2>
+        <p class="eyebrow" data-reveal data-es="Qué incluye">What's included</p>
+        <h2 class="section-title" data-reveal data-es="Todo listo para que solo disfrutes el show">Everything's ready — just enjoy the show</h2>
         <ul class="show-feature-list">
           <li data-reveal>
             <span class="show-feature-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5a2.5 2.5 0 0 0 2.5-2.5c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></svg>
             </span>
             <div>
-              <h3>Múltiples disciplinas</h3>
-              <p>Antorchas, poi, bastón y opciones de acto extendido según el espacio.</p>
+              <h3 data-es="Múltiples disciplinas">Multiple disciplines</h3>
+              <p data-es="Antorchas, poi, bastón y opciones de acto extendido según el espacio.">Torches, poi, staff and extended-act options depending on the space.</p>
             </div>
           </li>
           <li data-reveal>
@@ -158,8 +177,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z"/></svg>
             </span>
             <div>
-              <h3>Seguridad primero</h3>
-              <p>Equipo, extintores y coordinación previa con el venue en cada presentación.</p>
+              <h3 data-es="Seguridad primero">Safety first</h3>
+              <p data-es="Equipo, extintores y coordinación previa con el venue en cada presentación.">Gear, extinguishers and advance coordination with the venue at every show.</p>
             </div>
           </li>
           <li data-reveal>
@@ -167,8 +186,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
             </span>
             <div>
-              <h3>Sincronía con tu música</h3>
-              <p>El show se ensaya con la playlist o banda en vivo de tu evento.</p>
+              <h3 data-es="Sincronía con tu música">Synced to your music</h3>
+              <p data-es="El show se ensaya con la playlist o banda en vivo de tu evento.">The show is rehearsed to your event's playlist or live band.</p>
             </div>
           </li>
           <li data-reveal>
@@ -176,25 +195,25 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
             </span>
             <div>
-              <h3>Apertura o cierre</h3>
-              <p>Se adapta al momento exacto donde quieras generar el clímax.</p>
+              <h3 data-es="Apertura o cierre">Opener or closer</h3>
+              <p data-es="Se adapta al momento exacto donde quieras generar el clímax.">Adapts to the exact moment you want the climax to land.</p>
             </div>
           </li>
         </ul>
       </section>
 
       <section class="show-block show-block-cta">
-        <p class="eyebrow" data-reveal>Ideal para</p>
+        <p class="eyebrow" data-reveal data-es="Ideal para">Ideal for</p>
         <ul class="show-tags" data-reveal>
-          <li>Aperturas de marca</li>
-          <li>Fiestas privadas</li>
-          <li>Bodas (cierre)</li>
-          <li>Festivales al aire libre</li>
+          <li data-es="Aperturas de marca">Brand openings</li>
+          <li data-es="Fiestas privadas">Private parties</li>
+          <li data-es="Bodas (cierre)">Weddings (closer)</li>
+          <li data-es="Festivales al aire libre">Outdoor festivals</li>
         </ul>
         <div class="show-cta-card" data-reveal>
-          <h2>¿Lo sumamos a tu evento?</h2>
+          <h2 data-es="¿Lo sumamos a tu evento?">Ready to add it to your event?</h2>
           <a class="show-cta-btn" href="index.html#booking">
-            <span>Reservar cita</span>
+            <span data-es="Reservar cita">Book now</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -204,19 +223,19 @@
 
   <section class="show-related">
     <div class="wrap">
-      <p class="eyebrow" data-reveal>Descubre más</p>
-      <h2 class="section-title" data-reveal>Otros shows del elenco</h2>
+      <p class="eyebrow" data-reveal data-es="Descubre más">Discover more</p>
+      <h2 class="section-title" data-reveal data-es="Otros shows del elenco">Other shows in the cast</h2>
       <div class="show-related-grid">
         <a class="show-related-card" href="show-zancos-robot.html" data-reveal>
-          <img src="images/zancos-robot.jpg" alt="Performers en zancos con vestuario escénico entre el público">
-          <span>Zancos &amp; Robot</span>
+          <img src="images/zancos-robot.jpg" alt="Stilt performers in stage costume among the crowd" data-es-alt="Performers en zancos con vestuario escénico entre el público">
+          <span data-es="Zancos &amp; Robot">Stilt Walkers &amp; Robot</span>
         </a>
         <a class="show-related-card" href="show-garotas.html" data-reveal>
-          <img src="images/garotas.jpg" alt="Garota de carnaval brasileño con tocado de plumas turquesa">
+          <img src="images/garotas.jpg" alt="Brazilian carnival dancer with a turquoise feather headdress" data-es-alt="Garota de carnaval brasileño con tocado de plumas turquesa">
           <span>Garotas</span>
         </a>
         <a class="show-related-card" href="show-belly-dancers.html" data-reveal>
-          <img src="images/belly-dance.jpg" alt="Bailarina de danza árabe girando sobre el escenario">
+          <img src="images/belly-dance.jpg" alt="Belly dance performer spinning on stage" data-es-alt="Bailarina de danza árabe girando sobre el escenario">
           <span>Belly Dancers</span>
         </a>
       </div>
@@ -229,23 +248,23 @@
   <div class="wrap footer-grid">
     <div class="footer-brand" data-reveal>
       <img src="assets/Logo-blanco.svg" alt="Medusa Show">
-      <p>Entretenimiento en vivo para bodas, clubs, aperturas y activaciones de marca.</p>
+      <p data-es="Entretenimiento en vivo para bodas, clubs, aperturas y activaciones de marca.">Live entertainment for weddings, clubs, openings and brand activations.</p>
     </div>
 
     <div class="footer-links" data-reveal>
-      <h4>Navegación</h4>
+      <h4 data-es="Navegación">Navigation</h4>
       <a href="index.html#experiences">Shows</a>
-      <a href="index.html#about">Nosotros</a>
-      <a href="index.html#rituales">Rituales</a>
-      <a href="index.html#booking">Reservar cita</a>
+      <a href="index.html#about" data-es="Nosotros">About</a>
+      <a href="index.html#rituales" data-es="Rituales">Rituals</a>
+      <a href="index.html#booking" data-es="Reservar cita">Book now</a>
     </div>
 
     <div class="footer-contact" data-reveal>
-      <h4>Contacto</h4>
-      <a href="mailto:hola@medusashow.com">hola@medusashow.com</a>
+      <h4 data-es="Contacto">Contact</h4>
+      <a href="mailto:medusashowny@gmail.com">medusashowny@gmail.com</a>
       <a href="https://wa.me/000000000000" target="_blank" rel="noopener">WhatsApp</a>
       <div class="footer-social">
-        <a href="#" aria-label="Instagram">
+        <a href="https://www.instagram.com/medusa_showsnyc" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
         </a>
         <a href="#" aria-label="TikTok">
@@ -256,8 +275,8 @@
   </div>
 
   <div class="wrap footer-bottom" data-reveal>
-    <span>© 2026 Medusa Show. Todos los derechos reservados.</span>
-    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <span data-es="© 2026 Medusa Show. Todos los derechos reservados.">© 2026 Medusa Show. All rights reserved.</span>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" data-es-aria-label="Volver arriba">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
   </div>
@@ -265,6 +284,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="i18n.js"></script>
 <script type="module" src="sections.js"></script>
 
 </body>

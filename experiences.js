@@ -1,3 +1,5 @@
+import { getLang } from './i18n.js';
+
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
 
@@ -30,32 +32,32 @@ const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').m
 // the six show-category cover shots — so the tunnel reads as a wide mix
 // instead of six images repeating. No placeholder/stock images mixed in.
 const IMAGES = [
-  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_2_1.webp', alt: 'Garotas de carnaval en grupo con plumas multicolor' },
-  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_52_pm_1_1.webp', alt: 'Garotas de carnaval en pose grupal con tocados de plumas' },
-  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_52_pm_2_1.webp', alt: 'Garotas de carnaval sonriendo con plumas rojas y amarillas' },
-  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_1_1.webp', alt: 'Garotas de carnaval de perfil con tocados de plumas' },
-  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_3_1.webp', alt: 'Bailarinas de danza árabe en trío con vestuario dorado y verde' },
-  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_4_1.webp', alt: 'Bailarinas de danza árabe posando en grupo' },
-  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_1.webp', alt: 'Garotas de carnaval en pose dinámica de grupo' },
-  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_54_pm_1_1.webp', alt: 'Bailarinas de danza árabe con vestuario verde, dorado y lila' },
-  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_54_pm_1.webp', alt: 'Bailarinas de danza árabe en pose expresiva' },
-  { src: "assets/images/img_0539_jpg_1 (1).webp", alt: 'Contorsionistas en catsuit de encaje blanco' },
-  { src: "assets/images/img_0551_jpg_1 (1).webp", alt: 'Performer con sombrero de mariachi' },
-  { src: "assets/images/imgl5742_1 (1).webp", alt: 'Performer en aro aéreo sobre el escenario' },
-  { src: 'assets/images/img_0487_1.webp', alt: 'Pareja de salsa en pose de levantada' },
-  { src: 'assets/images/img_0488_1.webp', alt: 'Pareja de salsa en pose cercana' },
-  { src: 'assets/images/img_0491_1.webp', alt: 'Pareja de salsa en pose dinámica' },
-  { src: 'assets/images/imgl5533_1.webp', alt: 'Performer en aro aéreo con luces de club' },
-  { src: 'assets/images/imgl2348_1.webp', alt: 'Bailarinas de danza árabe en trío, pose lateral' },
-  { src: 'assets/images/imgl2677_1_1.webp', alt: 'Bailarina de danza árabe en vestuario dorado' },
-  { src: 'assets/images/imgl2909_1_1.webp', alt: 'Bailarinas de danza árabe en trío, vestuario verde, dorado y lila' },
-  { src: 'assets/images/imgl2689_1_1.webp', alt: 'Bailarina de danza árabe en vestuario dorado' },
-  { src: 'assets/images/imgl2700_1.webp', alt: 'Bailarina de danza árabe con falda al vuelo' },
-  { src: 'assets/images/imgl5409_1.webp', alt: 'Performers de fuego con abanico encendido en la calle' },
-  { src: 'assets/images/imgl5428_1.webp', alt: 'Performers de fuego en la calle de noche' },
-  { src: 'assets/images/img_0516_jpg_1.webp', alt: 'Contorsionistas gemelas de pelo rojo' },
-  { src: 'assets/images/img_0528_jpg_1.webp', alt: 'Gogo dancers con botas de plataforma neón' },
-  { src: 'assets/images/img_0514_jpg_1.webp', alt: 'Contorsionistas gemelas en pose de arco' },
+  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_2_1.webp', alt: 'Carnival garotas in a group with multicolor feathers' },
+  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_52_pm_1_1.webp', alt: 'Carnival garotas in a group pose with feather headdresses' },
+  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_52_pm_2_1.webp', alt: 'Carnival garotas smiling with red and yellow feathers' },
+  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_1_1.webp', alt: 'Carnival garotas in profile with feather headdresses' },
+  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_3_1.webp', alt: 'Belly dancers as a trio in gold and green costuming' },
+  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_4_1.webp', alt: 'Belly dancers posing as a group' },
+  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_1.webp', alt: 'Carnival garotas in a dynamic group pose' },
+  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_54_pm_1_1.webp', alt: 'Belly dancers in green, gold and lilac costuming' },
+  { src: 'assets/images/whatsapp_image_2026_08_04_at_4_43_54_pm_1.webp', alt: 'Belly dancer in an expressive pose' },
+  { src: "assets/images/img_0539_jpg_1 (1).webp", alt: 'Contortionists in white lace catsuits' },
+  { src: "assets/images/img_0551_jpg_1 (1).webp", alt: 'Performer in a mariachi hat' },
+  { src: "assets/images/imgl5742_1 (1).webp", alt: 'Aerial hoop performer on stage' },
+  { src: 'assets/images/img_0487_1.webp', alt: 'Salsa couple in a lift pose' },
+  { src: 'assets/images/img_0488_1.webp', alt: 'Salsa couple in a close pose' },
+  { src: 'assets/images/img_0491_1.webp', alt: 'Salsa couple in a dynamic pose' },
+  { src: 'assets/images/imgl5533_1.webp', alt: 'Aerial hoop performer with club lights' },
+  { src: 'assets/images/imgl2348_1.webp', alt: 'Belly dancers as a trio in a side pose' },
+  { src: 'assets/images/imgl2677_1_1.webp', alt: 'Belly dancer in gold costuming' },
+  { src: 'assets/images/imgl2909_1_1.webp', alt: 'Belly dancers as a trio in green, gold and lilac costuming' },
+  { src: 'assets/images/imgl2689_1_1.webp', alt: 'Belly dancer in gold costuming' },
+  { src: 'assets/images/imgl2700_1.webp', alt: 'Belly dancer with skirt in motion' },
+  { src: 'assets/images/imgl5409_1.webp', alt: 'Fire performers with a lit fan in the street' },
+  { src: 'assets/images/imgl5428_1.webp', alt: 'Fire performers in the street at night' },
+  { src: 'assets/images/img_0516_jpg_1.webp', alt: 'Twin contortionists with red hair' },
+  { src: 'assets/images/img_0528_jpg_1.webp', alt: 'Gogo dancers in neon platform boots' },
+  { src: 'assets/images/img_0514_jpg_1.webp', alt: 'Twin contortionists in a bridge pose' },
 ];
 
 if (outer && stage && tunnel && !prefersReduced) {
@@ -471,7 +473,17 @@ if (outer && stage && tunnel && !prefersReduced) {
   // this rebuild.
   const textEl = document.createElement('div');
   textEl.className = 'experiences-tunnel-text';
-  textEl.innerHTML = '<h2>Universo Medusa</h2>';
+  const textHeading = document.createElement('h2');
+  const setTunnelHeading = () => {
+    textHeading.textContent = getLang() === 'es' ? 'Universo Medusa' : 'Medusa Universe';
+  };
+  setTunnelHeading();
+  // Created after i18n.js's own one-time startup sweep already ran (this
+  // module loads later, see index.html's script order), so it isn't
+  // picked up by that pass automatically — reads the language directly
+  // instead, both now and on every later switch.
+  document.addEventListener('medusa:langchange', setTunnelHeading);
+  textEl.appendChild(textHeading);
   stage.insertBefore(textEl, stage.querySelector('.experiences-vignette'));
 
   let flight = 0;

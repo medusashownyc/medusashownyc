@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Garotas — Medusa Show</title>
-<meta name="description" content="Tocados de plumas, vestuario de carnaval y energía brasileña en formato recorrido o escenario. Perfecto para activaciones de marca y fiestas temáticas.">
+<title data-es="Garotas — Medusa Show">Garotas — Medusa Show</title>
+<meta name="description" content="Feather headdresses, carnival costuming and Brazilian energy in roaming or stage format. Perfect for brand activations and themed parties." data-es-content="Tocados de plumas, vestuario de carnaval y energía brasileña en formato recorrido o escenario. Perfecto para activaciones de marca y fiestas temáticas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
@@ -17,12 +17,12 @@
 
 <header class="site-header" id="siteHeader">
   <div class="site-header-inner wrap">
-    <a class="brand" href="index.html" aria-label="Medusa Show — inicio">
+    <a class="brand" href="index.html" aria-label="Medusa Show — home" data-es-aria-label="Medusa Show — inicio">
       <img class="brand-logo brand-logo--light" src="assets/Logo-negro.svg" alt="Medusa Show">
       <img class="brand-logo brand-logo--dark" src="assets/Logo-blanco.svg" alt="" aria-hidden="true">
     </a>
 
-    <nav class="main-nav" aria-label="Principal">
+    <nav class="main-nav" aria-label="Main" data-es-aria-label="Principal">
       <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
       <ul class="nav-links" id="navLinks">
         <li class="nav-has-mega">
@@ -34,7 +34,7 @@
             </a>
             <a class="nav-mega-item" href="show-fuego.html" style="--accent: var(--brand-magenta)">
               <span class="nav-mega-media"><img src="images/fuego.jpg" alt=""></span>
-              <span class="nav-mega-text">Fuego</span>
+              <span class="nav-mega-text" data-es="Fuego">Fire</span>
             </a>
             <a class="nav-mega-item" href="show-garotas.html" style="--accent: var(--brand-blue)">
               <span class="nav-mega-media"><img src="images/garotas.jpg" alt=""></span>
@@ -50,25 +50,34 @@
             </a>
             <a class="nav-mega-item" href="show-zancos-robot.html" style="--accent: var(--brand-magenta)">
               <span class="nav-mega-media"><img src="images/zancos-robot.jpg" alt=""></span>
-              <span class="nav-mega-text">Zancos &amp; Robot</span>
+              <span class="nav-mega-text" data-es="Zancos &amp; Robot">Stilt Walkers &amp; Robot</span>
             </a>
           </div>
         </li>
-        <li><a href="index.html#about">Nosotros</a></li>
-        <li><a href="index.html#rituales">Rituales</a></li>
-        <li><a href="index.html#testimonials">Clientes</a></li>
-        <li><a href="index.html#booking">Contacto</a></li>
+        <li><a href="index.html#about" data-es="Nosotros">About</a></li>
+        <li><a href="index.html#rituales" data-es="Rituales">Rituals</a></li>
+        <li><a href="index.html#testimonials" data-es="Clientes">Clients</a></li>
+        <li><a href="index.html#booking" data-es="Contacto">Contact</a></li>
       </ul>
     </nav>
 
     <div class="header-actions">
       <a class="nav-cta" href="index.html#booking">
-        <span>Reservar cita</span>
+        <span data-es="Reservar cita">Book now</span>
         <span class="nav-cta-badge" aria-hidden="true">
           <img src="assets/simbolo-blanco.svg" alt="">
         </span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+      <div class="lang-switch" role="group" aria-label="Language / Idioma">
+        <span class="lang-switch-highlight" aria-hidden="true"></span>
+        <button type="button" class="lang-switch-option" data-lang="en" aria-pressed="true" aria-label="English">
+          <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#B22234"/><rect y="1.85" width="24" height="1.85" fill="#fff"/><rect y="5.54" width="24" height="1.85" fill="#fff"/><rect y="9.23" width="24" height="1.85" fill="#fff"/><rect y="12.92" width="24" height="1.85" fill="#fff"/><rect y="16.62" width="24" height="1.85" fill="#fff"/><rect y="20.31" width="24" height="1.85" fill="#fff"/><rect width="10.5" height="13" fill="#3C3B6E"/></svg></span>
+        </button>
+        <button type="button" class="lang-switch-option" data-lang="es" aria-pressed="false" aria-label="Español">
+          <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#AA151B"/><rect y="6" width="24" height="12" fill="#F1BF00"/></svg></span>
+        </button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" data-es-aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -78,13 +87,22 @@
 <div class="mobile-nav" id="mobileNav">
   <ul class="mobile-nav-links">
     <li><a href="index.html#top">Shows</a></li>
-    <li><a href="index.html#about">Nosotros</a></li>
-    <li><a href="index.html#rituales">Rituales</a></li>
-    <li><a href="index.html#testimonials">Clientes</a></li>
-    <li><a href="index.html#booking">Contacto</a></li>
+    <li><a href="index.html#about" data-es="Nosotros">About</a></li>
+    <li><a href="index.html#rituales" data-es="Rituales">Rituals</a></li>
+    <li><a href="index.html#testimonials" data-es="Clientes">Clients</a></li>
+    <li><a href="index.html#booking" data-es="Contacto">Contact</a></li>
   </ul>
+  <div class="lang-switch" role="group" aria-label="Language / Idioma">
+    <span class="lang-switch-highlight" aria-hidden="true"></span>
+    <button type="button" class="lang-switch-option" data-lang="en" aria-pressed="true" aria-label="English">
+      <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#B22234"/><rect y="1.85" width="24" height="1.85" fill="#fff"/><rect y="5.54" width="24" height="1.85" fill="#fff"/><rect y="9.23" width="24" height="1.85" fill="#fff"/><rect y="12.92" width="24" height="1.85" fill="#fff"/><rect y="16.62" width="24" height="1.85" fill="#fff"/><rect y="20.31" width="24" height="1.85" fill="#fff"/><rect width="10.5" height="13" fill="#3C3B6E"/></svg></span>
+    </button>
+    <button type="button" class="lang-switch-option" data-lang="es" aria-pressed="false" aria-label="Español">
+      <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#AA151B"/><rect y="6" width="24" height="12" fill="#F1BF00"/></svg></span>
+    </button>
+  </div>
   <a class="mobile-nav-cta" href="index.html#booking">
-    <span>Reservar cita</span>
+    <span data-es="Reservar cita">Book now</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 </div>
@@ -94,63 +112,65 @@
   <div class="show-story">
     <div class="show-story-media">
       <div class="show-story-frame">
-        <img src="images/garotas.jpg" alt="Garota de carnaval brasileño con tocado de plumas turquesa">
+        <img src="images/garotas.jpg" alt="Brazilian carnival dancer with a turquoise feather headdress" data-es-alt="Garota de carnaval brasileño con tocado de plumas turquesa">
       </div>
       <span class="show-story-badge">Garotas</span>
     </div>
 
     <div class="show-story-content">
       <section class="show-block show-block-title">
-        <p class="eyebrow eyebrow-accent" data-reveal>Carnaval brasileño en vivo</p>
-        <h1 data-reveal>Carnaval, color y energía brasileña</h1>
+        <p class="eyebrow eyebrow-accent" data-reveal data-es="Carnaval brasileño en vivo">Live Brazilian carnival</p>
+        <h1 data-reveal data-es="Carnaval, color y energía brasileña">Carnival, color and Brazilian energy</h1>
         <div class="show-block-actions" data-reveal>
           <a class="show-cta-btn" href="index.html#booking">
-            <span>Reservar este show</span>
+            <span data-es="Reservar este show">Book this show</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a class="show-cta-btn-outline" href="index.html#experiences">Ver todos los shows</a>
+          <a class="show-cta-btn-outline" href="index.html#experiences" data-es="Ver todos los shows">See all shows</a>
         </div>
       </section>
 
       <section class="show-block show-block-about">
-        <p class="eyebrow" data-reveal>Sobre el show</p>
+        <p class="eyebrow" data-reveal data-es="Sobre el show">About the show</p>
         <h2 class="section-title" data-reveal>Garotas</h2>
-        <p data-reveal>
-          Tocados de plumas, vestuario de carnaval y una energía que contagia desde el
-          primer paso. Las garotas pueden trabajar en formato recorrido — mezclándose
-          entre los invitados — o sobre un escenario fijo.
+        <p data-reveal data-es="Tocados de plumas, vestuario de carnaval y una energía que contagia desde el primer paso. Las garotas pueden trabajar en formato recorrido — mezclándose entre los invitados — o sobre un escenario fijo.">
+          Feather headdresses, carnival costuming and an energy that's
+          contagious from the very first step. The garotas can work in
+          roaming format — mixing in among your guests — or on a fixed
+          stage.
         </p>
-        <p data-reveal>
-          Es uno de los formatos favoritos para activaciones de marca y fiestas temáticas:
-          la explosión de color es prácticamente garantía de fotos y contenido para redes.
+        <p data-reveal data-es="Es uno de los formatos favoritos para activaciones de marca y fiestas temáticas: la explosión de color es prácticamente garantía de fotos y contenido para redes.">
+          It's one of the favorite formats for brand activations and themed
+          parties: the burst of color is basically a guarantee of photos
+          and social content.
         </p>
         <div class="show-story-stats" data-reveal>
           <div class="show-story-stat">
             <span>30–45 min</span>
-            <label>Duración recorrido</label>
+            <label data-es="Duración recorrido">Roaming duration</label>
           </div>
           <div class="show-story-stat">
             <span>1–6</span>
-            <label>Performers</label>
+            <label data-es="Performers">Performers</label>
           </div>
           <div class="show-story-stat">
-            <span>Recorrido o fijo</span>
-            <label>Formato</label>
+            <span data-es="Recorrido o fijo">Roaming or fixed</span>
+            <label data-es="Formato">Format</label>
           </div>
         </div>
       </section>
 
       <section class="show-block show-block-features">
-        <p class="eyebrow" data-reveal>Qué incluye</p>
-        <h2 class="section-title" data-reveal>Todo listo para que solo disfrutes el show</h2>
+        <p class="eyebrow" data-reveal data-es="Qué incluye">What's included</p>
+        <h2 class="section-title" data-reveal data-es="Todo listo para que solo disfrutes el show">Everything's ready — just enjoy the show</h2>
         <ul class="show-feature-list">
           <li data-reveal>
             <span class="show-feature-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 17 3 8l4.8 3.6L12 5l4.2 6.6L21 8l-1.5 9Z"/><path d="M5 20h14"/></svg>
             </span>
             <div>
-              <h3>Vestuario de carnaval</h3>
-              <p>Plumas, brillos y tocados diseñados para destacar en cualquier foto.</p>
+              <h3 data-es="Vestuario de carnaval">Carnival costuming</h3>
+              <p data-es="Plumas, brillos y tocados diseñados para destacar en cualquier foto.">Feathers, sparkle and headdresses designed to stand out in any photo.</p>
             </div>
           </li>
           <li data-reveal>
@@ -158,8 +178,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
             </span>
             <div>
-              <h3>Formato recorrido</h3>
-              <p>Se mueven entre los invitados en vez de quedarse fijas en un escenario.</p>
+              <h3 data-es="Formato recorrido">Roaming format</h3>
+              <p data-es="Se mueven entre los invitados en vez de quedarse fijas en un escenario.">They move through your guests instead of staying fixed on a stage.</p>
             </div>
           </li>
           <li data-reveal>
@@ -167,8 +187,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
             </span>
             <div>
-              <h3>Momento fotográfico</h3>
-              <p>Pensado para generar contenido espontáneo de tus invitados.</p>
+              <h3 data-es="Momento fotográfico">Photo moment</h3>
+              <p data-es="Pensado para generar contenido espontáneo de tus invitados.">Built to spark spontaneous content from your guests.</p>
             </div>
           </li>
           <li data-reveal>
@@ -176,25 +196,25 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </span>
             <div>
-              <h3>Escalable</h3>
-              <p>De 1 garota a un grupo completo según el tamaño del evento.</p>
+              <h3 data-es="Escalable">Scalable</h3>
+              <p data-es="De 1 garota a un grupo completo según el tamaño del evento.">From 1 garota to a full group depending on the size of the event.</p>
             </div>
           </li>
         </ul>
       </section>
 
       <section class="show-block show-block-cta">
-        <p class="eyebrow" data-reveal>Ideal para</p>
+        <p class="eyebrow" data-reveal data-es="Ideal para">Ideal for</p>
         <ul class="show-tags" data-reveal>
-          <li>Activaciones de marca</li>
-          <li>Fiestas temáticas</li>
-          <li>Aperturas</li>
-          <li>Eventos corporativos</li>
+          <li data-es="Activaciones de marca">Brand activations</li>
+          <li data-es="Fiestas temáticas">Themed parties</li>
+          <li data-es="Aperturas">Openings</li>
+          <li data-es="Eventos corporativos">Corporate events</li>
         </ul>
         <div class="show-cta-card" data-reveal>
-          <h2>¿Lo sumamos a tu evento?</h2>
+          <h2 data-es="¿Lo sumamos a tu evento?">Ready to add it to your event?</h2>
           <a class="show-cta-btn" href="index.html#booking">
-            <span>Reservar cita</span>
+            <span data-es="Reservar cita">Book now</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -204,20 +224,20 @@
 
   <section class="show-related">
     <div class="wrap">
-      <p class="eyebrow" data-reveal>Descubre más</p>
-      <h2 class="section-title" data-reveal>Otros shows del elenco</h2>
+      <p class="eyebrow" data-reveal data-es="Descubre más">Discover more</p>
+      <h2 class="section-title" data-reveal data-es="Otros shows del elenco">Other shows in the cast</h2>
       <div class="show-related-grid">
         <a class="show-related-card" href="show-gogo-dancers.html" data-reveal>
-          <img src="images/gogo.jpg" alt="Gogo dancer en silueta sobre plataforma con luces de club">
+          <img src="images/gogo.jpg" alt="Gogo dancer in silhouette on a platform with club lights" data-es-alt="Gogo dancer en silueta sobre plataforma con luces de club">
           <span>Gogo Dancers</span>
         </a>
         <a class="show-related-card" href="show-zancos-robot.html" data-reveal>
-          <img src="images/zancos-robot.jpg" alt="Performers en zancos con vestuario escénico entre el público">
-          <span>Zancos &amp; Robot</span>
+          <img src="images/zancos-robot.jpg" alt="Stilt performers in stage costume among the crowd" data-es-alt="Performers en zancos con vestuario escénico entre el público">
+          <span data-es="Zancos &amp; Robot">Stilt Walkers &amp; Robot</span>
         </a>
         <a class="show-related-card" href="show-fuego.html" data-reveal>
-          <img src="images/fuego.jpg" alt="Performer de fuego girando antorchas encendidas en la oscuridad">
-          <span>Fuego</span>
+          <img src="images/fuego.jpg" alt="Fire performer spinning lit torches in the dark" data-es-alt="Performer de fuego girando antorchas encendidas en la oscuridad">
+          <span data-es="Fuego">Fire</span>
         </a>
       </div>
     </div>
@@ -229,23 +249,23 @@
   <div class="wrap footer-grid">
     <div class="footer-brand" data-reveal>
       <img src="assets/Logo-blanco.svg" alt="Medusa Show">
-      <p>Entretenimiento en vivo para bodas, clubs, aperturas y activaciones de marca.</p>
+      <p data-es="Entretenimiento en vivo para bodas, clubs, aperturas y activaciones de marca.">Live entertainment for weddings, clubs, openings and brand activations.</p>
     </div>
 
     <div class="footer-links" data-reveal>
-      <h4>Navegación</h4>
+      <h4 data-es="Navegación">Navigation</h4>
       <a href="index.html#experiences">Shows</a>
-      <a href="index.html#about">Nosotros</a>
-      <a href="index.html#rituales">Rituales</a>
-      <a href="index.html#booking">Reservar cita</a>
+      <a href="index.html#about" data-es="Nosotros">About</a>
+      <a href="index.html#rituales" data-es="Rituales">Rituals</a>
+      <a href="index.html#booking" data-es="Reservar cita">Book now</a>
     </div>
 
     <div class="footer-contact" data-reveal>
-      <h4>Contacto</h4>
-      <a href="mailto:hola@medusashow.com">hola@medusashow.com</a>
+      <h4 data-es="Contacto">Contact</h4>
+      <a href="mailto:medusashowny@gmail.com">medusashowny@gmail.com</a>
       <a href="https://wa.me/000000000000" target="_blank" rel="noopener">WhatsApp</a>
       <div class="footer-social">
-        <a href="#" aria-label="Instagram">
+        <a href="https://www.instagram.com/medusa_showsnyc" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
         </a>
         <a href="#" aria-label="TikTok">
@@ -256,8 +276,8 @@
   </div>
 
   <div class="wrap footer-bottom" data-reveal>
-    <span>© 2026 Medusa Show. Todos los derechos reservados.</span>
-    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <span data-es="© 2026 Medusa Show. Todos los derechos reservados.">© 2026 Medusa Show. All rights reserved.</span>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" data-es-aria-label="Volver arriba">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
   </div>
@@ -265,6 +285,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="i18n.js"></script>
 <script type="module" src="sections.js"></script>
 
 </body>

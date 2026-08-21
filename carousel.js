@@ -9,12 +9,12 @@ import * as THREE from 'three';
 // not a faked gradient.
 
 const IMAGES = [
-  { src: 'images/belly-dance.jpg', ratio: 690 / 1035, alt: 'Bailarina de danza árabe girando sobre el escenario' },
-  { src: 'images/fuego.jpg', ratio: 690 / 1035, alt: 'Performer de fuego girando antorchas encendidas en la oscuridad' },
-  { src: 'images/garotas.jpg', ratio: 684 / 1024, alt: 'Garota de carnaval brasileño con tocado de plumas turquesa' },
-  { src: 'images/gogo.jpg', ratio: 686 / 1028, alt: 'Gogo dancer en silueta sobre plataforma con luces de club' },
-  { src: 'images/salsa.jpg', ratio: 690 / 1035, alt: 'Pareja de baile profesional en pose de salsa' },
-  { src: 'images/zancos-robot.jpg', ratio: 1200 / 1800, alt: 'Performers en zancos con vestuario escénico entre el público' },
+  { src: 'images/belly-dance.jpg', ratio: 690 / 1035, alt: 'Belly dance performer spinning on stage' },
+  { src: 'images/fuego.jpg', ratio: 690 / 1035, alt: 'Fire performer spinning lit torches in the dark' },
+  { src: 'images/garotas.jpg', ratio: 684 / 1024, alt: 'Brazilian carnival dancer with a turquoise feather headdress' },
+  { src: 'images/gogo.jpg', ratio: 686 / 1028, alt: 'Gogo dancer in silhouette on a platform with club lights' },
+  { src: 'images/salsa.jpg', ratio: 690 / 1035, alt: 'Professional dance couple in a salsa pose' },
+  { src: 'images/zancos-robot.jpg', ratio: 1200 / 1800, alt: 'Stilt performers in stage costume among the crowd' },
 ];
 
 // Same order as IMAGES — clicking a card navigates straight to its show

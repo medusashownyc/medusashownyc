@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Medusa Show — Entretenimiento en vivo para eventos</title>
-<meta name="description" content="Belly dancers, fuego, garotas, gogo dancers, salsa y zancos &amp; robot: seis formatos de show en vivo para bodas, clubs, aperturas y activaciones de marca.">
+<title data-es="Medusa Show — Entretenimiento en vivo para eventos">Medusa Show — Live Entertainment for Events</title>
+<meta name="description" content="Belly dancers, fire, garotas, gogo dancers, salsa and stilt walkers &amp; robot: six live show formats for weddings, clubs, openings and brand activations." data-es-content="Belly dancers, fuego, garotas, gogo dancers, salsa y zancos &amp; robot: seis formatos de show en vivo para bodas, clubs, aperturas y activaciones de marca.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
@@ -17,12 +17,12 @@
 
 <header class="site-header" id="siteHeader">
   <div class="site-header-inner wrap">
-    <a class="brand" href="#top" aria-label="Medusa Show — inicio">
+    <a class="brand" href="#top" aria-label="Medusa Show — home" data-es-aria-label="Medusa Show — inicio">
       <img class="brand-logo brand-logo--light" src="assets/Logo-negro.svg" alt="Medusa Show">
       <img class="brand-logo brand-logo--dark" src="assets/Logo-blanco.svg" alt="" aria-hidden="true">
     </a>
 
-    <nav class="main-nav" aria-label="Principal">
+    <nav class="main-nav" aria-label="Main" data-es-aria-label="Principal">
       <ul class="nav-links" id="navLinks">
         <li class="nav-has-mega">
           <a href="#top" data-nav="top">Shows</a>
@@ -33,7 +33,7 @@
             </a>
             <a class="nav-mega-item" href="show-fuego.html" style="--accent: var(--brand-magenta)">
               <span class="nav-mega-media"><img src="images/fuego.jpg" alt=""></span>
-              <span class="nav-mega-text">Fuego</span>
+              <span class="nav-mega-text" data-es="Fuego">Fire</span>
             </a>
             <a class="nav-mega-item" href="show-garotas.html" style="--accent: var(--brand-blue)">
               <span class="nav-mega-media"><img src="images/garotas.jpg" alt=""></span>
@@ -49,25 +49,34 @@
             </a>
             <a class="nav-mega-item" href="show-zancos-robot.html" style="--accent: var(--brand-magenta)">
               <span class="nav-mega-media"><img src="images/zancos-robot.jpg" alt=""></span>
-              <span class="nav-mega-text">Zancos &amp; Robot</span>
+              <span class="nav-mega-text" data-es="Zancos &amp; Robot">Stilt Walkers &amp; Robot</span>
             </a>
           </div>
         </li>
-        <li><a href="#about" data-nav="about">Nosotros</a></li>
-        <li><a href="#rituales" data-nav="rituales">Rituales</a></li>
-        <li><a href="#testimonials" data-nav="testimonials">Clientes</a></li>
-        <li><a href="#booking" data-nav="booking">Contacto</a></li>
+        <li><a href="#about" data-nav="about" data-es="Nosotros">About</a></li>
+        <li><a href="#rituales" data-nav="rituales" data-es="Rituales">Rituals</a></li>
+        <li><a href="#testimonials" data-nav="testimonials" data-es="Clientes">Clients</a></li>
+        <li><a href="#booking" data-nav="booking" data-es="Contacto">Contact</a></li>
       </ul>
     </nav>
 
     <div class="header-actions">
       <a class="nav-cta" href="#booking">
-        <span>Reservar cita</span>
+        <span data-es="Reservar cita">Book now</span>
         <span class="nav-cta-badge" aria-hidden="true">
           <img src="assets/simbolo-blanco.svg" alt="">
         </span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+      <div class="lang-switch" role="group" aria-label="Language / Idioma">
+        <span class="lang-switch-highlight" aria-hidden="true"></span>
+        <button type="button" class="lang-switch-option" data-lang="en" aria-pressed="true" aria-label="English">
+          <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#B22234"/><rect y="1.85" width="24" height="1.85" fill="#fff"/><rect y="5.54" width="24" height="1.85" fill="#fff"/><rect y="9.23" width="24" height="1.85" fill="#fff"/><rect y="12.92" width="24" height="1.85" fill="#fff"/><rect y="16.62" width="24" height="1.85" fill="#fff"/><rect y="20.31" width="24" height="1.85" fill="#fff"/><rect width="10.5" height="13" fill="#3C3B6E"/></svg></span>
+        </button>
+        <button type="button" class="lang-switch-option" data-lang="es" aria-pressed="false" aria-label="Español">
+          <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#AA151B"/><rect y="6" width="24" height="12" fill="#F1BF00"/></svg></span>
+        </button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" data-es-aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -77,13 +86,22 @@
 <div class="mobile-nav" id="mobileNav">
   <ul class="mobile-nav-links">
     <li><a href="#top">Shows</a></li>
-    <li><a href="#about">Nosotros</a></li>
-    <li><a href="#rituales">Rituales</a></li>
-    <li><a href="#testimonials">Clientes</a></li>
-    <li><a href="#booking">Contacto</a></li>
+    <li><a href="#about" data-es="Nosotros">About</a></li>
+    <li><a href="#rituales" data-es="Rituales">Rituals</a></li>
+    <li><a href="#testimonials" data-es="Clientes">Clients</a></li>
+    <li><a href="#booking" data-es="Contacto">Contact</a></li>
   </ul>
+  <div class="lang-switch" role="group" aria-label="Language / Idioma">
+    <span class="lang-switch-highlight" aria-hidden="true"></span>
+    <button type="button" class="lang-switch-option" data-lang="en" aria-pressed="true" aria-label="English">
+      <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#B22234"/><rect y="1.85" width="24" height="1.85" fill="#fff"/><rect y="5.54" width="24" height="1.85" fill="#fff"/><rect y="9.23" width="24" height="1.85" fill="#fff"/><rect y="12.92" width="24" height="1.85" fill="#fff"/><rect y="16.62" width="24" height="1.85" fill="#fff"/><rect y="20.31" width="24" height="1.85" fill="#fff"/><rect width="10.5" height="13" fill="#3C3B6E"/></svg></span>
+    </button>
+    <button type="button" class="lang-switch-option" data-lang="es" aria-pressed="false" aria-label="Español">
+      <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#AA151B"/><rect y="6" width="24" height="12" fill="#F1BF00"/></svg></span>
+    </button>
+  </div>
   <a class="mobile-nav-cta" href="#booking">
-    <span>Reservar cita</span>
+    <span data-es="Reservar cita">Book now</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 </div>
@@ -91,9 +109,9 @@
 <div class="page">
   <section class="hero" id="top">
     <h1 class="hero-title">
-      <span class="hero-title-line">Ritmo</span>
-      <span class="hero-title-line">Energía</span>
-      <span class="hero-title-line">Espectáculo</span>
+      <span class="hero-title-line" data-es="Ritmo">Rhythm</span>
+      <span class="hero-title-line" data-es="Energía">Energy</span>
+      <span class="hero-title-line" data-es="Espectáculo">Spectacle</span>
     </h1>
 
     <div class="mq-scene" id="mqScene" aria-hidden="true"></div>
@@ -108,7 +126,7 @@
       <li data-service="1">
         <a href="show-fuego.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5a2.5 2.5 0 0 0 2.5-2.5c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></svg>
-          Fuego
+          <span data-es="Fuego">Fire</span>
         </a>
       </li>
       <li data-service="2">
@@ -132,7 +150,7 @@
       <li data-service="5">
         <a href="show-zancos-robot.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H9"/><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M1 14h2M21 14h2M9 13v2M15 13v2"/></svg>
-          Zancos &amp; Robot
+          <span data-es="Zancos &amp; Robot">Stilt Walkers &amp; Robot</span>
         </a>
       </li>
     </ul>
@@ -163,36 +181,36 @@
 <section class="about" id="about">
   <div class="wrap about-grid">
     <div class="about-media" data-reveal>
-      <img src="images/belly-dance.jpg" alt="Bailarina de Medusa Show en pleno performance">
+      <img src="images/belly-dance.jpg" alt="Medusa Show dancer mid-performance" data-es-alt="Bailarina de Medusa Show en pleno performance">
       <span class="about-media-ring" aria-hidden="true"></span>
       <span class="about-media-badge" data-reveal>
         <strong>8+</strong>
-        <em>años creando shows</em>
+        <em data-es="años creando shows">years creating shows</em>
       </span>
     </div>
 
     <div class="about-copy">
-      <p class="eyebrow" data-reveal>Sobre nosotros</p>
-      <h2 data-reveal>Convertimos cualquier evento en un show que se recuerda</h2>
-      <p class="about-lead" data-reveal>
-        Medusa Show reúne bailarinas, performers de fuego, gogo dancers, garotas,
-        parejas de salsa y artistas en zancos para bodas, aperturas de marca,
-        clubs y activaciones — cada número diseñado a la medida de tu evento,
-        de principio a fin.
+      <p class="eyebrow" data-reveal data-es="Sobre nosotros">About us</p>
+      <h2 data-reveal data-es="Convertimos cualquier evento en un show que se recuerda">We turn any event into a show people remember</h2>
+      <p class="about-lead" data-reveal data-es="Medusa Show reúne bailarinas, performers de fuego, gogo dancers, garotas, parejas de salsa y artistas en zancos para bodas, aperturas de marca, clubs y activaciones — cada número diseñado a la medida de tu evento, de principio a fin.">
+        Medusa Show brings together belly dancers, fire performers, gogo dancers,
+        garotas, salsa couples and stilt performers for weddings, brand launches,
+        clubs and activations — every act tailored to your event, from start
+        to finish.
       </p>
 
       <div class="about-stats">
         <div class="stat" data-reveal>
           <span class="stat-value"><span class="stat-suffix">+</span><span class="stat-number" data-count="8">0</span></span>
-          <span class="stat-label">Años de experiencia</span>
+          <span class="stat-label" data-es="Años de experiencia">Years of experience</span>
         </div>
         <div class="stat" data-reveal>
           <span class="stat-value"><span class="stat-suffix">+</span><span class="stat-number" data-count="400">0</span></span>
-          <span class="stat-label">Eventos realizados</span>
+          <span class="stat-label" data-es="Eventos realizados">Events produced</span>
         </div>
         <div class="stat" data-reveal>
           <span class="stat-value"><span class="stat-suffix">+</span><span class="stat-number" data-count="30">0</span></span>
-          <span class="stat-label">Artistas en el elenco</span>
+          <span class="stat-label" data-es="Artistas en el elenco">Artists in the cast</span>
         </div>
       </div>
     </div>
@@ -202,11 +220,11 @@
 
 <section class="rituales" id="rituales">
   <div class="wrap">
-    <p class="eyebrow" data-reveal>Rituales por ocasión</p>
-    <h2 class="section-title" data-reveal>El ritual perfecto para cada celebración</h2>
-    <p class="rituales-lead" data-reveal>
-      Cada ritual mezcla formatos del elenco pensados para el momento que estás
-      celebrando — o los combinamos distinto si tu evento lo pide.
+    <p class="eyebrow" data-reveal data-es="Rituales por ocasión">Rituals by occasion</p>
+    <h2 class="section-title" data-reveal data-es="El ritual perfecto para cada celebración">The perfect ritual for every celebration</h2>
+    <p class="rituales-lead" data-reveal data-es="Cada ritual mezcla formatos del elenco pensados para el momento que estás celebrando — o los combinamos distinto si tu evento lo pide.">
+      Each ritual blends cast formats built for the moment you're celebrating
+      — or we mix it differently if your event calls for it.
     </p>
 
     <div class="rituales-showcase">
@@ -216,22 +234,22 @@
            used to be pinned as permanently "featured"). -->
       <div class="ritual-feature" id="ritualFeature" data-reveal>
         <div class="ritual-feature-media">
-          <img id="ritualFeatureImg" src="images/salsa.jpg" alt="Pareja de baile profesional en pose de salsa">
+          <img id="ritualFeatureImg" src="images/salsa.jpg" alt="Professional dance couple in a salsa pose">
           <span class="ritual-feature-numeral" id="ritualFeatureNumeral" aria-hidden="true">I</span>
         </div>
         <div class="ritual-feature-body">
-          <p class="ritual-card-tag" id="ritualFeatureTag">Para bodas</p>
-          <h3 id="ritualFeatureTitle">Ritual Nupcial</h3>
-          <p id="ritualFeatureDesc">Una entrada envolvente, una pista que no se vacía y un cierre de fuego que tus invitados van a recordar para siempre.</p>
+          <p class="ritual-card-tag" id="ritualFeatureTag">For weddings</p>
+          <h3 id="ritualFeatureTitle">Wedding Ritual</h3>
+          <p id="ritualFeatureDesc">An immersive entrance, a dance floor that never empties, and a fire finale your guests will remember forever.</p>
           <ul class="ritual-card-includes" id="ritualFeatureIncludes"></ul>
           <a class="ritual-card-cta" href="#booking">
-            <span>Cotizar este ritual</span>
+            <span data-es="Cotizar este ritual">Get a quote for this ritual</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
       </div>
 
-      <div class="ritual-thumbs" id="ritualThumbs" role="tablist" aria-label="Elegir ritual" data-reveal>
+      <div class="ritual-thumbs" id="ritualThumbs" role="tablist" aria-label="Choose a ritual" data-es-aria-label="Elegir ritual" data-reveal>
         <button
           type="button"
           class="ritual-thumb is-active"
@@ -239,17 +257,22 @@
           aria-selected="true"
           data-accent="green"
           data-numeral="I"
-          data-tag="Para bodas"
-          data-title="Ritual Nupcial"
-          data-desc="Una entrada envolvente, una pista que no se vacía y un cierre de fuego que tus invitados van a recordar para siempre."
-          data-includes="Belly Dancers,Salsa,Fuego (cierre)"
+          data-tag="For weddings"
+          data-tag-es="Para bodas"
+          data-title="Wedding Ritual"
+          data-title-es="Ritual Nupcial"
+          data-desc="An immersive entrance, a dance floor that never empties, and a fire finale your guests will remember forever."
+          data-desc-es="Una entrada envolvente, una pista que no se vacía y un cierre de fuego que tus invitados van a recordar para siempre."
+          data-includes="Belly Dancers,Salsa,Fire (closer)"
+          data-includes-es="Belly Dancers,Salsa,Fuego (cierre)"
           data-image="images/salsa.jpg"
-          data-alt="Pareja de baile profesional en pose de salsa"
+          data-alt="Professional dance couple in a salsa pose"
+          data-alt-es="Pareja de baile profesional en pose de salsa"
         >
           <span class="ritual-thumb-media"><img src="images/salsa.jpg" alt=""><span class="ritual-thumb-progress"></span></span>
           <span class="ritual-thumb-text">
-            <em>Para bodas</em>
-            <strong>Ritual Nupcial</strong>
+            <em data-es="Para bodas">Weddings</em>
+            <strong data-es="Ritual Nupcial">Wedding Ritual</strong>
           </span>
         </button>
 
@@ -260,17 +283,22 @@
           aria-selected="false"
           data-accent="magenta"
           data-numeral="II"
-          data-tag="Para aperturas y activaciones"
-          data-title="Ritual de Apertura"
-          data-desc="Performers itinerantes que recorren el punto de venta y energía de club para convertir tu lanzamiento en el tema de la semana."
-          data-includes="Zancos &amp; Robot,Garotas,Gogo Dancers"
+          data-tag="For openings and activations"
+          data-tag-es="Para aperturas y activaciones"
+          data-title="Opening Ritual"
+          data-title-es="Ritual de Apertura"
+          data-desc="Roaming performers who work the venue and club-level energy to make your launch the talk of the week."
+          data-desc-es="Performers itinerantes que recorren el punto de venta y energía de club para convertir tu lanzamiento en el tema de la semana."
+          data-includes="Stilt Walkers &amp; Robot,Garotas,Gogo Dancers"
+          data-includes-es="Zancos &amp; Robot,Garotas,Gogo Dancers"
           data-image="images/zancos-robot.jpg"
-          data-alt="Performers en zancos con vestuario escénico entre el público"
+          data-alt="Stilt performers in stage costume among the crowd"
+          data-alt-es="Performers en zancos con vestuario escénico entre el público"
         >
           <span class="ritual-thumb-media"><img src="images/zancos-robot.jpg" alt=""><span class="ritual-thumb-progress"></span></span>
           <span class="ritual-thumb-text">
-            <em>Para aperturas</em>
-            <strong>Ritual de Apertura</strong>
+            <em data-es="Para aperturas">Openings</em>
+            <strong data-es="Ritual de Apertura">Opening Ritual</strong>
           </span>
         </button>
 
@@ -281,17 +309,22 @@
           aria-selected="false"
           data-accent="blue"
           data-numeral="III"
-          data-tag="Para clubs &amp; after"
-          data-title="Ritual Nocturno"
-          data-desc="Coreografías que mantienen la pista viva desde la primera hora hasta el cierre, sin bajar la energía en ningún momento."
+          data-tag="For clubs &amp; afters"
+          data-tag-es="Para clubs &amp; after"
+          data-title="Night Ritual"
+          data-title-es="Ritual Nocturno"
+          data-desc="Choreography that keeps the floor alive from the first hour to closing, without ever losing the energy."
+          data-desc-es="Coreografías que mantienen la pista viva desde la primera hora hasta el cierre, sin bajar la energía en ningún momento."
           data-includes="Gogo Dancers,Garotas"
+          data-includes-es="Gogo Dancers,Garotas"
           data-image="images/gogo.jpg"
-          data-alt="Gogo dancer en silueta sobre plataforma con luces de club"
+          data-alt="Gogo dancer in silhouette on a platform with club lights"
+          data-alt-es="Gogo dancer en silueta sobre plataforma con luces de club"
         >
           <span class="ritual-thumb-media"><img src="images/gogo.jpg" alt=""><span class="ritual-thumb-progress"></span></span>
           <span class="ritual-thumb-text">
-            <em>Para clubs</em>
-            <strong>Ritual Nocturno</strong>
+            <em data-es="Para clubs">Clubs</em>
+            <strong data-es="Ritual Nocturno">Night Ritual</strong>
           </span>
         </button>
 
@@ -302,17 +335,22 @@
           aria-selected="false"
           data-accent="purple"
           data-numeral="IV"
-          data-tag="Para cumpleaños y privados"
-          data-title="Ritual Íntimo"
-          data-desc="El acto perfecto para sorprender en un espacio más íntimo, sin perder la fuerza de un show grande."
-          data-includes="Fuego,Belly Dancers"
+          data-tag="For birthdays and private parties"
+          data-tag-es="Para cumpleaños y privados"
+          data-title="Intimate Ritual"
+          data-title-es="Ritual Íntimo"
+          data-desc="The perfect act to surprise in a more intimate setting, without losing the power of a big show."
+          data-desc-es="El acto perfecto para sorprender en un espacio más íntimo, sin perder la fuerza de un show grande."
+          data-includes="Fire,Belly Dancers"
+          data-includes-es="Fuego,Belly Dancers"
           data-image="images/fuego.jpg"
-          data-alt="Performer de fuego girando antorchas encendidas en la oscuridad"
+          data-alt="Fire performer spinning lit torches in the dark"
+          data-alt-es="Performer de fuego girando antorchas encendidas en la oscuridad"
         >
           <span class="ritual-thumb-media"><img src="images/fuego.jpg" alt=""><span class="ritual-thumb-progress"></span></span>
           <span class="ritual-thumb-text">
-            <em>Para privados</em>
-            <strong>Ritual Íntimo</strong>
+            <em data-es="Para privados">Private</em>
+            <strong data-es="Ritual Íntimo">Intimate Ritual</strong>
           </span>
         </button>
       </div>
@@ -322,22 +360,22 @@
 
 <section class="testimonials" id="testimonials">
   <div class="wrap">
-    <p class="eyebrow" data-reveal>Clientes</p>
-    <h2 class="section-title" data-reveal>Marcas y eventos que ya vivieron el show</h2>
+    <p class="eyebrow" data-reveal data-es="Clientes">Clients</p>
+    <h2 class="section-title" data-reveal data-es="Marcas y eventos que ya vivieron el show">Brands and events that already lived the show</h2>
   </div>
 
   <div class="marquee" data-reveal>
     <div class="marquee-track">
-      <blockquote>“El acto de fuego dejó a todos sin palabras — producción impecable de principio a fin.” <cite>— Wedding Planner</cite></blockquote>
-      <blockquote>“Coordinaron todo el show en tiempo récord para nuestra apertura de tienda.” <cite>— Brand Manager</cite></blockquote>
-      <blockquote>“Los gogo dancers subieron la energía del club toda la noche.” <cite>— Club Owner</cite></blockquote>
-      <blockquote>“Un espectáculo de zancos que nadie olvida en la activación.” <cite>— Event Producer</cite></blockquote>
-      <blockquote>“La pareja de salsa animó a todos los invitados a salir a bailar.” <cite>— Novia</cite></blockquote>
-      <blockquote>“El acto de fuego dejó a todos sin palabras — producción impecable de principio a fin.” <cite>— Wedding Planner</cite></blockquote>
-      <blockquote>“Coordinaron todo el show en tiempo récord para nuestra apertura de tienda.” <cite>— Brand Manager</cite></blockquote>
-      <blockquote>“Los gogo dancers subieron la energía del club toda la noche.” <cite>— Club Owner</cite></blockquote>
-      <blockquote>“Un espectáculo de zancos que nadie olvida en la activación.” <cite>— Event Producer</cite></blockquote>
-      <blockquote>“La pareja de salsa animó a todos los invitados a salir a bailar.” <cite>— Novia</cite></blockquote>
+      <blockquote data-es="“El acto de fuego dejó a todos sin palabras — producción impecable de principio a fin.” — Wedding Planner">“The fire act left everyone speechless — flawless production from start to finish.” <cite>— Wedding Planner</cite></blockquote>
+      <blockquote data-es="“Coordinaron todo el show en tiempo récord para nuestra apertura de tienda.” — Brand Manager">“They coordinated the entire show in record time for our store opening.” <cite>— Brand Manager</cite></blockquote>
+      <blockquote data-es="“Los gogo dancers subieron la energía del club toda la noche.” — Club Owner">“The gogo dancers kept the club's energy up all night.” <cite>— Club Owner</cite></blockquote>
+      <blockquote data-es="“Un espectáculo de zancos que nadie olvida en la activación.” — Event Producer">“A stilt-walking spectacle no one forgets at the activation.” <cite>— Event Producer</cite></blockquote>
+      <blockquote data-es="“La pareja de salsa animó a todos los invitados a salir a bailar.” — Novia">“The salsa couple got every guest out on the dance floor.” <cite>— Bride</cite></blockquote>
+      <blockquote data-es="“El acto de fuego dejó a todos sin palabras — producción impecable de principio a fin.” — Wedding Planner">“The fire act left everyone speechless — flawless production from start to finish.” <cite>— Wedding Planner</cite></blockquote>
+      <blockquote data-es="“Coordinaron todo el show en tiempo récord para nuestra apertura de tienda.” — Brand Manager">“They coordinated the entire show in record time for our store opening.” <cite>— Brand Manager</cite></blockquote>
+      <blockquote data-es="“Los gogo dancers subieron la energía del club toda la noche.” — Club Owner">“The gogo dancers kept the club's energy up all night.” <cite>— Club Owner</cite></blockquote>
+      <blockquote data-es="“Un espectáculo de zancos que nadie olvida en la activación.” — Event Producer">“A stilt-walking spectacle no one forgets at the activation.” <cite>— Event Producer</cite></blockquote>
+      <blockquote data-es="“La pareja de salsa animó a todos los invitados a salir a bailar.” — Novia">“The salsa couple got every guest out on the dance floor.” <cite>— Bride</cite></blockquote>
     </div>
   </div>
 </section>
@@ -345,72 +383,51 @@
 <section class="booking" id="booking">
   <div class="wrap booking-grid">
     <div class="booking-intro">
-      <p class="eyebrow" data-reveal>Reservar cita</p>
-      <h2 data-reveal>Agenda una llamada para negociar tu evento</h2>
-      <p data-reveal>
-        Cuéntanos qué necesitas y coordinamos fecha, formato y presupuesto
-        directamente contigo. Sin compromisos hasta cerrar los detalles.
+      <p class="eyebrow" data-reveal data-es="Reservar cita">Book now</p>
+      <h2 data-reveal data-es="Agenda una llamada para negociar tu evento">Schedule a call to plan your event</h2>
+      <p data-reveal data-es="Cuéntanos qué necesitas y coordinamos fecha, formato y presupuesto directamente contigo. Sin compromisos hasta cerrar los detalles.">
+        Tell us what you need and we'll coordinate date, format and budget
+        directly with you. No commitment until the details are locked in.
       </p>
 
       <ul class="booking-points" data-reveal>
-        <li>Respuesta en menos de 24 horas</li>
-        <li>Cotización a medida según formato y ciudad</li>
-        <li>Coordinación completa de producción y logística</li>
+        <li data-es="Respuesta en menos de 24 horas">Response in under 24 hours</li>
+        <li data-es="Cotización a medida según formato y ciudad">Custom quote based on format and city</li>
+        <li data-es="Coordinación completa de producción y logística">Full production and logistics coordination</li>
       </ul>
 
       <div class="booking-direct" data-reveal>
-        <a href="mailto:hola@medusashow.com">
+        <a href="mailto:medusashowny@gmail.com">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 6 9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
-          hola@medusashow.com
+          medusashowny@gmail.com
         </a>
         <a href="https://wa.me/000000000000" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.55L3 20l1.05-5.4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 10.5c0 3 2 5 5 5"/></svg>
-          WhatsApp directo
+          <span data-es="WhatsApp directo">Direct WhatsApp</span>
         </a>
       </div>
     </div>
 
-    <form class="booking-form" id="bookingForm" novalidate data-reveal>
-      <div class="field">
-        <input type="text" id="bf-name" name="name" placeholder=" " required>
-        <label for="bf-name">Nombre completo</label>
-      </div>
-      <div class="field">
-        <input type="email" id="bf-email" name="email" placeholder=" " required>
-        <label for="bf-email">Correo</label>
-      </div>
-      <div class="field">
-        <input type="tel" id="bf-phone" name="phone" placeholder=" " required>
-        <label for="bf-phone">Teléfono / WhatsApp</label>
-      </div>
-      <div class="field">
-        <select id="bf-format" name="format" required>
-          <option value="" disabled selected hidden></option>
-          <option>Belly Dancers</option>
-          <option>Fuego</option>
-          <option>Garotas</option>
-          <option>Gogo Dancers</option>
-          <option>Salsa</option>
-          <option>Zancos &amp; Robot</option>
-          <option>Aún no lo sé</option>
-        </select>
-        <label for="bf-format">Formato de interés</label>
-      </div>
-      <div class="field">
-        <input type="date" id="bf-date" name="date" placeholder=" ">
-        <label for="bf-date">Fecha del evento</label>
-      </div>
-      <div class="field field-full">
-        <textarea id="bf-message" name="message" rows="3" placeholder=" "></textarea>
-        <label for="bf-message">Cuéntanos sobre tu evento</label>
-      </div>
-
-      <button type="submit" class="booking-submit">
-        <span>Solicitar cita por WhatsApp</span>
+    <div class="booking-cal-trigger" data-reveal>
+      <span class="booking-cal-trigger-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="m9 15 2 2 4-4"/></svg>
+      </span>
+      <h3 data-es="Elige fecha y hora">Pick a date and time</h3>
+      <p data-es="Abre el calendario y agenda tu llamada en segundos, sin salir de esta página.">Open the calendar and book your call in seconds, without leaving this page.</p>
+      <!-- Cal element-click embed: any element carrying data-cal-link becomes
+           a trigger that opens the booking calendar in a floating modal on
+           click, once the loader script below has run — no inline calendar
+           taking up permanent space on the page. -->
+      <button type="button" class="show-cta-btn" data-cal-link="medusa-show-nyc/15min" data-cal-namespace="15min" data-cal-config='{"layout":"month_view"}'>
+        <span data-es="Ver disponibilidad">Check availability</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
-      <p class="booking-status" id="bookingStatus" role="status" aria-live="polite"></p>
-    </form>
+      <script type="text/javascript">
+        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+        Cal("init", "15min", {origin:"https://app.cal.com"});
+        Cal.ns["15min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+      </script>
+    </div>
   </div>
 </section>
 
@@ -418,23 +435,23 @@
   <div class="wrap footer-grid">
     <div class="footer-brand" data-reveal>
       <img src="assets/Logo-blanco.svg" alt="Medusa Show">
-      <p>Entretenimiento en vivo para bodas, clubs, aperturas y activaciones de marca.</p>
+      <p data-es="Entretenimiento en vivo para bodas, clubs, aperturas y activaciones de marca.">Live entertainment for weddings, clubs, openings and brand activations.</p>
     </div>
 
     <div class="footer-links" data-reveal>
-      <h4>Navegación</h4>
-      <a href="#rituales">Rituales</a>
-      <a href="#about">Nosotros</a>
-      <a href="#experiences">Shows</a>
-      <a href="#booking">Reservar cita</a>
+      <h4 data-es="Navegación">Navigation</h4>
+      <a href="#rituales" data-es="Rituales">Rituals</a>
+      <a href="#about" data-es="Nosotros">About</a>
+      <a href="#top">Shows</a>
+      <a href="#booking" data-es="Reservar cita">Book now</a>
     </div>
 
     <div class="footer-contact" data-reveal>
-      <h4>Contacto</h4>
-      <a href="mailto:hola@medusashow.com">hola@medusashow.com</a>
+      <h4 data-es="Contacto">Contact</h4>
+      <a href="mailto:medusashowny@gmail.com">medusashowny@gmail.com</a>
       <a href="https://wa.me/000000000000" target="_blank" rel="noopener">WhatsApp</a>
       <div class="footer-social">
-        <a href="#" aria-label="Instagram">
+        <a href="https://www.instagram.com/medusa_showsnyc" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
         </a>
         <a href="#" aria-label="TikTok">
@@ -445,8 +462,8 @@
   </div>
 
   <div class="wrap footer-bottom" data-reveal>
-    <span>© 2026 Medusa Show. Todos los derechos reservados.</span>
-    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <span data-es="© 2026 Medusa Show. Todos los derechos reservados.">© 2026 Medusa Show. All rights reserved.</span>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" data-es-aria-label="Volver arriba">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
   </div>
@@ -466,6 +483,7 @@
      the code uses. The UMD builds share one global instance instead. -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="i18n.js"></script>
 <script type="module" src="carousel.js"></script>
 <script type="module" src="intro.js"></script>
 <script type="module" src="experiences.js"></script>

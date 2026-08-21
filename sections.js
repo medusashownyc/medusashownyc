@@ -1,3 +1,5 @@
+import { getLang } from './i18n.js';
+
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
 gsap.registerPlugin(ScrollTrigger);
@@ -65,7 +67,17 @@ if (!prefersReduced && window.matchMedia?.('(pointer: fine)').matches !== false)
 
     event.preventDefault();
 
-    if (currentY === null) {
+    // Re-sync to the real scroll position whenever it's drifted away from
+    // our tracked one, not just on the very first wheel event ever. Any
+    // scroll that happens outside this handler — a nav-link click (CSS
+    // scroll-behavior:smooth, or the #top/#about JS scrollTo), the
+    // scrollbar, keyboard paging, back/forward — moves window.scrollY
+    // directly and leaves currentY/targetY stale. Left unsynced, the next
+    // wheel tick would ease FROM that stale point (e.g. still sitting
+    // down at the footer) instead of from where the page actually is now,
+    // which reads as the page suddenly yanking itself back to wherever it
+    // was before that other scroll happened.
+    if (currentY === null || Math.abs(window.scrollY - currentY) > 2) {
       currentY = window.scrollY;
       targetY = window.scrollY;
     }
@@ -246,12 +258,32 @@ if (trackedSections.length) {
 // index.html, same approach as the reference.
 const topNavLinks = navLinks ? Array.from(navLinks.querySelectorAll(':scope > li > a')) : [];
 
-topNavLinks.forEach((a) => {
-  const label = a.textContent.trim();
+// Pulled into a named function (not just a one-time forEach) because
+// i18n.js's language sweep plainly overwrites textContent on every
+// [data-es] element it owns, these links included — on a link that's
+// already been split into per-letter spans, that wipes the spans back
+// down to a single text node (with the correct new-language text, but no
+// hop animation left to trigger). Re-splitting after every language
+// change rebuilds the spans from that already-translated text.
+function splitNavChars(a) {
+  // On a re-split (language change), a.textContent would already include
+  // BOTH the visible per-letter spans' text AND the .sr-only duplicate
+  // from the previous split, concatenated — reading straight from
+  // textContent here doubled the label every time (first toggle: "Shows"
+  // -> "ShowsShows", second: "ShowsShowsShowsShows", visibly, since the
+  // new spans get built from that doubled string). The .sr-only span's
+  // OWN textContent is always just the clean label, split or not, so use
+  // that once it exists.
+  const existingLabel = a.querySelector('.sr-only');
+  const label = (existingLabel ? existingLabel.textContent : a.textContent).trim();
   const chars = Array.from(label)
     .map((ch, i) => `<span class="nav-char" style="--i:${i}">${ch === ' ' ? '&nbsp;' : ch}</span>`)
     .join('');
   a.innerHTML = `<span class="nav-chars" aria-hidden="true">${chars}</span><span class="sr-only">${label}</span>`;
+}
+
+topNavLinks.forEach((a) => {
+  splitNavChars(a);
 
   a.addEventListener('mouseenter', () => {
     a.querySelectorAll('.nav-char').forEach((c) => {
@@ -260,6 +292,10 @@ topNavLinks.forEach((a) => {
       c.classList.add('is-hopping');
     });
   });
+});
+
+document.addEventListener('medusa:langchange', () => {
+  topNavLinks.forEach(splitNavChars);
 });
 
 /* ---------- mobile nav ---------- */
@@ -373,12 +409,19 @@ statNumbers.forEach((el) => {
 // independent GSAP tweens fighting over the same properties, which is
 // what made cards randomly fail to appear.
 
+// Keyed by whatever plain-text format name shows up in a ritual's
+// data-includes/data-includes-es list — since that list is authored once
+// per language (English baseline + Spanish alternate, see index.html), the
+// same icon needs a lookup entry under both languages' spelling of a given
+// format (e.g. "Fire" and "Fuego").
 const FORMAT_ICONS = {
   'Belly Dancers': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7c.8.7 1.6 1.3 3 1.3 2.8 0 2.8-2.3 5.5-2.3 2.5 0 2.8 2.3 5.5 2.3 2.8 0 2.6-2.3 5.5-2.3 1.4 0 2.2.6 3 1.3M2 13c.8.7 1.6 1.3 3 1.3 2.8 0 2.8-2.3 5.5-2.3 2.5 0 2.8 2.3 5.5 2.3 2.8 0 2.6-2.3 5.5-2.3 1.4 0 2.2.6 3 1.3M2 19c.8.7 1.6 1.3 3 1.3 2.8 0 2.8-2.3 5.5-2.3 2.5 0 2.8 2.3 5.5 2.3 2.8 0 2.6-2.3 5.5-2.3 1.4 0 2.2.6 3 1.3"/></svg>',
+  Fire: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5a2.5 2.5 0 0 0 2.5-2.5c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></svg>',
   Fuego: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5a2.5 2.5 0 0 0 2.5-2.5c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></svg>',
   Garotas: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 17 3 8l4.8 3.6L12 5l4.2 6.6L21 8l-1.5 9Z"/><path d="M5 20h14"/></svg>',
   'Gogo Dancers': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>',
   Salsa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
+  'Stilt Walkers & Robot': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H9"/><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M1 14h2M21 14h2M9 13v2M15 13v2"/></svg>',
   'Zancos & Robot': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H9"/><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M1 14h2M21 14h2M9 13v2M15 13v2"/></svg>',
 };
 
@@ -417,7 +460,18 @@ if (ritualFeature && ritualThumbs.length) {
   function applyRitual(index) {
     const thumb = ritualThumbs[index];
     if (!thumb) return;
-    const { tag, title, desc, includes, image, alt, accent, numeral } = thumb.dataset;
+    const { image, accent, numeral } = thumb.dataset;
+    // Every ritual is authored in both languages right on the button
+    // (data-tag/-title/-desc/-includes/-alt = English, the -es-suffixed
+    // twin = Spanish) — picking the suffix here is the only place that
+    // needs to know which language is active; everything downstream just
+    // renders whatever these four end up holding.
+    const suffix = getLang() === 'es' ? 'Es' : '';
+    const tag = thumb.dataset['tag' + suffix];
+    const title = thumb.dataset['title' + suffix];
+    const desc = thumb.dataset['desc' + suffix];
+    const includes = thumb.dataset['includes' + suffix];
+    const alt = thumb.dataset['alt' + suffix];
 
     featureImg.src = image;
     featureImg.alt = alt || '';
@@ -493,49 +547,12 @@ if (ritualFeature && ritualThumbs.length) {
   applyRitual(0);
   fillIndicators(0);
   startAutoplay();
+
+  // The generic data-es sweep in i18n.js only handles elements it owns
+  // directly — the feature panel's text is written by applyRitual() above
+  // instead, reading straight off whichever thumb is active, so a language
+  // switch needs to explicitly ask it to re-render with the new language's
+  // fields rather than being picked up automatically.
+  document.addEventListener('medusa:langchange', () => applyRitual(activeIndex));
 }
 
-/* ---------- booking form: floating labels + WhatsApp handoff ---------- */
-
-const WHATSAPP_NUMBER = '000000000000'; // TODO: reemplazar con el número real (código de país + número, sin signos)
-
-const bookingForm = document.getElementById('bookingForm');
-const bookingStatus = document.getElementById('bookingStatus');
-
-bookingForm?.querySelectorAll('select').forEach((select) => {
-  const field = select.closest('.field');
-  const sync = () => field?.classList.toggle('has-value', !!select.value);
-  select.addEventListener('change', sync);
-  sync();
-});
-
-bookingForm?.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  if (!bookingForm.reportValidity()) return;
-
-  const data = new FormData(bookingForm);
-  const name = data.get('name');
-  const email = data.get('email');
-  const phone = data.get('phone');
-  const format = data.get('format');
-  const date = data.get('date');
-  const message = data.get('message');
-
-  const lines = [
-    `Hola, soy ${name}, quiero reservar una cita para negociar un show.`,
-    `Formato de interés: ${format}`,
-    date ? `Fecha del evento: ${date}` : null,
-    `Correo: ${email}`,
-    `Teléfono: ${phone}`,
-    message ? `Detalles: ${message}` : null,
-  ].filter(Boolean);
-
-  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
-
-  if (bookingStatus) {
-    bookingStatus.textContent = 'Abriendo WhatsApp con tu solicitud…';
-  }
-
-  window.open(waUrl, '_blank', 'noopener');
-});

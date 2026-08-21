@@ -196,6 +196,109 @@ a {
   background: #fff;
 }
 
+/* ---------- language switcher ---------- */
+
+/* Compact flag pill: just the two flags side by side (no EN/ES text —
+   the flag alone already reads the language, and the text made this the
+   widest, tallest control in the header actions row, sitting oddly next
+   to the CTA pill and the hamburger). A white "highlight" behind whichever
+   is active slides between the two 50%-wide slots on switch. Height
+   matches .nav-toggle's own 2.5rem so it sits on the same rhythm as the
+   header's other round controls instead of reading as a slightly-shorter
+   oddball beside them. The same component (and CSS) is used both in the
+   header and in the mobile nav overlay — only the track background
+   differs (light glass pill vs. sitting on the overlay's own dark
+   gradient), scoped below rather than needing two separate components. */
+.lang-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 2.5rem;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.045);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.lang-switch-highlight {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  height: calc(100% - 6px);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.lang-switch[data-active="es"] .lang-switch-highlight {
+  transform: translateX(100%);
+}
+
+.lang-switch-option {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.lang-switch-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.lang-switch-flag svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* The active flag sits on the white highlight either way (light header or
+   dark), so full-opacity there never needs a light/dark variant — only
+   the inactive side's dimmer resting opacity is tuned separately, below,
+   since a flag dimmed for a light track reads differently against a dark
+   one. */
+.lang-switch-option[aria-pressed="true"] .lang-switch-flag {
+  opacity: 1;
+}
+
+.lang-switch-option:hover .lang-switch-flag,
+.lang-switch-option:focus-visible .lang-switch-flag {
+  opacity: 0.8;
+}
+
+.site-header.is-dark .lang-switch {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Mobile nav's overlay is always the dark gradient — same treatment as
+   .site-header.is-dark above, just unconditional here instead of gated
+   behind a scroll-position class. */
+.mobile-nav .lang-switch {
+  background: rgba(255, 255, 255, 0.14);
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.mobile-nav.is-open .lang-switch {
+  animation: mobile-link-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.36s;
+}
+
 .site-header-inner {
   display: flex;
   align-items: center;
@@ -1647,139 +1750,62 @@ a {
   color: var(--brand-green-deep);
 }
 
-.booking-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  padding: clamp(24px, 3vw, 34px);
+/* Cal.com's inline calendar (host/event info + a full month grid, taller
+   still once a date is picked and the time-slot list appears) had no way
+   to be both compact AND scroll-free at once — its real content simply
+   measures taller than anything that still reads as "compact" on the
+   page, and the layout-switch options that would have shrunk it
+   (column_view etc.) turned out to have no effect, apparently fixed by
+   the Cal.com account's own settings rather than something the embed
+   config can override. A click-to-open trigger sidesteps the conflict
+   entirely: this card stays a small, fixed-size panel on the page at all
+   times, and the actual calendar only exists (at whatever height it
+   needs) in Cal.com's own floating modal once opened — never competing
+   with "compact" while it's just sitting on the page. */
+.booking-cal-trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: clamp(36px, 5vw, 56px) clamp(24px, 3vw, 36px);
   border-radius: 24px;
   background: var(--card-bg);
   border: 1px solid var(--line);
   box-shadow: 0 40px 80px -50px rgba(0, 0, 0, 0.45);
 }
 
-.field {
-  position: relative;
-}
-
-.field-full {
-  grid-column: 1 / -1;
-}
-
-.field input,
-.field select,
-.field textarea {
-  width: 100%;
-  padding: 18px 14px 8px;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  background: #fbfbfb;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: var(--ink);
-  outline: none;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-  appearance: none;
-}
-
-.field textarea {
-  resize: vertical;
-  min-height: 90px;
-}
-
-.field label {
-  position: absolute;
-  left: 15px;
-  top: 17px;
-  font-size: 0.95rem;
-  color: var(--ink-dim);
-  pointer-events: none;
-  transform-origin: left top;
-  transition: transform 0.2s ease, top 0.2s ease, color 0.2s ease;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  border-color: var(--brand-green);
-  box-shadow: 0 0 0 4px rgba(0, 184, 126, 0.12);
-}
-
-.field input:focus + label,
-.field select:focus + label,
-.field textarea:focus + label,
-.field input:not(:placeholder-shown) + label,
-.field textarea:not(:placeholder-shown) + label,
-.field select:valid + label,
-.field.has-value label {
-  top: 7px;
-  transform: scale(0.72);
-  color: var(--brand-green-deep);
-}
-
-.field select {
-  padding-top: 18px;
-}
-
-.booking-submit {
-  grid-column: 1 / -1;
-  position: relative;
+.booking-cal-trigger-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 6px;
-  padding: 16px 24px;
-  border: none;
-  border-radius: 999px;
-  background: var(--ink);
-  color: #fff;
-  font-family: var(--font-body);
-  font-size: 0.96rem;
-  font-weight: 700;
-  cursor: pointer;
-  overflow: hidden;
-  isolation: isolate;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.booking-submit::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 6px;
+  border-radius: 50%;
   background: var(--brand-gradient);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  color: #fff;
 }
 
-.booking-submit:hover,
-.booking-submit:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.55);
+.booking-cal-trigger-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
-.booking-submit:hover::before,
-.booking-submit:focus-visible::before {
-  opacity: 1;
-}
-
-.booking-submit svg {
-  width: 17px;
-  height: 17px;
-  transition: transform 0.3s ease;
-}
-
-.booking-submit:hover svg {
-  transform: translateX(4px);
-}
-
-.booking-status {
-  grid-column: 1 / -1;
+.booking-cal-trigger h3 {
   margin: 0;
-  min-height: 1.2em;
-  font-size: 0.86rem;
-  color: var(--brand-green-deep);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+.booking-cal-trigger > p {
+  margin: 0 0 12px;
+  max-width: 34ch;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--ink-dim);
 }
 
 /* ---------- footer ---------- */
@@ -2031,10 +2057,6 @@ a {
 
   .about-stats {
     max-width: none;
-  }
-
-  .booking-form {
-    grid-template-columns: 1fr;
   }
 
   .footer-bottom {
