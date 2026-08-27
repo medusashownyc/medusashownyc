@@ -8,18 +8,27 @@ import * as THREE from 'three';
 // directional light — so the curve you see is actual geometry + shading,
 // not a faked gradient.
 
+// `ratio` must match each source file's actual pixel width/height — it
+// drives the UV-crop math in buildCard() below (tex.repeat/tex.offset)
+// that keeps a card's image genuinely "cover"-cropped into the square
+// frame instead of squashed to fit it. A stale ratio (left over from a
+// since-replaced source image at a different size) still loads and
+// renders — nothing errors — it just distorts, stretching the photo
+// non-uniformly to fill the frame. Several of these had drifted out of
+// sync with the actual files; recompute from `file` dimensions in pixels
+// (not the on-disk display size) if a source image is ever swapped.
 const IMAGES = [
-  { src: 'images/belly-dance.jpg', ratio: 690 / 1035, alt: 'Belly dance performer spinning on stage' },
+  { src: 'images/belly-dance.jpg', ratio: 768 / 1376, alt: 'Belly dance performer spinning on stage' },
   { src: 'images/fuego.jpg', ratio: 690 / 1035, alt: 'Fire performer spinning lit torches in the dark' },
-  { src: 'images/garotas.jpg', ratio: 684 / 1024, alt: 'Brazilian carnival dancer with a turquoise feather headdress' },
+  { src: 'images/garotas.jpg', ratio: 768 / 1376, alt: 'Brazilian carnival dancer with a turquoise feather headdress' },
   // gogo/salsa are tall, tightly-framed photos where the dancers sit near
   // the top of frame — centering the square crop (the default below) cuts
   // into their heads. topBias: 1 keeps the top of the photo fully in frame
   // and crops from the bottom instead, matching the object-position: 50% 0%
   // bias already used for these same two photos elsewhere on the site.
-  { src: 'images/gogo.jpg', ratio: 686 / 1028, alt: 'Gogo dancer in silhouette on a platform with club lights', topBias: 1 },
-  { src: 'images/salsa.jpg', ratio: 690 / 1035, alt: 'Professional dance couple in a salsa pose', topBias: 1 },
-  { src: 'images/zancos-robot.jpg', ratio: 1200 / 1800, alt: 'Stilt performers in stage costume among the crowd' },
+  { src: 'images/gogo.jpg', ratio: 1086 / 1448, alt: 'Gogo dancer in silhouette on a platform with club lights', topBias: 1 },
+  { src: 'images/salsa.jpg', ratio: 768 / 1152, alt: 'Professional dance couple in a salsa pose', topBias: 1 },
+  { src: 'images/zancos-robot.jpg', ratio: 1023 / 1537, alt: 'Stilt performers in stage costume among the crowd' },
   { src: "assets/images/imgl5742_1 (1).webp", ratio: 690 / 1035, alt: 'Aerial hoop performer on stage' },
   { src: 'assets/images/img_0488_1.webp', ratio: 690 / 1035, alt: 'Salsa couple in a close pose' },
 ];

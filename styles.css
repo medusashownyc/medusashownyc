@@ -179,6 +179,15 @@ a {
   color: #fff;
 }
 
+/* .nav-mega-item is itself an <a> inside .nav-links, so the blanket rule
+   above would turn its text white too — invisible against the dropdown
+   panel's own always-white background (.nav-mega, background: #fff).
+   Needs equal specificity (".site-header.is-dark .nav-mega a") and to
+   come after the rule above to win the tie. */
+.site-header.is-dark .nav-mega a {
+  color: var(--ink);
+}
+
 .site-header.is-dark .nav-cta {
   --pill-bg: rgba(255, 255, 255, 0.14);
   --pill-bg-hover: rgba(255, 255, 255, 0.22);
