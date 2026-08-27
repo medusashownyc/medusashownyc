@@ -155,26 +155,35 @@ const navLinks = document.getElementById('navLinks');
 const navAnchors = navLinks ? Array.from(navLinks.querySelectorAll('a')) : [];
 
 // The header goes dark (light logo/text, dark glass backing instead of
-// white) for exactly the stretch where #experiences' own black stage is
-// what's actually pinned full-screen behind it — the same "sticky
-// release" window described above scrollToAbout. offsetTop/offsetHeight
-// are cached (recomputed only on resize) rather than read live on every
-// scroll tick — reading them forces a synchronous layout, and doing that
-// on every native 'scroll' event (fired far more often than once per
-// frame during a fling) was a real source of main-thread jank: it showed
-// up as the #experiences tunnel (experiences.js) visibly stalling
-// mid-scroll, competing with this for the same frame budget. The ±40px
-// pad covers the brief rise/fall right at each edge, where the stage is
-// still animating into/out of place rather than fully covering the
-// screen yet.
+// white) for exactly the stretch where #hero's own black background (see
+// styles.css) is what's actually pinned full-screen behind it — from the
+// very top of the page until #experiences' own (white) stage takes over
+// as what's pinned behind the header, at which point the header flips
+// back to its normal light look for the rest of the (light-background)
+// page. offsetTop is cached (recomputed only on resize) rather than read
+// live on every scroll tick — reading it forces a synchronous layout, and
+// doing that on every native 'scroll' event (fired far more often than
+// once per frame during a fling) was a real source of main-thread jank:
+// it showed up as the #experiences tunnel (experiences.js) visibly
+// stalling mid-scroll, competing with this for the same frame budget. The
+// -40px pad covers the brief rise right at the hand-off, where #hero is
+// still fully in place rather than already covered yet.
 let darkStageStart = 0;
 let darkStageEnd = 0;
 function updateDarkStageBounds() {
   if (!experiencesEl) return;
-  darkStageStart = experiencesEl.offsetTop - 40;
-  darkStageEnd = experiencesEl.offsetTop + experiencesEl.offsetHeight - window.innerHeight + 40;
+  darkStageStart = 0;
+  darkStageEnd = experiencesEl.offsetTop - 40;
 }
+
+// Show pages with the black+gold treatment (styles.css .show-page--dark,
+// currently just show-belly-dancers.html) are dark top-to-bottom — the
+// header should stay in its light-text/dark-glass "is-dark" look for the
+// whole page, not just over a specific pinned stage like #experiences.
+const hasDarkShowPage = !!document.querySelector('.show-page--dark');
+
 function isOverDarkStage() {
+  if (hasDarkShowPage) return true;
   if (!experiencesEl) return false;
   return window.scrollY >= darkStageStart && window.scrollY <= darkStageEnd;
 }
@@ -446,6 +455,11 @@ const FORMAT_ICONS = {
   Salsa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
   'Stilt Walkers & Robot': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H9"/><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M1 14h2M21 14h2M9 13v2M15 13v2"/></svg>',
   'Zancos & Robot': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H9"/><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M1 14h2M21 14h2M9 13v2M15 13v2"/></svg>',
+  'Samba Dancers': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 17 3 8l4.8 3.6L12 5l4.2 6.6L21 8l-1.5 9Z"/><path d="M5 20h14"/></svg>',
+  'Fire Performer': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5a2.5 2.5 0 0 0 2.5-2.5c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></svg>',
+  'Performer de Fuego': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5a2.5 2.5 0 0 0 2.5-2.5c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></svg>',
+  'Aerial Hoop Performer': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="7"/><path d="M12 17v5M9 22h6"/></svg>',
+  'Performer de Aro Aéreo': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="7"/><path d="M12 17v5M9 22h6"/></svg>',
 };
 
 // Same lookup shape as FORMAT_ICONS above (English + Spanish spelling of
@@ -460,6 +474,11 @@ const FORMAT_LINKS = {
   Salsa: 'show-salsa.html',
   'Stilt Walkers & Robot': 'show-zancos-robot.html',
   'Zancos & Robot': 'show-zancos-robot.html',
+  'Samba Dancers': 'show-garotas.html',
+  'Fire Performer': 'show-fuego.html',
+  'Performer de Fuego': 'show-fuego.html',
+  'Aerial Hoop Performer': 'show-aerial-hoop.html',
+  'Performer de Aro Aéreo': 'show-aerial-hoop.html',
 };
 
 const ritualFeature = document.getElementById('ritualFeature');

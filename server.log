@@ -8237,3 +8237,337 @@
  HTTP  21/8/2026 6:06:26 p. m. ::1 Returned 304 in 1 ms
  HTTP  21/8/2026 6:06:32 p. m. ::1 GET /images/fuego.jpg
  HTTP  21/8/2026 6:06:32 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:06:38 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:06:38 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:06:44 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:06:44 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:06:50 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:06:50 p. m. ::1 Returned 304 in 2 ms
+ HTTP  21/8/2026 6:06:56 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:06:56 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:02 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:07:02 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:08 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:07:08 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:14 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:07:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:20 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:07:20 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:26 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:07:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:32 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:07:32 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:38 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:07:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:44 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:07:44 p. m. ::1 Returned 304 in 2 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /styles.css
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/Logo-blanco.svg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /i18n.js
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /carousel.js
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /intro.js
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /experiences.js
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /sections.js
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 200 in 2 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/garotas.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/simbolo-blanco.svg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/Grupal.PNG
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/007d0f33_fb92_494d_bb9a_f188f663ac20_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/18ed024b_ab40_4324_99d3_289753c87812_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/2174a892_301f_4653_801e_95454190e863_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/5754cd35_f781_4731_a31d_1674c35b2e9d_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/6e489412_3ded_4293_9e74_4f0886207664_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/dsc09915_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/f92be6d2_5726_4b37_acd0_8d14ae9f5727_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/img_0073_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/img_1127_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/img_2025_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/img_2917_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/img_8662_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/Testimonio/img_9099_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/garotas.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 2 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/img_0528_jpg_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/img_0516_jpg_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/imgl5533_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/img_0539_jpg_1%20(1).webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/0dc19839_241e_48a9_a5f3_4cf65d5574fe_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/11_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/imgl2677_1_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/imgl5742_1%20(1).webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/26e217df_fd31_4280_bd3f_0575dabbff16_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/28c9a3c8_8591_4790_8a82_e1ea50002239_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/img_0551_jpg_1%20(1).webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/imgl2909_1_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/imgl5409_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/imgl5428_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_3_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/whatsapp_image_2026_08_04_at_4_43_54_pm_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/0edf344e_baa2_4c08_a809_d0294c0f4416_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/689e8e9e_381b_4440_919d_07f7dfeeecff_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/whatsapp_image_2026_08_04_at_4_43_54_pm_1_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 GET /assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_1_1.webp
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:49 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:07:55 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:07:55 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:08:06 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:08:06 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:08:12 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:08:12 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:08:18 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:08:18 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:10 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:11:10 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /styles.css
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/Logo-negro.svg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/Logo-blanco.svg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /i18n.js
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /carousel.js
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /intro.js
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /experiences.js
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /sections.js
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/garotas.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/simbolo-blanco.svg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/Grupal.PNG
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/007d0f33_fb92_494d_bb9a_f188f663ac20_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/18ed024b_ab40_4324_99d3_289753c87812_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/2174a892_301f_4653_801e_95454190e863_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/5754cd35_f781_4731_a31d_1674c35b2e9d_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/6e489412_3ded_4293_9e74_4f0886207664_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/dsc09915_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/f92be6d2_5726_4b37_acd0_8d14ae9f5727_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/img_0073_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/img_1127_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/img_2025_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/img_2917_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/img_8662_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /assets/images/Testimonio/img_9099_1.webp
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/belly-dance.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/garotas.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:14 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:11:14 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:20 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:11:20 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:11:26 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:11:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:11:32 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:11:32 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:13:08 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:13:08 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:13:14 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:13:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:13:20 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:13:20 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:13:44 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:13:44 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:13:50 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:13:50 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:13:56 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:13:56 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:14:20 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:14:20 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:14:26 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:14:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:14:32 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:14:32 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:14:56 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:14:56 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:15:02 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:15:02 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:15:08 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:15:08 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:15:32 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:15:32 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:15:38 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:15:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:15:44 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:15:44 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:16:08 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:16:08 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:16:14 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:16:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:16:20 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:16:20 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:16:44 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:16:44 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:16:50 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:16:50 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:16:56 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:16:56 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:17:20 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:17:20 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:17:26 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:17:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:17:32 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:17:32 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:17:56 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:17:56 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:18:02 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:18:02 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:18:08 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:18:08 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:18:32 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:18:32 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:18:38 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:18:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:18:44 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:18:44 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:19:08 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:19:08 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:19:14 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:19:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:19:20 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:19:20 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:19:44 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:19:44 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:19:50 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:19:50 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:19:56 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:19:56 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:20:26 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:20:26 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:20:32 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:20:32 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:20:38 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:20:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:21:02 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:21:02 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:21:08 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:21:08 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:21:14 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:21:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:21:38 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:21:38 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:21:44 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:21:44 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:21:50 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:21:50 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:22:14 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:22:14 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:22:20 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:22:20 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:22:26 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:22:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:22:50 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:22:50 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:22:56 p. m. ::1 GET /images/gogo.jpg
+ HTTP  21/8/2026 6:22:56 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:34:22 p. m. ::1 GET /images/fuego.jpg
+ HTTP  21/8/2026 6:34:22 p. m. ::1 Returned 304 in 0 ms
+ HTTP  21/8/2026 6:34:26 p. m. ::1 GET /images/salsa.jpg
+ HTTP  21/8/2026 6:34:26 p. m. ::1 Returned 304 in 1 ms
+ HTTP  21/8/2026 6:34:32 p. m. ::1 GET /images/zancos-robot.jpg
+ HTTP  21/8/2026 6:34:32 p. m. ::1 Returned 304 in 0 ms

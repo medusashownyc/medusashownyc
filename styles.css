@@ -16,6 +16,7 @@
   --brand-magenta: #ff0d73;
   --brand-blue: #00b6ff;
   --brand-purple: #8a2cff;
+  --brand-gold: #c9a24b;
 
   --font-display: "Cinzel Decorative", "Iowan Old Style", ui-serif, Georgia, serif;
   --font-body: "Satoshi", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
@@ -787,6 +788,12 @@ a {
 .hero {
   min-height: 100vh;
   z-index: 1;
+  background: #000;
+  /* Flips every descendant that reads var(--ink)/var(--ink-dim) (the hero
+     title, the service-row tags) to light text — same scoped-token trick
+     as .show-page--dark — without having to repaint each element by hand. */
+  --ink: #ffffff;
+  --ink-dim: rgba(255, 255, 255, 0.64);
 }
 
 .experiences {
@@ -964,7 +971,7 @@ a {
   top: 0;
   height: 100vh;
   overflow: hidden;
-  background: #000;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1048,7 +1055,7 @@ a {
   letter-spacing: 0.03em;
   font-size: clamp(1.8rem, 6vmin, 4.2rem);
   line-height: 1.2;
-  color: #fff;
+  color: var(--ink);
 }
 
 /* Darkens the tunnel toward the edges/depth so frames read as receding
@@ -1444,7 +1451,7 @@ a {
 
 .ritual-thumbs {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: clamp(12px, 1.6vw, 20px);
 }
 
@@ -1563,7 +1570,8 @@ a {
 .ritual-card-includes li {
   display: inline-flex;
   align-items: center;
-  padding: 0;
+  gap: 6px;
+  padding: 6px 14px 6px 10px;
   border-radius: 999px;
   border: 1px solid var(--line);
   font-size: 0.78rem;
@@ -1577,10 +1585,15 @@ a {
   transform: translateY(-1px);
 }
 
+/* Entries without a matching show page (sections.js FORMAT_LINKS) render as
+   plain <li> text instead of an <a> — same padding/gap either way (set on
+   the li itself, above) so a non-linked chip like "Grand Finale" doesn't
+   read as a cramped, unpadded outlier next to its linked neighbors. */
 .ritual-card-includes li a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  margin: -6px -14px -6px -10px;
   padding: 6px 14px 6px 10px;
   color: inherit;
   text-decoration: none;
@@ -2183,6 +2196,56 @@ a {
 
 .show-page {
   padding-top: var(--header-h);
+}
+
+/* Black & gold treatment for the Belly Dancers / Arabian Experience page —
+   scoped to .show-page so the header/footer around it stay on the site's
+   normal light theme. Overriding the shared --bg/--ink/--line/--card-bg
+   tokens here (rather than repainting every element) is what makes the
+   whole nested show-block/feature/tag styling flip to dark for free. */
+.show-page--dark {
+  --bg: #0b0906;
+  --ink: #f4e9d2;
+  --ink-dim: rgba(244, 233, 210, 0.64);
+  --line: rgba(201, 162, 75, 0.28);
+  --card-bg: #171209;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* .show-story-badge and .show-cta-btn are styled background: var(--ink)
+   elsewhere — fine when --ink is near-black, but here --ink is the pale
+   gold text color, which would flip those to a light badge with
+   low-contrast white text. Pinned to solid gold/black instead so the
+   black+gold treatment stays legible. */
+.show-page--dark .show-story-badge,
+.show-page--dark .show-cta-btn {
+  background: var(--brand-gold);
+  color: #0b0906;
+}
+
+.show-page--dark .show-cta-btn::before {
+  background: none;
+}
+
+.show-page--dark .show-related-card span {
+  background: var(--brand-gold);
+  color: #0b0906;
+}
+
+.show-page--dark .show-cta-card {
+  background: var(--brand-gold);
+  color: #0b0906;
+}
+
+.show-page--dark .show-cta-card .show-cta-btn {
+  background: #0b0906;
+  color: var(--brand-gold);
+}
+
+.show-page--dark .show-cta-card .show-cta-btn:hover,
+.show-page--dark .show-cta-card .show-cta-btn:focus-visible {
+  color: #fff;
 }
 
 .show-story {

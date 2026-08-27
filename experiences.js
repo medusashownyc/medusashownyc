@@ -238,7 +238,7 @@ if (outer && stage && tunnel && !prefersReduced) {
 
   function drawGrid(originShiftX, originShiftY) {
     ctx.clearRect(0, 0, stageW, stageH);
-    ctx.strokeStyle = '#fff';
+    ctx.strokeStyle = '#000';
     ctx.lineWidth = 1.5;
 
     longLines.forEach(({ kind, pos }) => {

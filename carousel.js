@@ -20,6 +20,8 @@ const IMAGES = [
   { src: 'images/gogo.jpg', ratio: 686 / 1028, alt: 'Gogo dancer in silhouette on a platform with club lights', topBias: 1 },
   { src: 'images/salsa.jpg', ratio: 690 / 1035, alt: 'Professional dance couple in a salsa pose', topBias: 1 },
   { src: 'images/zancos-robot.jpg', ratio: 1200 / 1800, alt: 'Stilt performers in stage costume among the crowd' },
+  { src: "assets/images/imgl5742_1 (1).webp", ratio: 690 / 1035, alt: 'Aerial hoop performer on stage' },
+  { src: 'assets/images/img_0488_1.webp', ratio: 690 / 1035, alt: 'Salsa couple in a close pose' },
 ];
 
 // Same order as IMAGES — clicking a card navigates straight to its show
@@ -31,6 +33,8 @@ const SHOW_URLS = [
   'show-gogo-dancers.html',
   'show-salsa.html',
   'show-zancos-robot.html',
+  'show-aerial-hoop.html',
+  'show-romantic-experience.html',
 ];
 
 // 1:1 — square cards, per reference. object-fit: cover crops each source
@@ -138,13 +142,14 @@ function init() {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const scene = new THREE.Scene();
-  // Matches the page's white background (styles.css --bg), so cards don't
-  // fade to a visible grey/black box — they genuinely dissolve into the
-  // page behind the canvas, reading as "lost in the distance" rather than
-  // just dimmed. FOG_NEAR sits just past the front card so it stays fully
-  // crisp; by FOG_FAR (out past where the ring curves toward edge-on) a
-  // card is fully white and its own fading opacity finishes the job.
-  scene.fog = new THREE.Fog(0xffffff, FOG_NEAR, FOG_FAR);
+  // Matches the hero's own black background (styles.css .hero), so cards
+  // don't fade to a visible grey/white box — they genuinely dissolve into
+  // the page behind the canvas, reading as "lost in the distance" rather
+  // than just dimmed. FOG_NEAR sits just past the front card so it stays
+  // fully crisp; by FOG_FAR (out past where the ring curves toward
+  // edge-on) a card is fully black and its own fading opacity finishes
+  // the job.
+  scene.fog = new THREE.Fog(0x000000, FOG_NEAR, FOG_FAR);
 
   // The ring group rotates around its own local origin (0,0,0) — so that
   // origin MUST be the circle's true centre, or cards swing through the
