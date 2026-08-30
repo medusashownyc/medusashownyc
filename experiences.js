@@ -68,6 +68,37 @@ const IMAGES = [
   { src: 'assets/images/689e8e9e_381b_4440_919d_07f7dfeeecff_1.webp', alt: 'Carnival dancer in a pink feather headdress at a stone doorway' },
   { src: 'assets/images/d01f49b6_7ac1_4524_bb25_2aef26aaba10_1.webp', alt: 'Performer in Egyptian-inspired costume with a snake' },
   { src: 'assets/images/img_5329_1.webp', alt: 'Carnival parade dancers in blue feathered costumes' },
+  { src: 'assets/images/galeria_1.webp', alt: 'Medusa Show poster with two carnival dancers in gold and red feather headdresses' },
+  // big: true — forced onto the tunnel's single largest frame slot below,
+  // per request, instead of just being one more randomly-sized entry that
+  // might land small (or not get drawn into any of the ~24 fixed slots at
+  // all — see the forced-placement block after `specs` is built).
+  { src: 'assets/images/galeria_2.webp', alt: 'Carnival dancer in a large red feather headdress, close portrait', big: true },
+  { src: 'assets/images/imgl2359_1.webp', alt: 'Salsa couple in a lift pose' },
+  { src: 'assets/images/imgl2758_1_1.webp', alt: 'Belly dancer in gold costuming looking over her shoulder' },
+  { src: 'assets/images/imgl2794_1_1.webp', alt: 'Belly dancer in gold costuming with an arm raised' },
+  { src: 'assets/images/imgl2886_1_1.webp', alt: 'Belly dancers as a duo in green and gold costuming' },
+  { src: 'assets/images/imgl2930_1.webp', alt: 'Belly dancers as a trio in green, gold and lilac costuming' },
+  { src: 'assets/images/imgl3186_1.webp', alt: 'Full cast group photo with carnival, belly dance and salsa performers' },
+  { src: 'assets/images/imgl3303_1.webp', alt: 'Contortionist in a white lace bridge pose' },
+  { src: 'assets/images/imgl3471_1.webp', alt: 'Carnival dancers as a group in red, orange and yellow feather headdresses' },
+  { src: 'assets/images/imgl4086_1.webp', alt: 'Ballet dancer in an arabesque pose' },
+  { src: 'assets/images/imgl4136_1.webp', alt: 'Performer in black sequins posing with a mariachi hat' },
+  { src: 'assets/images/imgl4141_1.webp', alt: 'Performer in black sequins holding a mariachi hat overhead' },
+  { src: 'assets/images/imgl4516_1.webp', alt: 'Ballet dancer in a dramatic pose against a dark backdrop' },
+  { src: 'assets/images/imgl4519_1.webp', alt: 'Gogo dancers as a duo in patterned bodysuits' },
+  { src: 'assets/images/imgl4643_1.webp', alt: 'Gogo dancers in neon pink and green bodysuits' },
+  { src: 'assets/images/imgl4940_1.webp', alt: 'Portrait of a performer backstage' },
+  { src: 'assets/images/imgl5173_1.webp', alt: 'Fire performer holding flaming torches on a city street' },
+  { src: 'assets/images/imgl5310_1.webp', alt: 'Fire performer spinning a lit fire fan' },
+  { src: 'assets/images/imgl5339_1.webp', alt: 'Fire performer spinning a lit fire wheel' },
+  { src: 'assets/images/imgl5355_1.webp', alt: 'Fire performer with flaming torches on a city street' },
+  { src: 'assets/images/imgl5359_1.webp', alt: 'Group of performers with a fire dancer on a city street' },
+  { src: 'assets/images/imgl5408_1.webp', alt: 'Group of performers with a lit fire fan on a city street' },
+  { src: 'assets/images/imgl5439_1.webp', alt: 'Group of performers posing on a city street at night' },
+  { src: 'assets/images/imgl5477_2.webp', alt: 'Aerial hoop performer in pink, upside down' },
+  { src: 'assets/images/photo_jul_26_2026_9_20_47_pm_1_1.webp', alt: 'Portrait of a performer backstage' },
+  { src: 'assets/images/photo_jul_26_2026_9_24_23_pm_1.webp', alt: 'Performer in a leopard-print wrap skirt' },
 ];
 
 if (outer && stage && tunnel && !prefersReduced) {
@@ -331,7 +362,29 @@ if (outer && stage && tunnel && !prefersReduced) {
   // slots along a shorter axis packed frames closer together than their
   // own height, guaranteeing overlap no matter how tightly jittered.
   const DEPTH_SLOTS = 3;
-  const depthStep = (NEAR_Z - FAR_Z) / DEPTH_SLOTS;
+
+  // IMAGES (62+ photos) is far bigger than the tunnel's ~24 fixed frame
+  // slots — picking each slot's image independently at random (the old
+  // approach) had no memory of what other slots already got, so the same
+  // handful of photos routinely landed in multiple frames at once while
+  // most of the library never appeared at all, reading as a small, tightly
+  // looping set rather than a deep photo library. shuffledImages is drawn
+  // from once per slot, in order, with no replacement — every visible
+  // frame is a different photo — and rotateFrameImage() (below, in the
+  // ticker) keeps advancing through it every time a frame completes a lap,
+  // so which of the 62+ photos is showing keeps changing over time instead
+  // of the initial 24 being the only ones anyone ever sees.
+  const shuffledImages = [...IMAGES];
+  for (let i = shuffledImages.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [shuffledImages[i], shuffledImages[j]] = [shuffledImages[j], shuffledImages[i]];
+  }
+  let nextImageIndex = 0;
+  function drawNextImage() {
+    const image = shuffledImages[nextImageIndex % shuffledImages.length];
+    nextImageIndex++;
+    return image;
+  }
 
   walls.forEach((wall) => {
     const isSideWall = wall === 'left' || wall === 'right';
@@ -340,31 +393,72 @@ if (outer && stage && tunnel && !prefersReduced) {
     // climbing/stacking on top of each other along that row).
     const alongSlots = 2;
     const alongStep = 2 / alongSlots; // "along" ranges -1..1
+    // Side walls get fewer depth slots per along-slot than floor/ceiling:
+    // their free axis (WY=30) is barely bigger than one frame's own
+    // height, so stacking 3 deep there left even the guaranteed-gap
+    // layout below needing to shrink frames noticeably to fit — 2 leaves
+    // each one roughly double the room. Floor/ceiling's wider WX=44 axis
+    // has room for the full 3.
+    const depthSlotsForWall = isSideWall ? 2 : DEPTH_SLOTS;
+    const depthStepForWall = (NEAR_Z - FAR_Z) / depthSlotsForWall;
+    // x/y below match the grid walls' own offset exactly (WX/WY, no extra
+    // push-out) — that's what puts a frame's plane flush on the wall
+    // surface itself instead of hovering slightly off of it. Needed here
+    // (not just where x/y are assigned below) because converting a
+    // frame's real vmin height into "along" units — see heightAlong below
+    // — has to use the same WY/WX * spread scale those coordinates do, or
+    // the two wouldn't agree on how much wall-space a frame actually
+    // covers.
+    const spread = 0.85;
+    const freeHalfExtent = isSideWall ? WY : WX;
     for (let a = 0; a < alongSlots; a++) {
-      for (let d = 0; d < DEPTH_SLOTS; d++) {
-        // Wider spread (and squared so most frames land small-to-mid with
-        // occasional large standouts) so the wall reads as a mix of sizes
-        // rather than a uniform grid. Computed before the along/depth
-        // jitter below so a big frame's jitter can be reined in — a large
-        // frame given the same jitter budget as a small one is what was
-        // pushing neighboring slots into each other and reading as frames
-        // stacked on top of one another.
-        // Capped so even the largest frame at zero jitter stays within one
-        // slot's own share of the wall (see `spread` below) — with only 2
-        // slots per row now, a max-size frame bigger than that overlapped
-        // its neighbor regardless of how little the jitter budget was.
+      const alongCenter = -1 + (a + 0.5) * alongStep;
+      // Every depth-slot's size is rolled up front (instead of inline,
+      // per-slot, as this used to do) so the whole group can be laid out
+      // back-to-back with a real minimum gap derived from their actual
+      // heights, and shrunk together if they don't fit — a fixed offset
+      // between slot centers (the old approach) only ever prevented
+      // overlap for whatever size happened to get rolled small enough;
+      // two frames that both happened to roll large still covered each
+      // other, which is what was still being reported on the side walls
+      // (WY=30 is barely bigger than one max-size frame's own height, so
+      // "large" wasn't even a rare roll there).
+      const rolled = [];
+      for (let d = 0; d < depthSlotsForWall; d++) {
         const sizeRand = rand() * rand();
-        // Raised floor (was 8/10) — at the old minimum, small-side frames
-        // read as illegible thumbnails rather than actual photos; this
-        // keeps the same "mostly small, occasional large standout" mix
-        // but nothing shrinks below a size the photo is still readable at.
-        const size = (isSideWall ? 13 : 16) + sizeRand * (isSideWall ? 13 : 21); // vmin, width
+        // Raised again (was 13-26/16-37) per request to make the tunnel's
+        // photos bigger — kept inside the same per-group guaranteed-gap
+        // layout (below) and the same alongStep*0.92 corner margin as
+        // before, rather than switching to a whole-wall-span layout: that
+        // approach did make frames noticeably bigger, but it also let
+        // near-camera frames' perspective-amplified size push past the
+        // tunnel's own visible box, especially right at a wall corner —
+        // this keeps that same safe positioning, just with bigger source
+        // sizes feeding into it.
+        const size = (isSideWall ? 16 : 20) + sizeRand * (isSideWall ? 18 : 26); // vmin, width
+        rolled.push({ sizeRand, size });
+      }
+      const GAP_ALONG = 0.05; // breathing room between adjacent depth frames, in along-units
+      const totalSpan = rolled.reduce((sum, r) => sum + (r.size * 1.3) / (freeHalfExtent * spread), 0)
+        + GAP_ALONG * (rolled.length - 1);
+      // 0.92, not 1, so a group that fills its whole budget still leaves a
+      // sliver of margin before the next along-slot's own territory
+      // starts, rather than the two just touching exactly at the seam.
+      const availableSpan = alongStep * 0.92;
+      const MIN_SCALE = 0.55; // never shrink a frame past legible
+      const scale = totalSpan > availableSpan ? Math.max(MIN_SCALE, availableSpan / totalSpan) : 1;
+      let cursor = alongCenter - (totalSpan * scale) / 2;
+
+      for (let d = 0; d < depthSlotsForWall; d++) {
+        const { sizeRand, size: rolledSize } = rolled[d];
+        const size = rolledSize * scale;
+        const heightAlong = (size * 1.3) / (freeHalfExtent * spread);
         const jitterScale = 1 - sizeRand * 0.7;
-        const alongCenter = -1 + (a + 0.5) * alongStep;
-        const along = alongCenter + (rand() - 0.5) * alongStep * 0.4 * jitterScale;
-        const depthCenter = FAR_Z + (d + 0.5) * depthStep;
-        const baseZ = depthCenter + (rand() - 0.5) * depthStep * 0.4 * jitterScale;
-        const image = IMAGES[Math.floor(rand() * IMAGES.length)];
+        const along = cursor + heightAlong / 2;
+        cursor += heightAlong + GAP_ALONG * scale;
+        const depthCenter = FAR_Z + (d + 0.5) * depthStepForWall;
+        const baseZ = depthCenter + (rand() - 0.5) * depthStepForWall * 0.4 * jitterScale;
+        const image = drawNextImage();
         // Flush with the wall, close to (but not quite) the debug grid's
         // true 90° — full 90 was fine as long as the camera looked
         // straight down the tunnel, but the mouse-follow parallax (see
@@ -389,19 +483,11 @@ if (outer && stage && tunnel && !prefersReduced) {
         let y = 0;
         let rx = 0;
         let ry = 0;
-        // x/y here match the grid walls' own offset exactly (WX/WY, no
-        // extra push-out) — that's what puts a frame's plane flush on the
-        // wall surface itself instead of hovering slightly off of it.
-        // The 0.55 pull-in keeps frames clustered toward the middle of
-        // each wall — near along's extremes (close to ±1) put a frame
-        // right where two walls meet, in the corner, which read as
-        // cluttered/awkward rather than looking like part of either wall.
-        // Tuned so the gap between slot centers comes out to roughly the
-        // same real vmin distance on both wall types despite their
-        // different half-extents (WY=30 vs WX=44) and slot counts (2 vs
-        // 3) — without that, whichever axis ended up with less room per
-        // slot than a frame's own size would overlap regardless of jitter.
-        const spread = 0.85;
+        // spread (declared above the `a` loop, reused here) pulls frames
+        // in from the wall's raw ±1 edges toward the middle — right at
+        // along's extremes (±1) a frame would sit exactly where two walls
+        // meet, in the corner, which read as cluttered/awkward rather than
+        // looking like part of either wall.
         if (wall === 'left') { x = -WX; y = along * WY * spread; ry = WALL_SIGN.left * rake; }
         if (wall === 'right') { x = WX; y = along * WY * spread; ry = WALL_SIGN.right * rake; }
         if (wall === 'ceiling') { y = -WY; x = along * WX * spread; rx = WALL_SIGN.ceiling * rake; }
@@ -410,6 +496,22 @@ if (outer && stage && tunnel && !prefersReduced) {
       }
     }
   });
+
+  // Images flagged `big: true` in IMAGES (currently just galeria_2) get
+  // forced onto the single largest of the ~24 fixed frame slots above,
+  // rather than leaving it to each slot's random per-image draw — a
+  // random draw could just as easily skip a given image entirely (specs
+  // is far shorter than IMAGES) or land it on a small slot, neither of
+  // which satisfies "always shown, and always the biggest frame in the
+  // tunnel". Only the slot's image is swapped, not its size/position, so
+  // the existing overlap-avoidance placement above stays intact.
+  const bigImages = IMAGES.filter((img) => img.big);
+  if (bigImages.length) {
+    const bySize = [...specs].sort((a, b) => b.size - a.size);
+    bigImages.forEach((img, i) => {
+      if (bySize[i]) bySize[i].image = img;
+    });
+  }
 
   // Click-to-enlarge: a frame in the tunnel is small, foreshortened and
   // often nearly edge-on (that's the whole "mounted on the wall" look) —
@@ -478,7 +580,13 @@ if (outer && stage && tunnel && !prefersReduced) {
     // shared `flight` value (advanced every tick) changes after this.
     const phase = spec.z - FAR_Z;
 
-    return { el, setZ, phase };
+    // prevProgress tracks each frame's own last-tick position in the loop
+    // so the ticker (below) can tell a genuine wrap (NEAR_Z back to FAR_Z)
+    // apart from ordinary forward motion — that's the cue to swap this
+    // slot's photo for the next one in shuffledImages, so a photo that's
+    // just flown past doesn't fly past again identically on the very next
+    // lap.
+    return { el, img, spec, setZ, phase, prevProgress: 0 };
   });
 
   // The destination text is a flat, always-visible overlay — not part of
@@ -544,12 +652,27 @@ if (outer && stage && tunnel && !prefersReduced) {
     lastTime = time;
     flight += dt * FLIGHT_SPEED * speed.mult;
 
-    frames.forEach(({ el, setZ, phase }) => {
+    frames.forEach((frame) => {
+      const { el, img, spec, setZ, phase } = frame;
       const t = (((phase + flight) % PERIOD) + PERIOD) % PERIOD;
       const z = FAR_Z + t;
       setZ(z);
 
       const progress = t / PERIOD;
+      // A wrap is a big backward jump in progress (NEAR_Z's ~1 straight
+      // back to FAR_Z's ~0) — ordinary forward motion only ever increases
+      // it. Swapping right here lands the new photo while the frame is
+      // still deep in FADE_FRACTION's near-invisible opacity, so the
+      // change itself is never seen, only the fresh photo once it fades
+      // back in.
+      if (frame.prevProgress > progress + 0.5) {
+        const nextImage = drawNextImage();
+        spec.image = nextImage;
+        img.src = nextImage.src;
+        img.alt = nextImage.alt;
+      }
+      frame.prevProgress = progress;
+
       const fadeIn = gsap.utils.clamp(0, 1, progress / FADE_FRACTION);
       const fadeOut = gsap.utils.clamp(0, 1, (1 - progress) / FADE_FRACTION);
       el.style.opacity = String(fadeIn * fadeOut);

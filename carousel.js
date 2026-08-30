@@ -18,7 +18,7 @@ import * as THREE from 'three';
 // sync with the actual files; recompute from `file` dimensions in pixels
 // (not the on-disk display size) if a source image is ever swapped.
 const IMAGES = [
-  { src: 'images/belly-dance.jpg', ratio: 768 / 1376, alt: 'Belly dance performer spinning on stage' },
+  { src: 'images/belly_dancers.webp', ratio: 933 / 1398, alt: 'Belly dancers on stage under purple lighting' },
   { src: 'images/fuego.jpg', ratio: 690 / 1035, alt: 'Fire performer spinning lit torches in the dark' },
   { src: 'images/garotas.jpg', ratio: 768 / 1376, alt: 'Brazilian carnival dancer with a turquoise feather headdress' },
   // gogo/salsa are tall, tightly-framed photos where the dancers sit near
@@ -27,10 +27,10 @@ const IMAGES = [
   // and crops from the bottom instead, matching the object-position: 50% 0%
   // bias already used for these same two photos elsewhere on the site.
   { src: 'images/gogo.jpg', ratio: 1086 / 1448, alt: 'Gogo dancer in silhouette on a platform with club lights', topBias: 1 },
-  { src: 'images/salsa.jpg', ratio: 768 / 1152, alt: 'Professional dance couple in a salsa pose', topBias: 1 },
+  { src: 'images/salsa.webp', ratio: 944 / 1414, alt: 'Professional dance couple in a salsa pose', topBias: 1 },
   { src: 'images/zancos-robot.jpg', ratio: 1023 / 1537, alt: 'Stilt performers in stage costume among the crowd' },
   { src: "assets/images/imgl5742_1 (1).webp", ratio: 690 / 1035, alt: 'Aerial hoop performer on stage' },
-  { src: 'assets/images/img_0488_1.webp', ratio: 690 / 1035, alt: 'Salsa couple in a close pose' },
+  { src: 'images/romantic.webp', ratio: 957 / 1434, alt: 'Ballet dancer in an elegant pose' },
 ];
 
 // Same order as IMAGES — clicking a card navigates straight to its show
