@@ -257,7 +257,7 @@ export function EditorScreen({ kind, section, slug, content, loadError, onReload
       <${ConfirmSheet}
         open=${confirm === 'delete'}
         title="¿Eliminar este show?"
-        text="Desaparece su página y se quita del menú, de la portada, de los paquetes que lo incluyan y de los shows relacionados. Si te arrepientes, Daniel puede recuperarlo del historial."
+        text="Desaparece su página y se quita del menú, de la portada, de los paquetes que lo incluyan y de los shows relacionados. Si te arrepientes, quien administra la web puede recuperarlo del historial."
         confirmLabel="Sí, eliminar"
         cancelLabel="Cancelar"
         danger

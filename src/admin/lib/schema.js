@@ -198,7 +198,7 @@ export const SETTINGS_SECTIONS = [
       text('copyright', 'Texto de derechos'),
       text('seo_title', 'Título en Google'),
       textarea('seo_description', 'Descripción en Google'),
-      image('logo_dark', 'Logo oscuro (fondo claro)', { mediaFolder: '..', accept: 'image/png,image/jpeg,image/webp', hint: 'PNG con fondo transparente. Los SVG los cambia Daniel.' }),
+      image('logo_dark', 'Logo oscuro (fondo claro)', { mediaFolder: '..', accept: 'image/png,image/jpeg,image/webp', hint: 'PNG con fondo transparente. Los SVG se cambian desde el código de la web.' }),
       image('logo_light', 'Logo blanco (fondo oscuro)', { mediaFolder: '..', accept: 'image/png,image/jpeg,image/webp', hint: 'PNG con fondo transparente.' }),
       image('symbol', 'Símbolo blanco (botones)', { mediaFolder: '..', accept: 'image/png,image/jpeg,image/webp' }),
       image('favicon', 'Icono de la pestaña', { mediaFolder: '..', accept: 'image/png,image/jpeg,image/webp', hint: 'Cuadrado, mínimo 256 px.' }),
