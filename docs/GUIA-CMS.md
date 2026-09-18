@@ -1,6 +1,6 @@
 # Guía rápida para editar la web — Medusa Show
 
-**Dónde:** https://medusashownyc.vercel.app/admin/ (funciona igual en el móvil,
+**Dónde:** https://www.medusanyc.com/admin (funciona igual en el móvil,
 donde puedes guardarlo en la pantalla de inicio como si fuera una app, y en el
 ordenador, donde verás un menú lateral con todas las secciones). Ábrelo en Safari o
 Chrome para poder guardarlo como app en la pantalla de inicio.

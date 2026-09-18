@@ -1,8 +1,8 @@
 # Medusa Show — sitio web + panel de contenido
 
-Sitio estático bilingüe (EN/ES) de [medusashownyc.vercel.app](https://medusashownyc.vercel.app),
+Sitio estático bilingüe (EN/ES) de [www.medusanyc.com](https://www.medusanyc.com) (alias de Vercel: medusashownyc.vercel.app),
 generado con [Eleventy](https://www.11ty.dev/) a partir de contenido editable desde
-un panel propio para la clienta (`/admin/`, móvil primero, acceso con correo y
+un panel propio para la clienta (`/admin`, móvil primero, acceso con correo y
 contraseña). Daniel edita `content/` directamente en el repo cuando hace falta.
 
 ```
@@ -42,7 +42,7 @@ eleventy.config.js  vercel.json  package.json
 
 ```bash
 npm install
-npm run dev       # sitio en http://localhost:8080 + panel en /admin/ (modo local)
+npm run dev       # sitio en http://localhost:8080 + panel en /admin (modo local)
 npm run dev:site  # solo el sitio, con recarga automática en el navegador
 npm run build     # genera _site/ (lo que Vercel publica)
 ```
@@ -64,7 +64,7 @@ clases; solo cambió de dónde sale el contenido.
 
 ## Cómo funciona el panel
 
-1. La clienta entra a `https://medusashownyc.vercel.app/admin/` desde el móvil o el
+1. La clienta entra a `https://www.medusanyc.com/admin` desde el móvil o el
    ordenador con **su correo y su contraseña** (no necesita GitHub ni ninguna
    otra cuenta). La contraseña no se guarda en ningún sitio: en Vercel solo
    vive su hash scrypt (`PANEL_PASSWORD_HASH`).
@@ -142,11 +142,11 @@ arrastrar los shows en la lista del panel (`reorder: true`).
    | `SESSION_SECRET` | el secreto que imprime el script |
    | `GITHUB_TOKEN` | el token fine-grained |
    | `PANEL_NAME` | (opcional) nombre de la clienta solo para el saludo del panel (nunca aparece en los commits) |
-   | `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET` | claves de Cloudflare Turnstile (reto anti-bots del login). **Obligatorias en producción, las dos**: sin ellas el login responde "Falta la verificación anti-bots". Si Cloudflare no responde, el login dice "inténtalo en un momento" sin contar el intento como fallido. Gratis: dash.cloudflare.com → Turnstile → Add site (dominio `medusashownyc.vercel.app`, modo Managed) |
+   | `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET` | claves de Cloudflare Turnstile (reto anti-bots del login). **Obligatorias en producción, las dos**: sin ellas el login responde "Falta la verificación anti-bots". Si Cloudflare no responde, el login dice "inténtalo en un momento" sin contar el intento como fallido. Gratis: dash.cloudflare.com → Turnstile → Add site (hostnames `www.medusanyc.com`, `medusanyc.com` y `medusashownyc.vercel.app`, modo Managed) |
    | `PANEL_AUTHOR_EMAIL` | (opcional) correo de autoría de los commits; por defecto `panel@medusa-show.invalid` para no publicar el correo real de la clienta en el historial del repo público |
    | `PANEL_ALLOW_NO_TURNSTILE` | (no recomendado) `1` para permitir el login sin Turnstile |
 
-4. Redeploy. Listo: `/admin/` → correo + contraseña.
+4. Redeploy. Listo: `/admin` → correo + contraseña.
 
 Para cambiar la contraseña (o si pierde el teléfono): volver a ejecutar el
 script y sustituir `PANEL_PASSWORD_HASH`. Las sesiones van ligadas a la
