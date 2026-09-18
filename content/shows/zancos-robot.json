@@ -1,0 +1,164 @@
+{
+  "en": {
+    "name": "Stilt Walkers & Robot",
+    "order": 6,
+    "accent": "magenta",
+    "dark": false,
+    "icon": "robot",
+    "cover": "/assets/images/zancos-robot.jpg",
+    "cover_alt": "Stilt performers in stage costume among the crowd",
+    "crop": "center",
+    "seo_title": "Stilt Walkers & Robot — Medusa Show",
+    "seo_description": "Roaming stilt performers and an interactive robot character who work through your event. Ideal stage presence for openings and outdoor activations.",
+    "badge": "Stilt Walkers & Robot",
+    "eyebrow": "Roaming performers",
+    "headline": "Stage presence that roams your event",
+    "paragraphs": [
+      {
+        "text": "Turn up the energy with our stilt walkers, bringing dancing, lights, balloons, and nonstop fun into the crowd. The perfect way to get everyone dancing and make your celebration unforgettable."
+      },
+      {
+        "text": "Roaming stilt performers and an interactive robot character who work through the event among your guests — creating visual presence from the first minute, no stage required."
+      },
+      {
+        "text": "It's the format that works best when you want the show to \"be everywhere\" — ideal for large activations, fairs and outdoor openings."
+      }
+    ],
+    "stats": [
+      {
+        "value": "45–60 min",
+        "label": "Roaming duration"
+      },
+      {
+        "value": "1–4",
+        "label": "Performers"
+      },
+      {
+        "value": "Open spaces",
+        "label": "Ideal for"
+      }
+    ],
+    "features": [
+      {
+        "icon": "robot",
+        "title": "Stilt performers",
+        "description": "Elevated presence and stage costuming that reads from a distance."
+      },
+      {
+        "icon": "robot-cara",
+        "title": "Interactive robot character",
+        "description": "A playful extra that sparks direct interaction with the crowd."
+      },
+      {
+        "icon": "rayo",
+        "title": "Roaming, not a stage",
+        "description": "They move through the whole event space, not one fixed spot."
+      },
+      {
+        "icon": "foto",
+        "title": "Guaranteed photo moment",
+        "description": "One of the most shared formats on social by guests themselves."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Brand openings"
+      },
+      {
+        "label": "Point-of-sale activations"
+      },
+      {
+        "label": "Fairs and festivals"
+      },
+      {
+        "label": "Themed parties"
+      }
+    ],
+    "related": [
+      "fuego",
+      "garotas",
+      "gogo-dancers"
+    ]
+  },
+  "es": {
+    "name": "Zancos & Robot",
+    "order": 6,
+    "accent": "magenta",
+    "dark": false,
+    "icon": "robot",
+    "cover": "/assets/images/zancos-robot.jpg",
+    "cover_alt": "Performers en zancos con vestuario escénico entre el público",
+    "crop": "center",
+    "seo_title": "Zancos & Robot — Medusa Show",
+    "seo_description": "Performers itinerantes en zancos y un personaje robot interactivo que recorren tu evento. Presencia escénica ideal para aperturas y activaciones al aire libre.",
+    "badge": "Zancos & Robot",
+    "eyebrow": "Performers itinerantes",
+    "headline": "Presencia escénica que recorre tu evento",
+    "paragraphs": [
+      {
+        "text": "Sube la energía con nuestros zanqueros, llevando baile, luces, globos y diversión sin parar entre el público. La forma perfecta de poner a bailar a todos y hacer inolvidable tu celebración."
+      },
+      {
+        "text": "Performers itinerantes en zancos y un personaje robot interactivo que recorren el evento entre el público — generando presencia visual desde el primer minuto, sin necesidad de un escenario."
+      },
+      {
+        "text": "Es el formato que mejor funciona cuando quieres que el show \"esté en todos lados\" — ideal para activaciones grandes, ferias y aperturas al aire libre."
+      }
+    ],
+    "stats": [
+      {
+        "value": "45–60 min",
+        "label": "Duración recorrido"
+      },
+      {
+        "value": "1–4",
+        "label": "Performers"
+      },
+      {
+        "value": "Espacios abiertos",
+        "label": "Ideal en"
+      }
+    ],
+    "features": [
+      {
+        "icon": "robot",
+        "title": "Performers en zancos",
+        "description": "Presencia elevada y vestuario escénico que se ve desde lejos."
+      },
+      {
+        "icon": "robot-cara",
+        "title": "Personaje robot interactivo",
+        "description": "Un plus lúdico que genera interacción directa con el público."
+      },
+      {
+        "icon": "rayo",
+        "title": "Recorrido, no escenario",
+        "description": "Se mueven por todo el espacio del evento, no un punto fijo."
+      },
+      {
+        "icon": "foto",
+        "title": "Momento fotográfico garantizado",
+        "description": "De los formatos más compartidos en redes por los propios invitados."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Aperturas de marca"
+      },
+      {
+        "label": "Activaciones en punto de venta"
+      },
+      {
+        "label": "Ferias y festivales"
+      },
+      {
+        "label": "Fiestas temáticas"
+      }
+    ],
+    "related": [
+      "fuego",
+      "garotas",
+      "gogo-dancers"
+    ]
+  }
+}

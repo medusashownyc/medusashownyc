@@ -1,0 +1,16 @@
+{
+  "name": "medusashownyc",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Medusa Show — sitio estático (Eleventy) con panel de contenido propio para la clienta",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "dev:site": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  }
+}

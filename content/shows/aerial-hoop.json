@@ -1,0 +1,158 @@
+{
+  "en": {
+    "name": "Aerial Hoop",
+    "order": 7,
+    "accent": "blue",
+    "dark": false,
+    "icon": "aro",
+    "cover": "/assets/images/imgl5742_1.webp",
+    "cover_alt": "Aerial hoop performer on stage",
+    "crop": "center",
+    "seo_title": "Aerial Hoop — Medusa Show",
+    "seo_description": "A stunning Aerial Hoop performance combining elegance, strength and breathtaking movement in the air. Perfect for galas, clubs and large-format events.",
+    "badge": "Aerial Hoop",
+    "eyebrow": "Live aerial artistry",
+    "headline": "Breathtaking movement, suspended in the air",
+    "paragraphs": [
+      {
+        "text": "Elevate your event with a stunning Aerial Hoop performance, combining elegance, strength, and breathtaking movement in the air."
+      },
+      {
+        "text": "A single aerial artist commands the room from a suspended hoop, weaving strength and grace into a routine built to be the most talked-about visual moment of the night."
+      }
+    ],
+    "stats": [
+      {
+        "value": "5–10 min",
+        "label": "Duration"
+      },
+      {
+        "value": "1",
+        "label": "Performer"
+      },
+      {
+        "value": "4+ m",
+        "label": "Ceiling clearance"
+      }
+    ],
+    "features": [
+      {
+        "icon": "aro-soporte",
+        "title": "Professional rigging",
+        "description": "Rig setup and anchor point inspection handled by our own team."
+      },
+      {
+        "icon": "rayo",
+        "title": "Custom choreography",
+        "description": "Routine matched to your event's music and tone."
+      },
+      {
+        "icon": "corona",
+        "title": "Stage costuming",
+        "description": "Matched to your event's palette and tone."
+      },
+      {
+        "icon": "personas",
+        "title": "Safety coordination",
+        "description": "Safety protocols coordinated with the venue in advance."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Gala dinners"
+      },
+      {
+        "label": "Nightclubs"
+      },
+      {
+        "label": "Brand activations"
+      },
+      {
+        "label": "Private celebrations"
+      }
+    ],
+    "related": [
+      "fuego",
+      "romantic-experience",
+      "belly-dancers"
+    ]
+  },
+  "es": {
+    "name": "Aro Aéreo",
+    "order": 7,
+    "accent": "blue",
+    "dark": false,
+    "icon": "aro",
+    "cover": "/assets/images/imgl5742_1.webp",
+    "cover_alt": "Performer de aro aéreo sobre el escenario",
+    "crop": "center",
+    "seo_title": "Aro Aéreo — Medusa Show",
+    "seo_description": "Una impactante performance de Aro Aéreo que combina elegancia, fuerza y movimiento asombroso en el aire. Perfecta para galas, clubs y eventos de gran formato.",
+    "badge": "Aerial Hoop",
+    "eyebrow": "Arte aéreo en vivo",
+    "headline": "Movimiento asombroso, suspendido en el aire",
+    "paragraphs": [
+      {
+        "text": "Eleva tu evento con una impactante performance de Aro Aéreo, que combina elegancia, fuerza y movimiento asombroso en el aire."
+      },
+      {
+        "text": "Una sola artista aérea toma el centro de la sala desde un aro suspendido, combinando fuerza y gracia en una rutina pensada para ser el momento visual más comentado del evento."
+      }
+    ],
+    "stats": [
+      {
+        "value": "5–10 min",
+        "label": "Duración"
+      },
+      {
+        "value": "1",
+        "label": "Performer"
+      },
+      {
+        "value": "4+ m",
+        "label": "Altura de techo"
+      }
+    ],
+    "features": [
+      {
+        "icon": "aro-soporte",
+        "title": "Rigging profesional",
+        "description": "Montaje e inspección del punto de anclaje a cargo de nuestro equipo."
+      },
+      {
+        "icon": "rayo",
+        "title": "Coreografía a medida",
+        "description": "Rutina ajustada a la música y al tono de tu evento."
+      },
+      {
+        "icon": "corona",
+        "title": "Vestuario escénico",
+        "description": "A juego con la paleta y el tono de tu evento."
+      },
+      {
+        "icon": "personas",
+        "title": "Coordinación de seguridad",
+        "description": "Protocolos de seguridad revisados con el lugar del evento por adelantado."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Galas"
+      },
+      {
+        "label": "Clubs nocturnos"
+      },
+      {
+        "label": "Activaciones de marca"
+      },
+      {
+        "label": "Celebraciones privadas"
+      }
+    ],
+    "related": [
+      "fuego",
+      "romantic-experience",
+      "belly-dancers"
+    ]
+  }
+}

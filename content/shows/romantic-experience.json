@@ -1,0 +1,158 @@
+{
+  "en": {
+    "name": "Romantic Experience",
+    "order": 8,
+    "accent": "gold",
+    "dark": false,
+    "icon": "corazon",
+    "cover": "/assets/images/romantic.webp",
+    "cover_alt": "Ballet dancer in an elegant pose",
+    "crop": "center",
+    "seo_title": "Romantic Experience — Medusa Show",
+    "seo_description": "A ballet dancer and live violinist performing together for an elegant, intimate moment — perfect for a romantic dinner, a first dance or a special celebration.",
+    "badge": "Romantic Experience",
+    "eyebrow": "Live ballet & violin",
+    "headline": "An intimate moment set to live music",
+    "paragraphs": [
+      {
+        "text": "Create a magical evening with the elegance of a ballet dancer and live violinist, performing together to make your romantic dinner or special celebration truly unforgettable."
+      },
+      {
+        "text": "A refined, quiet-energy performance — perfect for a first dance, an anniversary dinner, or any moment in your event that calls for elegance rather than spectacle."
+      }
+    ],
+    "stats": [
+      {
+        "value": "10–15 min",
+        "label": "Duration"
+      },
+      {
+        "value": "2",
+        "label": "Performers (dancer + violinist)"
+      },
+      {
+        "value": "3×3 m",
+        "label": "Minimum space"
+      }
+    ],
+    "features": [
+      {
+        "icon": "ondas",
+        "title": "Ballet choreography",
+        "description": "A delicate routine, timed to the exact moment of your event."
+      },
+      {
+        "icon": "musica",
+        "title": "Live violin",
+        "description": "Live music accompanying every movement of the choreography."
+      },
+      {
+        "icon": "corona",
+        "title": "Elegant costuming",
+        "description": "Matched to your event's palette and tone."
+      },
+      {
+        "icon": "corazon",
+        "title": "Ideal for intimate moments",
+        "description": "Built for first dances, dinners and private celebrations."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Weddings"
+      },
+      {
+        "label": "Anniversary dinners"
+      },
+      {
+        "label": "Private celebrations"
+      },
+      {
+        "label": "Gala dinners"
+      }
+    ],
+    "related": [
+      "salsa",
+      "belly-dancers",
+      "aerial-hoop"
+    ]
+  },
+  "es": {
+    "name": "Experiencia Romántica",
+    "order": 8,
+    "accent": "gold",
+    "dark": false,
+    "icon": "corazon",
+    "cover": "/assets/images/romantic.webp",
+    "cover_alt": "Bailarina de ballet en una pose elegante",
+    "crop": "center",
+    "seo_title": "Experiencia Romántica — Medusa Show",
+    "seo_description": "Una bailarina de ballet y un violinista en vivo actuando juntos para un momento elegante e íntimo — perfecto para una cena romántica, un primer baile o una celebración especial.",
+    "badge": "Romantic Experience",
+    "eyebrow": "Ballet y violín en vivo",
+    "headline": "Un momento íntimo, en vivo y en escena",
+    "paragraphs": [
+      {
+        "text": "Crea una noche mágica con la elegancia de una bailarina de ballet y un violinista en vivo, actuando juntos para hacer tu cena romántica o celebración especial verdaderamente inolvidable."
+      },
+      {
+        "text": "Un formato de energía tranquila y gran belleza visual — ideal para un primer baile, una cena de aniversario o cualquier momento del evento que pida elegancia en vez de espectáculo."
+      }
+    ],
+    "stats": [
+      {
+        "value": "10–15 min",
+        "label": "Duración"
+      },
+      {
+        "value": "2",
+        "label": "Performers (bailarina + violinista)"
+      },
+      {
+        "value": "3×3 m",
+        "label": "Espacio mínimo"
+      }
+    ],
+    "features": [
+      {
+        "icon": "ondas",
+        "title": "Coreografía de ballet",
+        "description": "Una rutina delicada, pensada para el momento exacto de tu evento."
+      },
+      {
+        "icon": "musica",
+        "title": "Violín en vivo",
+        "description": "Música en vivo que acompaña cada movimiento de la coreografía."
+      },
+      {
+        "icon": "corona",
+        "title": "Vestuario elegante",
+        "description": "A juego con la paleta y el tono de tu evento."
+      },
+      {
+        "icon": "corazon",
+        "title": "Ideal para momentos íntimos",
+        "description": "Pensado para primeros bailes, cenas y celebraciones privadas."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Bodas"
+      },
+      {
+        "label": "Cenas de aniversario"
+      },
+      {
+        "label": "Celebraciones privadas"
+      },
+      {
+        "label": "Cenas de gala"
+      }
+    ],
+    "related": [
+      "salsa",
+      "belly-dancers",
+      "aerial-hoop"
+    ]
+  }
+}

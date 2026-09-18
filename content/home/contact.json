@@ -1,0 +1,46 @@
+{
+  "en": {
+    "eyebrow": "Book now",
+    "title": "Schedule a call to plan your event",
+    "text": "Tell us what you need and we'll coordinate date, format and budget directly with you. No commitment until the details are locked in.",
+    "points": [
+      {
+        "text": "Response in under 24 hours"
+      },
+      {
+        "text": "Custom quote based on format and city"
+      },
+      {
+        "text": "Full production and logistics coordination"
+      }
+    ],
+    "cal_event": "Booking Call",
+    "cal_duration": "15 min",
+    "cal_mode": "Video call",
+    "cal_timezone": "Auto timezone",
+    "cal_text": "Open the calendar and book your call in seconds, without leaving this page.",
+    "cal_button": "Check availability"
+  },
+  "es": {
+    "eyebrow": "Reservar cita",
+    "title": "Agenda una llamada para negociar tu evento",
+    "text": "Cuéntanos qué necesitas y coordinamos fecha, formato y presupuesto directamente contigo. Sin compromisos hasta cerrar los detalles.",
+    "points": [
+      {
+        "text": "Respuesta en menos de 24 horas"
+      },
+      {
+        "text": "Cotización a medida según formato y ciudad"
+      },
+      {
+        "text": "Coordinación completa de producción y logística"
+      }
+    ],
+    "cal_event": "Llamada de reserva",
+    "cal_duration": "15 minutos",
+    "cal_mode": "Videollamada",
+    "cal_timezone": "Zona horaria automática",
+    "cal_text": "Abre el calendario y agenda tu llamada en segundos, sin salir de esta página.",
+    "cal_button": "Ver disponibilidad"
+  }
+}

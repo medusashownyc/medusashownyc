@@ -1,0 +1,114 @@
+---
+layout: layout.njk
+pagination:
+  data: cms.shows
+  size: 1
+  alias: show
+permalink: "{{ show.url }}"
+---
+{%- import "macros.njk" as m -%}
+{%- set S = cms.settings -%}
+{%- set T = cms.strings -%}
+<main class="show-page{% if show.en.dark %} show-page--dark{% endif %}" style="--accent: var(--brand-{{ show.en.accent }})">
+
+  <div class="show-story">
+    <div class="show-story-media">
+      <div class="show-story-frame">
+        <img src="{{ show.en.cover }}" alt="{{ show.en.cover_alt }}"{{ m.esAttr('alt', show.es.cover_alt, show.en.cover_alt) }}{% if show.en.crop == 'top' %} style="object-position: 50% 0%"{% endif %}>
+      </div>
+      <span class="show-story-badge"{{ m.es(show.es.badge, show.en.badge) }}>{{ show.en.badge }}</span>
+    </div>
+
+    <div class="show-story-content">
+      <section class="show-block show-block-title">
+        <p class="eyebrow eyebrow-accent" data-reveal{{ m.es(show.es.eyebrow, show.en.eyebrow) }}>{{ show.en.eyebrow }}</p>
+        <h1 data-reveal{{ m.es(show.es.headline, show.en.headline) }}>{{ show.en.headline }}</h1>
+        <div class="show-block-actions" data-reveal>
+          <a class="show-cta-btn" href="#booking" {{ m.cal(S.en.cal_link) }}>
+            <span{{ m.es(T.es.book_this_show, T.en.book_this_show) }}>{{ T.en.book_this_show }}</span>
+            {{ m.arrow() }}
+          </a>
+          <a class="show-cta-btn-outline" href="index.html#experiences"{{ m.es(T.es.see_all_shows, T.en.see_all_shows) }}>{{ T.en.see_all_shows }}</a>
+        </div>
+      </section>
+
+      <section class="show-block show-block-about">
+        <p class="eyebrow" data-reveal{{ m.es(T.es.about_the_show, T.en.about_the_show) }}>{{ T.en.about_the_show }}</p>
+        <h2 class="section-title" data-reveal{{ m.es(show.es.name, show.en.name) }}>{{ show.en.name }}</h2>
+        {%- for paragraph in show.en.paragraphs or [] %}
+        {%- set paragraphEs = show.es.paragraphs[loop.index0] %}
+        <p data-reveal{{ m.es(paragraphEs.text, paragraph.text) }}>{{ paragraph.text }}</p>
+        {%- endfor %}
+        {%- if show.en.stats.length %}
+        <div class="show-story-stats" data-reveal>
+          {%- for stat in show.en.stats %}
+          {%- set statEs = show.es.stats[loop.index0] %}
+          <div class="show-story-stat">
+            <span{{ m.es(statEs.value, stat.value) }}>{{ stat.value }}</span>
+            <label{{ m.es(statEs.label, stat.label) }}>{{ stat.label }}</label>
+          </div>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+      </section>
+
+      {%- if show.en.features.length %}
+      <section class="show-block show-block-features">
+        <p class="eyebrow" data-reveal{{ m.es(T.es.whats_included, T.en.whats_included) }}>{{ T.en.whats_included }}</p>
+        <h2 class="section-title" data-reveal{{ m.es(T.es.features_title, T.en.features_title) }}>{{ T.en.features_title }}</h2>
+        <ul class="show-feature-list">
+          {%- for feature in show.en.features %}
+          {%- set featureEs = show.es.features[loop.index0] %}
+          <li data-reveal>
+            <span class="show-feature-icon">
+              {{ cms.icons | icon(feature.icon, '1.8') | safe }}
+            </span>
+            <div>
+              <h3{{ m.es(featureEs.title, feature.title) }}>{{ feature.title }}</h3>
+              <p{{ m.es(featureEs.description, feature.description) }}>{{ feature.description }}</p>
+            </div>
+          </li>
+          {%- endfor %}
+        </ul>
+      </section>
+      {%- endif %}
+
+      <section class="show-block show-block-cta">
+        {%- if show.en.tags.length %}
+        <p class="eyebrow" data-reveal{{ m.es(T.es.ideal_for, T.en.ideal_for) }}>{{ T.en.ideal_for }}</p>
+        <ul class="show-tags" data-reveal>
+          {%- for tag in show.en.tags %}
+          {%- set tagEs = show.es.tags[loop.index0] %}
+          <li{{ m.es(tagEs.label, tag.label) }}>{{ tag.label }}</li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+        <div class="show-cta-card" data-reveal>
+          <h2{{ m.es(T.es.cta_card_title, T.en.cta_card_title) }}>{{ T.en.cta_card_title }}</h2>
+          <a class="show-cta-btn" href="#booking" {{ m.cal(S.en.cal_link) }}>
+            <span{{ m.es(T.es.book_now, T.en.book_now) }}>{{ T.en.book_now }}</span>
+            {{ m.arrow() }}
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  {%- if show.relatedShows.length %}
+  <section class="show-related">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal{{ m.es(T.es.discover_more, T.en.discover_more) }}>{{ T.en.discover_more }}</p>
+      <h2 class="section-title" data-reveal{{ m.es(T.es.other_shows, T.en.other_shows) }}>{{ T.en.other_shows }}</h2>
+      <div class="show-related-grid">
+        {%- for related in show.relatedShows %}
+        <a class="show-related-card" href="{{ related.url }}" data-reveal>
+          <img src="{{ related.en.cover }}" alt="{{ related.en.cover_alt }}"{{ m.esAttr('alt', related.es.cover_alt, related.en.cover_alt) }}{% if related.en.crop == 'top' %} style="object-position: 50% 0%"{% endif %}>
+          <span{{ m.es(related.es.name, related.en.name) }}>{{ related.en.name }}</span>
+        </a>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+  {%- endif %}
+
+</main>

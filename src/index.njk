@@ -1,0 +1,246 @@
+---
+layout: layout.njk
+permalink: index.html
+isHome: true
+---
+{%- import "macros.njk" as m -%}
+{%- set S = cms.settings -%}
+{%- set T = cms.strings -%}
+{%- set hero = cms.home.hero -%}
+{%- set about = cms.home.about -%}
+{%- set packages = cms.home.packages -%}
+{%- set clients = cms.home.clients -%}
+{%- set contact = cms.home.contact -%}
+{%- set gallery = cms.home.gallery -%}
+<div class="page">
+  <section class="hero" id="top">
+    <h1 class="hero-title">
+      <span class="hero-title-line"{{ m.es(hero.es.line1, hero.en.line1) }}>{{ hero.en.line1 }}</span>
+      <span class="hero-title-line"{{ m.es(hero.es.line2, hero.en.line2) }}>{{ hero.en.line2 }}</span>
+      <span class="hero-title-line"{{ m.es(hero.es.line3, hero.en.line3) }}>{{ hero.en.line3 }}</span>
+    </h1>
+
+    <div class="mq-scene" id="mqScene" aria-hidden="true"></div>
+
+    <!-- One entry per show (content/shows/*.json, ordered by "Orden"). The
+         data-image/data-crop attributes also feed the WebGL ring in
+         carousel.js, so a cover changed in the CMS updates both at once. -->
+    <ul class="service-row" id="lineup">
+      {%- for show in cms.shows %}
+      <li data-service="{{ loop.index0 }}" data-image="{{ show.en.cover }}" data-crop="{{ show.en.crop }}">
+        <a href="{{ show.url }}">
+          {{ cms.icons | icon(show.en.icon) | safe }}
+          <span{{ m.es(show.es.name, show.en.name) }}>{{ show.en.name }}</span>
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section class="experiences" id="experiences">
+    <div class="experiences-stage" data-heading="{{ gallery.en.heading }}" data-heading-es="{{ gallery.es.heading }}" data-close-label="{{ T.en.lightbox_close }}" data-close-label-es="{{ T.es.lightbox_close }}">
+      <canvas class="experiences-grid-canvas" id="experiencesGridCanvas" aria-hidden="true"></canvas>
+      <div class="experiences-tunnel" id="experiencesTunnel"></div>
+      <div class="experiences-vignette" aria-hidden="true"></div>
+    </div>
+  </section>
+</div>
+
+<!-- Photo library for the tunnel (content/home/gallery.json), read by experiences.js. -->
+<script type="application/json" id="galleryData">{{ cms.galleryJson | safe }}</script>
+
+<!-- .about-wrap gives #about's sticky positioning a properly-sized
+     containing block (exactly one viewport tall) to hold its "stuck"
+     range to — without it, the containing block is effectively the rest
+     of the document, and #about (once stuck) never lets go. Pulled up by
+     margin-top:-100vh (see styles.css) so its natural document position
+     lands one viewport-height early — right at the start of
+     #experiences' own natural sticky release. That overlap is what lets
+     it sit sticky-pinned, fully laid out, directly behind #experiences'
+     stage (still opaque, still covering it) for that whole window,
+     exactly the way #hero sits pinned behind #experiences for the entire
+     photo run — then simply gets uncovered as the stage scrolls away,
+     instead of growing/fading in on its own. -->
+<div class="about-wrap">
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-media" data-reveal>
+      <img src="{{ about.en.image }}" alt="{{ about.en.image_alt }}"{{ m.esAttr('alt', about.es.image_alt, about.en.image_alt) }}>
+      <span class="about-media-ring" aria-hidden="true"></span>
+      <span class="about-media-badge" data-reveal>
+        <strong>{{ about.en.badge_number }}</strong>
+        <em{{ m.es(about.es.badge_label, about.en.badge_label) }}>{{ about.en.badge_label }}</em>
+      </span>
+    </div>
+
+    <div class="about-copy">
+      <p class="eyebrow" data-reveal{{ m.es(about.es.eyebrow, about.en.eyebrow) }}>{{ about.en.eyebrow }}</p>
+      <h2 data-reveal{{ m.es(about.es.title, about.en.title) }}>{{ about.en.title }}</h2>
+      <p class="about-lead" data-reveal{{ m.es(about.es.lead, about.en.lead) }}>{{ about.en.lead }}</p>
+
+      <div class="about-stats">
+        {%- for stat in about.en.stats %}
+        {%- set statEs = about.es.stats[loop.index0] %}
+        <div class="stat" data-reveal>
+          <span class="stat-value"><span class="stat-suffix">{{ stat.suffix }}</span><span class="stat-number" data-count="{{ stat.number }}">0</span></span>
+          <span class="stat-label"{{ m.es(statEs.label, stat.label) }}>{{ stat.label }}</span>
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section class="rituales" id="rituales">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal{{ m.es(packages.es.eyebrow, packages.en.eyebrow) }}>{{ packages.en.eyebrow }}</p>
+    <h2 class="section-title" data-reveal{{ m.es(packages.es.title, packages.en.title) }}>{{ packages.en.title }}</h2>
+    <p class="rituales-lead" data-reveal{{ m.es(packages.es.lead, packages.en.lead) }}>{{ packages.en.lead }}</p>
+
+    {%- if packages.en.items.length %}
+    {%- set first = packages.en.items[0] %}
+    <div class="rituales-showcase">
+      <!-- Populated/swapped by sections.js from the data-* attributes on
+           .ritual-thumb below — a single feature panel that crossfades
+           between packages. It starts out showing the first one. -->
+      <div class="ritual-feature" id="ritualFeature" data-reveal>
+        <div class="ritual-feature-media">
+          <img id="ritualFeatureImg" src="{{ first.image }}" alt="{{ first.image_alt }}">
+          <span class="ritual-feature-numeral" id="ritualFeatureNumeral" aria-hidden="true">{{ first.numeral }}</span>
+        </div>
+        <div class="ritual-feature-body">
+          <p class="ritual-card-tag" id="ritualFeatureTag">{{ first.tag }}</p>
+          <h3 id="ritualFeatureTitle">{{ first.title }}</h3>
+          <p id="ritualFeatureDesc">{{ first.description }}</p>
+          <ul class="ritual-card-includes" id="ritualFeatureIncludes"></ul>
+          <a class="ritual-card-cta" href="#booking" {{ m.cal(S.en.cal_link) }}>
+            <span{{ m.es(T.es.quote_package, T.en.quote_package) }}>{{ T.en.quote_package }}</span>
+            {{ m.arrow() }}
+          </a>
+        </div>
+      </div>
+
+      <div class="ritual-thumbs" id="ritualThumbs" role="tablist" aria-label="{{ T.en.choose_package }}"{{ m.esAttr('aria-label', T.es.choose_package, T.en.choose_package) }} data-reveal>
+        {%- for item in packages.en.items %}
+        {%- set itemEs = packages.es.items[loop.index0] %}
+        <button
+          type="button"
+          class="ritual-thumb{% if loop.first %} is-active{% endif %}"
+          role="tab"
+          aria-selected="{{ 'true' if loop.first else 'false' }}"
+          data-accent="{{ item.accent }}"
+          data-numeral="{{ item.numeral }}"
+          data-tag="{{ item.tag }}"
+          data-tag-es="{{ itemEs.tag }}"
+          data-title="{{ item.title }}"
+          data-title-es="{{ itemEs.title }}"
+          data-desc="{{ item.description }}"
+          data-desc-es="{{ itemEs.description }}"
+          data-includes="{{ item.includesJson }}"
+          data-image="{{ item.image }}"
+          data-alt="{{ item.image_alt }}"
+          data-alt-es="{{ itemEs.image_alt }}"
+        >
+          <span class="ritual-thumb-media"><img src="{{ item.image }}" alt=""><span class="ritual-thumb-progress"></span></span>
+          <span class="ritual-thumb-text">
+            <em{{ m.es(itemEs.kicker, item.kicker) }}>{{ item.kicker }}</em>
+            <strong{{ m.es(itemEs.title, item.title) }}>{{ item.title }}</strong>
+          </span>
+        </button>
+        {%- endfor %}
+      </div>
+    </div>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal{{ m.es(clients.es.eyebrow, clients.en.eyebrow) }}>{{ clients.en.eyebrow }}</p>
+    <h2 class="section-title" data-reveal{{ m.es(clients.es.title, clients.en.title) }}>{{ clients.en.title }}</h2>
+  </div>
+
+  <!-- Both marquees repeat their list twice so the loop is seamless. -->
+  <div class="marquee" data-reveal>
+    <div class="marquee-track">
+      {%- for pass in range(0, 2) %}
+      {%- for quote in clients.en.quotes %}
+      {%- set quoteEs = clients.es.quotes[loop.index0] %}
+      <blockquote data-es="“{{ quoteEs.text }}” — {{ quoteEs.author }}">“{{ quote.text }}” <cite>— {{ quote.author }}</cite></blockquote>
+      {%- endfor %}
+      {%- endfor %}
+    </div>
+  </div>
+
+  <div class="marquee marquee-photos" data-reveal>
+    <div class="marquee-track marquee-photos-track">
+      {%- for pass in range(0, 2) %}
+      {%- for photo in clients.en.photos %}
+      <span class="marquee-photo"><img src="{{ photo.image }}" alt=""></span>
+      {%- endfor %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="wrap booking-grid">
+    <div class="booking-intro">
+      <p class="eyebrow" data-reveal{{ m.es(contact.es.eyebrow, contact.en.eyebrow) }}>{{ contact.en.eyebrow }}</p>
+      <h2 data-reveal{{ m.es(contact.es.title, contact.en.title) }}>{{ contact.en.title }}</h2>
+      <p data-reveal{{ m.es(contact.es.text, contact.en.text) }}>{{ contact.en.text }}</p>
+
+      <ul class="booking-points" data-reveal>
+        {%- for point in contact.en.points %}
+        {%- set pointEs = contact.es.points[loop.index0] %}
+        <li{{ m.es(pointEs.text, point.text) }}>{{ point.text }}</li>
+        {%- endfor %}
+      </ul>
+
+      <div class="booking-direct" data-reveal>
+        <a href="mailto:{{ S.en.email }}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 6 9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+          {{ S.en.email }}
+        </a>
+        <a href="https://wa.me/{{ S.en.whatsapp }}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.55L3 20l1.05-5.4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 10.5c0 3 2 5 5 5"/></svg>
+          <span{{ m.es(T.es.direct_whatsapp, T.en.direct_whatsapp) }}>{{ T.en.direct_whatsapp }}</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="booking-cal-trigger" data-reveal>
+      <div class="cal-card-brand">
+        <span class="cal-card-avatar" aria-hidden="true">
+          <img src="{{ S.en.symbol }}" alt="">
+        </span>
+        <div class="cal-card-brand-text">
+          <span class="cal-card-org"{{ m.es(S.es.site_name, S.en.site_name) }}>{{ S.en.site_name }}</span>
+          <span class="cal-card-event"{{ m.es(contact.es.cal_event, contact.en.cal_event) }}>{{ contact.en.cal_event }}</span>
+        </div>
+      </div>
+
+      <ul class="cal-card-meta">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          <span{{ m.es(contact.es.cal_duration, contact.en.cal_duration) }}>{{ contact.en.cal_duration }}</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3.5v11L16 14"/></svg>
+          <span{{ m.es(contact.es.cal_mode, contact.en.cal_mode) }}>{{ contact.en.cal_mode }}</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z"/></svg>
+          <span{{ m.es(contact.es.cal_timezone, contact.en.cal_timezone) }}>{{ contact.en.cal_timezone }}</span>
+        </li>
+      </ul>
+
+      <p{{ m.es(contact.es.cal_text, contact.en.cal_text) }}>{{ contact.en.cal_text }}</p>
+      <button type="button" class="show-cta-btn" {{ m.cal(S.en.cal_link) }}>
+        <span{{ m.es(contact.es.cal_button, contact.en.cal_button) }}>{{ contact.en.cal_button }}</span>
+        {{ m.arrow() }}
+      </button>
+    </div>
+  </div>
+</section>

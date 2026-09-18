@@ -1,0 +1,54 @@
+{
+  "en": {
+    "image": "/assets/images/Grupal.PNG",
+    "image_alt": "Medusa Show cast group photo",
+    "badge_number": "8+",
+    "badge_label": "years creating shows",
+    "eyebrow": "About us",
+    "title": "We turn any event into a show people remember",
+    "lead": "Medusa Show is an entertainment company specializing in unforgettable live performances for private events, nightlife, restaurants, weddings and special celebrations.",
+    "stats": [
+      {
+        "number": 8,
+        "suffix": "+",
+        "label": "Years of experience"
+      },
+      {
+        "number": 400,
+        "suffix": "+",
+        "label": "Events produced"
+      },
+      {
+        "number": 30,
+        "suffix": "+",
+        "label": "Artists in the cast"
+      }
+    ]
+  },
+  "es": {
+    "image": "/assets/images/Grupal.PNG",
+    "image_alt": "Foto grupal del elenco de Medusa Show",
+    "badge_number": "8+",
+    "badge_label": "años creando shows",
+    "eyebrow": "Sobre nosotros",
+    "title": "Convertimos cualquier evento en un show que se recuerda",
+    "lead": "Medusa Show es una compañía de entretenimiento especializada en shows en vivo inolvidables para eventos privados, vida nocturna, restaurantes, bodas y celebraciones especiales.",
+    "stats": [
+      {
+        "number": 8,
+        "suffix": "+",
+        "label": "Años de experiencia"
+      },
+      {
+        "number": 400,
+        "suffix": "+",
+        "label": "Eventos realizados"
+      },
+      {
+        "number": 30,
+        "suffix": "+",
+        "label": "Artistas en el elenco"
+      }
+    ]
+  }
+}

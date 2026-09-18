@@ -1,0 +1,164 @@
+{
+  "en": {
+    "name": "Garotas",
+    "order": 3,
+    "accent": "blue",
+    "dark": false,
+    "icon": "corona",
+    "cover": "/assets/images/garotas.jpg",
+    "cover_alt": "Brazilian carnival dancer with a turquoise feather headdress",
+    "crop": "center",
+    "seo_title": "Garotas — Medusa Show",
+    "seo_description": "Feather headdresses, carnival costuming and Brazilian energy in roaming or stage format. Perfect for brand activations and themed parties.",
+    "badge": "Garotas",
+    "eyebrow": "Live Brazilian carnival",
+    "headline": "Carnival, color and Brazilian energy",
+    "paragraphs": [
+      {
+        "text": "Bring the energy of Brazil to your event with our professional Samba dancers, vibrant costumes, and high-energy performances. Add live Brazilian drummers for an even more unforgettable experience."
+      },
+      {
+        "text": "Feather headdresses, carnival costuming and an energy that's contagious from the very first step. The garotas can work in roaming format — mixing in among your guests — or on a fixed stage."
+      },
+      {
+        "text": "It's one of the favorite formats for brand activations and themed parties: the burst of color is basically a guarantee of photos and social content."
+      }
+    ],
+    "stats": [
+      {
+        "value": "30–45 min",
+        "label": "Roaming duration"
+      },
+      {
+        "value": "1–6",
+        "label": "Performers"
+      },
+      {
+        "value": "Roaming or fixed",
+        "label": "Format"
+      }
+    ],
+    "features": [
+      {
+        "icon": "corona",
+        "title": "Carnival costuming",
+        "description": "Feathers, sparkle and headdresses designed to stand out in any photo."
+      },
+      {
+        "icon": "rayo",
+        "title": "Roaming format",
+        "description": "They move through your guests instead of staying fixed on a stage."
+      },
+      {
+        "icon": "foto",
+        "title": "Photo moment",
+        "description": "Built to spark spontaneous content from your guests."
+      },
+      {
+        "icon": "personas",
+        "title": "Scalable",
+        "description": "From 1 garota to a full group depending on the size of the event."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Brand activations"
+      },
+      {
+        "label": "Themed parties"
+      },
+      {
+        "label": "Openings"
+      },
+      {
+        "label": "Corporate events"
+      }
+    ],
+    "related": [
+      "gogo-dancers",
+      "zancos-robot",
+      "fuego"
+    ]
+  },
+  "es": {
+    "name": "Garotas",
+    "order": 3,
+    "accent": "blue",
+    "dark": false,
+    "icon": "corona",
+    "cover": "/assets/images/garotas.jpg",
+    "cover_alt": "Garota de carnaval brasileño con tocado de plumas turquesa",
+    "crop": "center",
+    "seo_title": "Garotas — Medusa Show",
+    "seo_description": "Tocados de plumas, vestuario de carnaval y energía brasileña en formato recorrido o escenario. Perfecto para activaciones de marca y fiestas temáticas.",
+    "badge": "Garotas",
+    "eyebrow": "Carnaval brasileño en vivo",
+    "headline": "Carnaval, color y energía brasileña",
+    "paragraphs": [
+      {
+        "text": "Lleva la energía de Brasil a tu evento con nuestras Samba Dancers profesionales, vestuario vibrante y performances de alta energía. Suma tamborileros brasileños en vivo para una experiencia aún más inolvidable."
+      },
+      {
+        "text": "Tocados de plumas, vestuario de carnaval y una energía que contagia desde el primer paso. Las garotas pueden trabajar en formato recorrido — mezclándose entre los invitados — o sobre un escenario fijo."
+      },
+      {
+        "text": "Es uno de los formatos favoritos para activaciones de marca y fiestas temáticas: la explosión de color es prácticamente garantía de fotos y contenido para redes."
+      }
+    ],
+    "stats": [
+      {
+        "value": "30–45 min",
+        "label": "Duración recorrido"
+      },
+      {
+        "value": "1–6",
+        "label": "Performers"
+      },
+      {
+        "value": "Recorrido o fijo",
+        "label": "Formato"
+      }
+    ],
+    "features": [
+      {
+        "icon": "corona",
+        "title": "Vestuario de carnaval",
+        "description": "Plumas, brillos y tocados diseñados para destacar en cualquier foto."
+      },
+      {
+        "icon": "rayo",
+        "title": "Formato recorrido",
+        "description": "Se mueven entre los invitados en vez de quedarse fijas en un escenario."
+      },
+      {
+        "icon": "foto",
+        "title": "Momento fotográfico",
+        "description": "Pensado para generar contenido espontáneo de tus invitados."
+      },
+      {
+        "icon": "personas",
+        "title": "Escalable",
+        "description": "De 1 garota a un grupo completo según el tamaño del evento."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Activaciones de marca"
+      },
+      {
+        "label": "Fiestas temáticas"
+      },
+      {
+        "label": "Aperturas"
+      },
+      {
+        "label": "Eventos corporativos"
+      }
+    ],
+    "related": [
+      "gogo-dancers",
+      "zancos-robot",
+      "fuego"
+    ]
+  }
+}

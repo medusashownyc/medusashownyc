@@ -1,0 +1,164 @@
+{
+  "en": {
+    "name": "Fire",
+    "order": 2,
+    "accent": "magenta",
+    "dark": false,
+    "icon": "fuego",
+    "cover": "/assets/images/fuego.jpg",
+    "cover_alt": "Fire performer spinning lit torches in the dark",
+    "crop": "center",
+    "seo_title": "Fire — Medusa Show",
+    "seo_description": "Torches, poi and fire staff in a high-impact choreography. The perfect climax for brand openings, weddings and outdoor festivals.",
+    "badge": "Fire",
+    "eyebrow": "Live fire act",
+    "headline": "The climax that ignites any night",
+    "paragraphs": [
+      {
+        "text": "Ignite your event with a breathtaking Fire Performance, combining dance, energy, and spectacular fire tricks for an unforgettable experience."
+      },
+      {
+        "text": "Torches, poi and fire staff in a choreography synced to the music — built to be THE moment everyone remembers from the event. Works as a high-impact opener or a dramatic closer."
+      },
+      {
+        "text": "The whole act follows professional safety protocols: fire-rated gear, on-site extinguishers and advance coordination with the venue."
+      }
+    ],
+    "stats": [
+      {
+        "value": "5–12 min",
+        "label": "Duration"
+      },
+      {
+        "value": "1–2",
+        "label": "Performers"
+      },
+      {
+        "value": "Outdoors",
+        "label": "Space required"
+      }
+    ],
+    "features": [
+      {
+        "icon": "fuego",
+        "title": "Multiple disciplines",
+        "description": "Torches, poi, staff and extended-act options depending on the space."
+      },
+      {
+        "icon": "escudo",
+        "title": "Safety first",
+        "description": "Gear, extinguishers and advance coordination with the venue at every show."
+      },
+      {
+        "icon": "musica",
+        "title": "Synced to your music",
+        "description": "The show is rehearsed to your event's playlist or live band."
+      },
+      {
+        "icon": "rayo",
+        "title": "Opener or closer",
+        "description": "Adapts to the exact moment you want the climax to land."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Brand openings"
+      },
+      {
+        "label": "Private parties"
+      },
+      {
+        "label": "Weddings (closer)"
+      },
+      {
+        "label": "Outdoor festivals"
+      }
+    ],
+    "related": [
+      "zancos-robot",
+      "garotas",
+      "belly-dancers"
+    ]
+  },
+  "es": {
+    "name": "Fuego",
+    "order": 2,
+    "accent": "magenta",
+    "dark": false,
+    "icon": "fuego",
+    "cover": "/assets/images/fuego.jpg",
+    "cover_alt": "Performer de fuego girando antorchas encendidas en la oscuridad",
+    "crop": "center",
+    "seo_title": "Fuego — Medusa Show",
+    "seo_description": "Antorchas, poi y bastón de fuego en una coreografía de alto impacto. El clímax perfecto para aperturas de marca, bodas y festivales al aire libre.",
+    "badge": "Fuego",
+    "eyebrow": "Acto de fuego en vivo",
+    "headline": "El clímax que enciende cualquier noche",
+    "paragraphs": [
+      {
+        "text": "Enciende tu evento con una impactante Performance de Fuego, que combina baile, energía y trucos de fuego espectaculares para una experiencia inolvidable."
+      },
+      {
+        "text": "Antorchas, poi y bastón de fuego en una coreografía sincronizada con la música — pensada para ser EL momento que todos recuerdan del evento. Funciona como apertura de alto impacto o como cierre dramático."
+      },
+      {
+        "text": "Todo el acto sigue protocolos de seguridad profesionales: material ignífugo, extintores en sitio y coordinación previa con el lugar del evento."
+      }
+    ],
+    "stats": [
+      {
+        "value": "5–12 min",
+        "label": "Duración"
+      },
+      {
+        "value": "1–2",
+        "label": "Performers"
+      },
+      {
+        "value": "Aire libre",
+        "label": "Espacio requerido"
+      }
+    ],
+    "features": [
+      {
+        "icon": "fuego",
+        "title": "Múltiples disciplinas",
+        "description": "Antorchas, poi, bastón y opciones de acto extendido según el espacio."
+      },
+      {
+        "icon": "escudo",
+        "title": "Seguridad primero",
+        "description": "Equipo, extintores y coordinación previa con el venue en cada presentación."
+      },
+      {
+        "icon": "musica",
+        "title": "Sincronía con tu música",
+        "description": "El show se ensaya con la playlist o banda en vivo de tu evento."
+      },
+      {
+        "icon": "rayo",
+        "title": "Apertura o cierre",
+        "description": "Se adapta al momento exacto donde quieras generar el clímax."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Aperturas de marca"
+      },
+      {
+        "label": "Fiestas privadas"
+      },
+      {
+        "label": "Bodas (cierre)"
+      },
+      {
+        "label": "Festivales al aire libre"
+      }
+    ],
+    "related": [
+      "zancos-robot",
+      "garotas",
+      "belly-dancers"
+    ]
+  }
+}

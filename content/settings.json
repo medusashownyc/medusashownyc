@@ -1,0 +1,42 @@
+{
+  "en": {
+    "site_name": "Medusa Show",
+    "seo_title": "Medusa Show — Live Entertainment for Events",
+    "seo_description": "Belly dancers, fire, garotas, gogo dancers, salsa, stilt walkers & robot, aerial hoop and a romantic ballet & violin experience: eight live show formats for weddings, clubs, openings and brand activations.",
+    "logo_dark": "/assets/Logo-negro.svg",
+    "logo_light": "/assets/Logo-blanco.svg",
+    "symbol": "/assets/simbolo-blanco.svg",
+    "favicon": "/assets/favicon-medusa.svg",
+    "email": "medusashowny@gmail.com",
+    "whatsapp": "19297073536",
+    "cal_link": "medusa-show-nyc/15min",
+    "footer_tagline": "Live entertainment for weddings, clubs, openings and brand activations.",
+    "copyright": "© 2026 Medusa Show. All rights reserved.",
+    "social": [
+      {
+        "network": "instagram",
+        "url": "https://www.instagram.com/medusa_showsnyc"
+      }
+    ]
+  },
+  "es": {
+    "site_name": "Medusa Show",
+    "seo_title": "Medusa Show — Entretenimiento en vivo para eventos",
+    "seo_description": "Belly dancers, fuego, garotas, gogo dancers, salsa, zancos & robot, aro aéreo y una experiencia romántica de ballet y violín: ocho formatos de show en vivo para bodas, clubs, aperturas y activaciones de marca.",
+    "logo_dark": "/assets/Logo-negro.svg",
+    "logo_light": "/assets/Logo-blanco.svg",
+    "symbol": "/assets/simbolo-blanco.svg",
+    "favicon": "/assets/favicon-medusa.svg",
+    "email": "medusashowny@gmail.com",
+    "whatsapp": "19297073536",
+    "cal_link": "medusa-show-nyc/15min",
+    "footer_tagline": "Entretenimiento en vivo para bodas, clubs, aperturas y activaciones de marca.",
+    "copyright": "© 2026 Medusa Show. Todos los derechos reservados.",
+    "social": [
+      {
+        "network": "instagram",
+        "url": "https://www.instagram.com/medusa_showsnyc"
+      }
+    ]
+  }
+}

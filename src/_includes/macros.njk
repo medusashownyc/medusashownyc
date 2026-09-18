@@ -1,0 +1,31 @@
+{#- Emits data-es="…" only when the Spanish text differs from the English baseline (i18n.js swaps them at runtime). -#}
+{% macro es(esValue, enValue) %}{% if esValue and esValue != enValue %} data-es="{{ esValue }}"{% endif %}{% endmacro %}
+
+{#- Same, for translated attributes: data-es-alt, data-es-aria-label, data-es-content… -#}
+{% macro esAttr(attr, esValue, enValue) %}{% if esValue and esValue != enValue %} data-es-{{ attr }}="{{ esValue }}"{% endif %}{% endmacro %}
+
+{#- Cal.com "element-click" trigger attributes; the namespace is the event-type slug so the init script (layout.njk) can match it. -#}
+{% macro cal(link) %}data-cal-link="{{ link }}" data-cal-namespace="{{ link.split('/') | last }}" data-cal-config='{"layout":"month_view"}'{% endmacro %}
+
+{#- The arrow used inside every CTA button. -#}
+{% macro arrow(strokeWidth = '1.8') %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="{{ strokeWidth }}" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>{% endmacro %}
+
+{#- Flag-pill EN/ES switcher (header + mobile nav); i18n.js wires up every .lang-switch it finds. -#}
+{% macro langSwitch() %}<div class="lang-switch" role="group" aria-label="Language / Idioma">
+    <span class="lang-switch-highlight" aria-hidden="true"></span>
+    <button type="button" class="lang-switch-option" data-lang="en" aria-pressed="true" aria-label="English">
+      <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#B22234"/><rect y="1.85" width="24" height="1.85" fill="#fff"/><rect y="5.54" width="24" height="1.85" fill="#fff"/><rect y="9.23" width="24" height="1.85" fill="#fff"/><rect y="12.92" width="24" height="1.85" fill="#fff"/><rect y="16.62" width="24" height="1.85" fill="#fff"/><rect y="20.31" width="24" height="1.85" fill="#fff"/><rect width="10.5" height="13" fill="#3C3B6E"/></svg></span>
+    </button>
+    <button type="button" class="lang-switch-option" data-lang="es" aria-pressed="false" aria-label="Español">
+      <span class="lang-switch-flag" aria-hidden="true"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid slice"><rect width="24" height="24" fill="#AA151B"/><rect y="6" width="24" height="12" fill="#F1BF00"/></svg></span>
+    </button>
+  </div>{% endmacro %}
+
+{#- Social networks selectable in Configuración → Redes sociales: display name and outline icon (same 24×24 style as the rest of the site). -#}
+{% macro socialName(network) %}{{ { instagram: 'Instagram', tiktok: 'TikTok', facebook: 'Facebook', youtube: 'YouTube' }[network] or network }}{% endmacro %}
+{% macro socialIcon(network) %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+  {%- if network == 'instagram' %}<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/>
+  {%- elif network == 'tiktok' %}<path d="M15 3c.3 2.4 1.9 4 4.5 4.3v3.4a7.6 7.6 0 0 1-4.5-1.5V15a5.5 5.5 0 1 1-5.5-5.5c.3 0 .7 0 1 .1v3.5a2 2 0 1 0 1 1.9V3Z"/>
+  {%- elif network == 'facebook' %}<path d="M13 21v-8h3l.5-4H13V7a1 1 0 0 1 1-1h3V2h-3a5 5 0 0 0-5 5v2H6v4h3v8Z"/>
+  {%- elif network == 'youtube' %}<path d="M22 12s0-3.5-.5-5a2.6 2.6 0 0 0-1.8-1.8C18 4.7 12 4.7 12 4.7s-6 0-7.7.5A2.6 2.6 0 0 0 2.5 7C2 8.5 2 12 2 12s0 3.5.5 5a2.6 2.6 0 0 0 1.8 1.8c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.6 2.6 0 0 0 1.8-1.8c.5-1.5.5-5 .5-5Z"/><path d="m10 9 5 3-5 3Z"/>
+  {%- else %}<circle cx="12" cy="12" r="9"/>{% endif %}</svg>{% endmacro %}
