@@ -4,8 +4,8 @@
 donde puedes guardarlo en la pantalla de inicio como si fuera una app, y en el
 ordenador, donde verás un menú lateral con todas las secciones). Ábrelo en Safari o
 Chrome para poder guardarlo como app en la pantalla de inicio.
-**Con qué entro:** tu correo `medusashowny@gmail.com` y la contraseña que te dio
-Daniel.
+**Con qué entro:** tu correo `medusashowny@gmail.com` y la contraseña que te
+entregaron.
 
 ## Entrar
 
@@ -76,15 +76,17 @@ logos.
 
 - **No aparece "Ya está en la web"** y pasan más de 5 minutos: los cambios ya
   están guardados; la web se actualiza sola. Si al día siguiente sigue igual,
-  avisa a Daniel.
+  avisa a quien administra la web.
 - **No se pudo guardar**: revisa la conexión y pulsa **Intentar otra vez**.
-  Si dice que la sesión caducó, vuelve a entrar.
+  Si dice que la sesión caducó, vuelve a entrar. Si el aviso habla de permisos
+  o de configuración, no es la conexión: avisa a quien administra la web.
 - **Me equivoqué**: edita y guarda de nuevo. Si borraste algo por error,
-  avisa a Daniel: todo queda en el historial y se recupera.
-- **No recuerdo la contraseña**: pídele a Daniel una nueva; no se puede
-  recuperar la anterior.
-- **Perdí el teléfono o creo que alguien tiene mi contraseña**: avisa a
-  Daniel ese mismo día; al cambiarla se cierran todas las sesiones abiertas.
+  avisa a quien administra la web: todo queda en el historial y se recupera.
+- **No recuerdo la contraseña**: pide una nueva a quien administra la web; no se
+  puede recuperar la anterior.
+- **Perdí el teléfono o creo que alguien tiene mi contraseña**: avisa ese
+  mismo día a quien administra la web; al cambiarla se cierran todas las
+  sesiones abiertas.
 - **Si la sesión caduca mientras editas**, el panel te pide entrar de nuevo
   ahí mismo y no se pierde lo que habías escrito.
 - **"Demasiados intentos"**: espera 15 minutos y vuelve a probar con calma.
