@@ -1,0 +1,164 @@
+{
+  "en": {
+    "name": "Salsa",
+    "order": 5,
+    "accent": "green",
+    "dark": false,
+    "icon": "musica",
+    "cover": "/assets/images/salsa.webp",
+    "cover_alt": "Professional dance couple in a salsa pose",
+    "crop": "top",
+    "seo_title": "Salsa — Medusa Show",
+    "seo_description": "A professional salsa couple with a choreographed show and an optional express class. The perfect way to open the dance floor at weddings and corporate events.",
+    "badge": "Salsa",
+    "eyebrow": "Live ballroom dance",
+    "headline": "A dance floor that fills in seconds",
+    "paragraphs": [
+      {
+        "text": "Bring the passion and rhythm of Latin culture to your event with our professional Salsa dancers, delivering energetic choreography, vibrant movement, and an unforgettable performance."
+      },
+      {
+        "text": "A professional ballroom dance couple opens the floor with a choreographed show — elegant, synchronized and with just the right energy to invite everyone to join in afterward."
+      },
+      {
+        "text": "If you want to take it a step further, we offer an express class for guests before or after the show, keeping the floor active all night."
+      }
+    ],
+    "stats": [
+      {
+        "value": "5–8 min",
+        "label": "Show duration"
+      },
+      {
+        "value": "2",
+        "label": "Performers (couple)"
+      },
+      {
+        "value": "+15 min",
+        "label": "Optional express class"
+      }
+    ],
+    "features": [
+      {
+        "icon": "musica",
+        "title": "Choreographed show",
+        "description": "A ballroom routine ready to open the floor with impact."
+      },
+      {
+        "icon": "personas",
+        "title": "Express class (optional)",
+        "description": "5–10 minutes of instruction to get your guests dancing."
+      },
+      {
+        "icon": "corona",
+        "title": "Elegant costuming",
+        "description": "Matched to your event's palette and tone."
+      },
+      {
+        "icon": "rayo",
+        "title": "Ideal to open the floor",
+        "description": "Built as the bridge between dinner and the party."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Weddings"
+      },
+      {
+        "label": "Gala dinners"
+      },
+      {
+        "label": "Corporate events"
+      },
+      {
+        "label": "Private celebrations"
+      }
+    ],
+    "related": [
+      "belly-dancers",
+      "gogo-dancers",
+      "garotas"
+    ]
+  },
+  "es": {
+    "name": "Salsa",
+    "order": 5,
+    "accent": "green",
+    "dark": false,
+    "icon": "musica",
+    "cover": "/assets/images/salsa.webp",
+    "cover_alt": "Pareja de baile profesional en pose de salsa",
+    "crop": "top",
+    "seo_title": "Salsa — Medusa Show",
+    "seo_description": "Pareja profesional de salsa con show coreografiado y clase exprés opcional. La forma perfecta de abrir la pista en bodas y eventos corporativos.",
+    "badge": "Salsa",
+    "eyebrow": "Baile de salón en vivo",
+    "headline": "Una pista que se llena en segundos",
+    "paragraphs": [
+      {
+        "text": "Lleva la pasión y el ritmo de la cultura latina a tu evento con nuestras bailarinas de Salsa profesionales, con coreografía enérgica, movimiento vibrante y una performance inolvidable."
+      },
+      {
+        "text": "Una pareja profesional de baile de salón abre la pista con un show coreografiado — elegante, sincronizado y con la energía justa para invitar a todos a sumarse después."
+      },
+      {
+        "text": "Si quieres ir un paso más allá, ofrecemos una clase exprés para los invitados antes o después del show, para que la pista se mantenga activa toda la noche."
+      }
+    ],
+    "stats": [
+      {
+        "value": "5–8 min",
+        "label": "Duración show"
+      },
+      {
+        "value": "2",
+        "label": "Performers (pareja)"
+      },
+      {
+        "value": "+15 min",
+        "label": "Clase exprés opcional"
+      }
+    ],
+    "features": [
+      {
+        "icon": "musica",
+        "title": "Show coreografiado",
+        "description": "Una rutina de salón lista para abrir la pista con impacto."
+      },
+      {
+        "icon": "personas",
+        "title": "Clase exprés (opcional)",
+        "description": "5–10 minutos de clase para que tus invitados se animen a bailar."
+      },
+      {
+        "icon": "corona",
+        "title": "Vestuario elegante",
+        "description": "A juego con la paleta y el tono de tu evento."
+      },
+      {
+        "icon": "rayo",
+        "title": "Ideal para abrir pista",
+        "description": "Pensado como puente entre la cena y la fiesta."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Bodas"
+      },
+      {
+        "label": "Cenas de gala"
+      },
+      {
+        "label": "Eventos corporativos"
+      },
+      {
+        "label": "Celebraciones privadas"
+      }
+    ],
+    "related": [
+      "belly-dancers",
+      "gogo-dancers",
+      "garotas"
+    ]
+  }
+}

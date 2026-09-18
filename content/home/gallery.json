@@ -1,0 +1,642 @@
+{
+  "en": {
+    "heading": "Medusa Universe",
+    "images": [
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_2_1.webp",
+        "alt": "Carnival garotas in a group with multicolor feathers",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_52_pm_1_1.webp",
+        "alt": "Carnival garotas in a group pose with feather headdresses",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_52_pm_2_1.webp",
+        "alt": "Carnival garotas smiling with red and yellow feathers",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_1_1.webp",
+        "alt": "Carnival garotas in profile with feather headdresses",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_3_1.webp",
+        "alt": "Belly dancers as a trio in gold and green costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_4_1.webp",
+        "alt": "Belly dancers posing as a group",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_1.webp",
+        "alt": "Carnival garotas in a dynamic group pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_54_pm_1_1.webp",
+        "alt": "Belly dancers in green, gold and lilac costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_54_pm_1.webp",
+        "alt": "Belly dancer in an expressive pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0539_jpg_1.webp",
+        "alt": "Contortionists in white lace catsuits",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0551_jpg_1.webp",
+        "alt": "Performer in a mariachi hat",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5742_1.webp",
+        "alt": "Aerial hoop performer on stage",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0487_1.webp",
+        "alt": "Salsa couple in a lift pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0488_1.webp",
+        "alt": "Salsa couple in a close pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0491_1.webp",
+        "alt": "Salsa couple in a dynamic pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5533_1.webp",
+        "alt": "Aerial hoop performer with club lights",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2348_1.webp",
+        "alt": "Belly dancers as a trio in a side pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2677_1_1.webp",
+        "alt": "Belly dancer in gold costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2909_1_1.webp",
+        "alt": "Belly dancers as a trio in green, gold and lilac costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2689_1_1.webp",
+        "alt": "Belly dancer in gold costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2700_1.webp",
+        "alt": "Belly dancer with skirt in motion",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5409_1.webp",
+        "alt": "Fire performers with a lit fan in the street",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5428_1.webp",
+        "alt": "Fire performers in the street at night",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0516_jpg_1.webp",
+        "alt": "Twin contortionists with red hair",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0528_jpg_1.webp",
+        "alt": "Gogo dancers in neon platform boots",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0514_jpg_1.webp",
+        "alt": "Twin contortionists in a bridge pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/0dc19839_241e_48a9_a5f3_4cf65d5574fe_1.webp",
+        "alt": "Carnival dancer in a pink feather headdress under a stone archway",
+        "big": false
+      },
+      {
+        "image": "/assets/images/0edf344e_baa2_4c08_a809_d0294c0f4416_1.webp",
+        "alt": "Carnival couple dancing on the beach in red and black costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/11_1.webp",
+        "alt": "Carnival dancer in a red feather headdress, close portrait",
+        "big": false
+      },
+      {
+        "image": "/assets/images/2256b4f7_415b_466d_bdf9_1d61b94cb812_1.webp",
+        "alt": "Carnival couple dancing on the beach in red and white costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/26e217df_fd31_4280_bd3f_0575dabbff16_1.webp",
+        "alt": "Carnival dancer lifted onto her partner's shoulders on the beach",
+        "big": false
+      },
+      {
+        "image": "/assets/images/28c9a3c8_8591_4790_8a82_e1ea50002239_1.webp",
+        "alt": "Performer posing with a large snake",
+        "big": false
+      },
+      {
+        "image": "/assets/images/46364ad4_cc3c_4db7_a543_413f7603ffe5_1.webp",
+        "alt": "Stilt walkers in sombreros posing under a floral archway",
+        "big": false
+      },
+      {
+        "image": "/assets/images/689e8e9e_381b_4440_919d_07f7dfeeecff_1.webp",
+        "alt": "Carnival dancer in a pink feather headdress at a stone doorway",
+        "big": false
+      },
+      {
+        "image": "/assets/images/d01f49b6_7ac1_4524_bb25_2aef26aaba10_1.webp",
+        "alt": "Performer in Egyptian-inspired costume with a snake",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_5329_1.webp",
+        "alt": "Carnival parade dancers in blue feathered costumes",
+        "big": false
+      },
+      {
+        "image": "/assets/images/galeria_1.webp",
+        "alt": "Medusa Show poster with two carnival dancers in gold and red feather headdresses",
+        "big": false
+      },
+      {
+        "image": "/assets/images/galeria_2.webp",
+        "alt": "Carnival dancer in a large red feather headdress, close portrait",
+        "big": true
+      },
+      {
+        "image": "/assets/images/imgl2359_1.webp",
+        "alt": "Salsa couple in a lift pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2758_1_1.webp",
+        "alt": "Belly dancer in gold costuming looking over her shoulder",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2794_1_1.webp",
+        "alt": "Belly dancer in gold costuming with an arm raised",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2886_1_1.webp",
+        "alt": "Belly dancers as a duo in green and gold costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2930_1.webp",
+        "alt": "Belly dancers as a trio in green, gold and lilac costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl3186_1.webp",
+        "alt": "Full cast group photo with carnival, belly dance and salsa performers",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl3303_1.webp",
+        "alt": "Contortionist in a white lace bridge pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl3471_1.webp",
+        "alt": "Carnival dancers as a group in red, orange and yellow feather headdresses",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4086_1.webp",
+        "alt": "Ballet dancer in an arabesque pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4136_1.webp",
+        "alt": "Performer in black sequins posing with a mariachi hat",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4141_1.webp",
+        "alt": "Performer in black sequins holding a mariachi hat overhead",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4516_1.webp",
+        "alt": "Ballet dancer in a dramatic pose against a dark backdrop",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4519_1.webp",
+        "alt": "Gogo dancers as a duo in patterned bodysuits",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4643_1.webp",
+        "alt": "Gogo dancers in neon pink and green bodysuits",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4940_1.webp",
+        "alt": "Portrait of a performer backstage",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5173_1.webp",
+        "alt": "Fire performer holding flaming torches on a city street",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5310_1.webp",
+        "alt": "Fire performer spinning a lit fire fan",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5339_1.webp",
+        "alt": "Fire performer spinning a lit fire wheel",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5355_1.webp",
+        "alt": "Fire performer with flaming torches on a city street",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5359_1.webp",
+        "alt": "Group of performers with a fire dancer on a city street",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5408_1.webp",
+        "alt": "Group of performers with a lit fire fan on a city street",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5439_1.webp",
+        "alt": "Group of performers posing on a city street at night",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5477_2.webp",
+        "alt": "Aerial hoop performer in pink, upside down",
+        "big": false
+      },
+      {
+        "image": "/assets/images/photo_jul_26_2026_9_20_47_pm_1_1.webp",
+        "alt": "Portrait of a performer backstage",
+        "big": false
+      },
+      {
+        "image": "/assets/images/photo_jul_26_2026_9_24_23_pm_1.webp",
+        "alt": "Performer in a leopard-print wrap skirt",
+        "big": false
+      }
+    ]
+  },
+  "es": {
+    "heading": "Universo Medusa",
+    "images": [
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_2_1.webp",
+        "alt": "Carnival garotas in a group with multicolor feathers",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_52_pm_1_1.webp",
+        "alt": "Carnival garotas in a group pose with feather headdresses",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_52_pm_2_1.webp",
+        "alt": "Carnival garotas smiling with red and yellow feathers",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_1_1.webp",
+        "alt": "Carnival garotas in profile with feather headdresses",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_3_1.webp",
+        "alt": "Belly dancers as a trio in gold and green costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_4_1.webp",
+        "alt": "Belly dancers posing as a group",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_53_pm_1.webp",
+        "alt": "Carnival garotas in a dynamic group pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_54_pm_1_1.webp",
+        "alt": "Belly dancers in green, gold and lilac costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/whatsapp_image_2026_08_04_at_4_43_54_pm_1.webp",
+        "alt": "Belly dancer in an expressive pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0539_jpg_1.webp",
+        "alt": "Contortionists in white lace catsuits",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0551_jpg_1.webp",
+        "alt": "Performer in a mariachi hat",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5742_1.webp",
+        "alt": "Aerial hoop performer on stage",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0487_1.webp",
+        "alt": "Salsa couple in a lift pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0488_1.webp",
+        "alt": "Salsa couple in a close pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0491_1.webp",
+        "alt": "Salsa couple in a dynamic pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5533_1.webp",
+        "alt": "Aerial hoop performer with club lights",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2348_1.webp",
+        "alt": "Belly dancers as a trio in a side pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2677_1_1.webp",
+        "alt": "Belly dancer in gold costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2909_1_1.webp",
+        "alt": "Belly dancers as a trio in green, gold and lilac costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2689_1_1.webp",
+        "alt": "Belly dancer in gold costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2700_1.webp",
+        "alt": "Belly dancer with skirt in motion",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5409_1.webp",
+        "alt": "Fire performers with a lit fan in the street",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5428_1.webp",
+        "alt": "Fire performers in the street at night",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0516_jpg_1.webp",
+        "alt": "Twin contortionists with red hair",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0528_jpg_1.webp",
+        "alt": "Gogo dancers in neon platform boots",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_0514_jpg_1.webp",
+        "alt": "Twin contortionists in a bridge pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/0dc19839_241e_48a9_a5f3_4cf65d5574fe_1.webp",
+        "alt": "Carnival dancer in a pink feather headdress under a stone archway",
+        "big": false
+      },
+      {
+        "image": "/assets/images/0edf344e_baa2_4c08_a809_d0294c0f4416_1.webp",
+        "alt": "Carnival couple dancing on the beach in red and black costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/11_1.webp",
+        "alt": "Carnival dancer in a red feather headdress, close portrait",
+        "big": false
+      },
+      {
+        "image": "/assets/images/2256b4f7_415b_466d_bdf9_1d61b94cb812_1.webp",
+        "alt": "Carnival couple dancing on the beach in red and white costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/26e217df_fd31_4280_bd3f_0575dabbff16_1.webp",
+        "alt": "Carnival dancer lifted onto her partner's shoulders on the beach",
+        "big": false
+      },
+      {
+        "image": "/assets/images/28c9a3c8_8591_4790_8a82_e1ea50002239_1.webp",
+        "alt": "Performer posing with a large snake",
+        "big": false
+      },
+      {
+        "image": "/assets/images/46364ad4_cc3c_4db7_a543_413f7603ffe5_1.webp",
+        "alt": "Stilt walkers in sombreros posing under a floral archway",
+        "big": false
+      },
+      {
+        "image": "/assets/images/689e8e9e_381b_4440_919d_07f7dfeeecff_1.webp",
+        "alt": "Carnival dancer in a pink feather headdress at a stone doorway",
+        "big": false
+      },
+      {
+        "image": "/assets/images/d01f49b6_7ac1_4524_bb25_2aef26aaba10_1.webp",
+        "alt": "Performer in Egyptian-inspired costume with a snake",
+        "big": false
+      },
+      {
+        "image": "/assets/images/img_5329_1.webp",
+        "alt": "Carnival parade dancers in blue feathered costumes",
+        "big": false
+      },
+      {
+        "image": "/assets/images/galeria_1.webp",
+        "alt": "Medusa Show poster with two carnival dancers in gold and red feather headdresses",
+        "big": false
+      },
+      {
+        "image": "/assets/images/galeria_2.webp",
+        "alt": "Carnival dancer in a large red feather headdress, close portrait",
+        "big": true
+      },
+      {
+        "image": "/assets/images/imgl2359_1.webp",
+        "alt": "Salsa couple in a lift pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2758_1_1.webp",
+        "alt": "Belly dancer in gold costuming looking over her shoulder",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2794_1_1.webp",
+        "alt": "Belly dancer in gold costuming with an arm raised",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2886_1_1.webp",
+        "alt": "Belly dancers as a duo in green and gold costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl2930_1.webp",
+        "alt": "Belly dancers as a trio in green, gold and lilac costuming",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl3186_1.webp",
+        "alt": "Full cast group photo with carnival, belly dance and salsa performers",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl3303_1.webp",
+        "alt": "Contortionist in a white lace bridge pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl3471_1.webp",
+        "alt": "Carnival dancers as a group in red, orange and yellow feather headdresses",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4086_1.webp",
+        "alt": "Ballet dancer in an arabesque pose",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4136_1.webp",
+        "alt": "Performer in black sequins posing with a mariachi hat",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4141_1.webp",
+        "alt": "Performer in black sequins holding a mariachi hat overhead",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4516_1.webp",
+        "alt": "Ballet dancer in a dramatic pose against a dark backdrop",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4519_1.webp",
+        "alt": "Gogo dancers as a duo in patterned bodysuits",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4643_1.webp",
+        "alt": "Gogo dancers in neon pink and green bodysuits",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl4940_1.webp",
+        "alt": "Portrait of a performer backstage",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5173_1.webp",
+        "alt": "Fire performer holding flaming torches on a city street",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5310_1.webp",
+        "alt": "Fire performer spinning a lit fire fan",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5339_1.webp",
+        "alt": "Fire performer spinning a lit fire wheel",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5355_1.webp",
+        "alt": "Fire performer with flaming torches on a city street",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5359_1.webp",
+        "alt": "Group of performers with a fire dancer on a city street",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5408_1.webp",
+        "alt": "Group of performers with a lit fire fan on a city street",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5439_1.webp",
+        "alt": "Group of performers posing on a city street at night",
+        "big": false
+      },
+      {
+        "image": "/assets/images/imgl5477_2.webp",
+        "alt": "Aerial hoop performer in pink, upside down",
+        "big": false
+      },
+      {
+        "image": "/assets/images/photo_jul_26_2026_9_20_47_pm_1_1.webp",
+        "alt": "Portrait of a performer backstage",
+        "big": false
+      },
+      {
+        "image": "/assets/images/photo_jul_26_2026_9_24_23_pm_1.webp",
+        "alt": "Performer in a leopard-print wrap skirt",
+        "big": false
+      }
+    ]
+  }
+}

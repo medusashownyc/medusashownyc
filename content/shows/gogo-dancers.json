@@ -1,0 +1,164 @@
+{
+  "en": {
+    "name": "Gogo Dancers",
+    "order": 4,
+    "accent": "purple",
+    "dark": false,
+    "icon": "rayo",
+    "cover": "/assets/images/gogo.jpg",
+    "cover_alt": "Gogo dancer in silhouette on a platform with club lights",
+    "crop": "top",
+    "seo_title": "Gogo Dancers — Medusa Show",
+    "seo_description": "Continuous-set choreography to keep the dance floor's energy up all night. Ideal for clubs, after parties and brand launches.",
+    "badge": "Gogo Dancers",
+    "eyebrow": "Live club energy",
+    "headline": "The pulse that never lets the floor stop",
+    "paragraphs": [
+      {
+        "text": "Bring high-energy entertainment to the stage with our professional Go-Go dancers, perfect for nightclubs, live performances, and accompanying Reggaeton artists."
+      },
+      {
+        "text": "Continuous-set choreography, built to keep the dance floor's energy up for hours — not just a one-off number. Perfect for clubs, after-parties and any event with a live DJ."
+      },
+      {
+        "text": "We can work on elevated platforms if the venue allows it, or directly on the dance floor — whatever works best for your space."
+      }
+    ],
+    "stats": [
+      {
+        "value": "20–40 min",
+        "label": "Per block"
+      },
+      {
+        "value": "1–4",
+        "label": "Performers"
+      },
+      {
+        "value": "Floor or platform",
+        "label": "Format"
+      }
+    ],
+    "features": [
+      {
+        "icon": "rayo",
+        "title": "Continuous sets",
+        "description": "Sustained energy through the whole music block, not just a short number."
+      },
+      {
+        "icon": "robot",
+        "title": "Elevated platforms",
+        "description": "Extra visibility if the venue has them available (optional)."
+      },
+      {
+        "icon": "corona",
+        "title": "Themed costuming",
+        "description": "We match the style to your event's mood — from neon to minimalist."
+      },
+      {
+        "icon": "reloj",
+        "title": "Synced with the DJ",
+        "description": "We coordinate timing with your event's schedule."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Clubs and nightclubs"
+      },
+      {
+        "label": "After parties"
+      },
+      {
+        "label": "Brand launches"
+      },
+      {
+        "label": "Corporate night events"
+      }
+    ],
+    "related": [
+      "garotas",
+      "salsa",
+      "zancos-robot"
+    ]
+  },
+  "es": {
+    "name": "Gogo Dancers",
+    "order": 4,
+    "accent": "purple",
+    "dark": false,
+    "icon": "rayo",
+    "cover": "/assets/images/gogo.jpg",
+    "cover_alt": "Gogo dancer en silueta sobre plataforma con luces de club",
+    "crop": "top",
+    "seo_title": "Gogo Dancers — Medusa Show",
+    "seo_description": "Coreografías en set continuo para sostener la energía de la pista toda la noche. Ideal para clubs, after parties y lanzamientos de marca.",
+    "badge": "Gogo Dancers",
+    "eyebrow": "Energía de club en vivo",
+    "headline": "El pulso que no deja parar la pista",
+    "paragraphs": [
+      {
+        "text": "Lleva entretenimiento de alta energía al escenario con nuestras Go-Go dancers profesionales, perfectas para clubs nocturnos, presentaciones en vivo y para acompañar a artistas de Reggaetón."
+      },
+      {
+        "text": "Coreografías en set continuo, pensadas para sostener la energía de la pista durante horas — no solo un número puntual. Perfectas para clubs, after-parties y cualquier evento con DJ en vivo."
+      },
+      {
+        "text": "Podemos trabajar sobre plataformas elevadas si el venue lo permite, o directamente en la pista, según lo que mejor funcione para tu espacio."
+      }
+    ],
+    "stats": [
+      {
+        "value": "20–40 min",
+        "label": "Por bloque"
+      },
+      {
+        "value": "1–4",
+        "label": "Performers"
+      },
+      {
+        "value": "Pista o plataforma",
+        "label": "Formato"
+      }
+    ],
+    "features": [
+      {
+        "icon": "rayo",
+        "title": "Sets continuos",
+        "description": "Energía sostenida durante todo el bloque de música, no solo un número corto."
+      },
+      {
+        "icon": "robot",
+        "title": "Plataformas elevadas",
+        "description": "Visibilidad extra si el venue las tiene disponibles (opcional)."
+      },
+      {
+        "icon": "corona",
+        "title": "Vestuario temático",
+        "description": "Adaptamos el estilo al mood del evento — desde neón hasta minimalista."
+      },
+      {
+        "icon": "reloj",
+        "title": "Sincronía con el DJ",
+        "description": "Coordinamos horarios con la línea de tiempo de tu evento."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Clubs y discotecas"
+      },
+      {
+        "label": "After parties"
+      },
+      {
+        "label": "Lanzamientos de marca"
+      },
+      {
+        "label": "Eventos corporativos nocturnos"
+      }
+    ],
+    "related": [
+      "garotas",
+      "salsa",
+      "zancos-robot"
+    ]
+  }
+}

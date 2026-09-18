@@ -1,0 +1,116 @@
+{
+  "en": {
+    "eyebrow": "Packages by occasion",
+    "title": "The perfect package for every celebration",
+    "lead": "Create your own custom entertainment package by combining our shows for a celebration filled with energy, joy and unforgettable moments — or start from one of our ready-made packages below.",
+    "items": [
+      {
+        "accent": "green",
+        "image": "/assets/images/0edf344e_baa2_4c08_a809_d0294c0f4416_1.webp",
+        "image_alt": "Carnival couple dancing on the beach in red and black costuming",
+        "kicker": "Full experience",
+        "title": "The Medusa Experience",
+        "tag": "A complete experience, start to finish",
+        "description": "A complete entertainment experience from beginning to end: opens with a Belly Dance show, brings Brazilian energy with Samba Dancers and live drummers, features a Salsa solo, and closes with the full cast for an unforgettable grand finale.",
+        "includes": [
+          {
+            "label": "Belly Dancers",
+            "show": "belly-dancers"
+          },
+          {
+            "label": "Samba Dancers (Live Drummers)",
+            "show": "garotas"
+          },
+          {
+            "label": "Salsa (Solo)",
+            "show": "salsa"
+          },
+          {
+            "label": "Grand Finale",
+            "show": ""
+          }
+        ]
+      },
+      {
+        "accent": "magenta",
+        "image": "/assets/images/imgl5359_1.webp",
+        "image_alt": "Group of performers with a fire dancer on a city street",
+        "kicker": "Big celebrations",
+        "title": "The Medusa Spectacle",
+        "tag": "For open spaces and large celebrations",
+        "description": "Designed for open spaces and large celebrations: a powerful combination of movement, fire and aerial artistry — Brazilian energy from our Samba Dancers, a Fire Performance, and an Aerial Hoop Performer taking the show into the air.",
+        "includes": [
+          {
+            "label": "Samba Dancers",
+            "show": "garotas"
+          },
+          {
+            "label": "Fire Performer",
+            "show": "fuego"
+          },
+          {
+            "label": "Aerial Hoop Performer",
+            "show": "aerial-hoop"
+          }
+        ]
+      }
+    ]
+  },
+  "es": {
+    "eyebrow": "Paquetes por ocasión",
+    "title": "El paquete perfecto para cada celebración",
+    "lead": "Crea tu propio paquete de entretenimiento a la medida combinando nuestros shows, para una celebración llena de energía, alegría y momentos inolvidables — o elige uno de nuestros paquetes ya armados como punto de partida.",
+    "items": [
+      {
+        "accent": "green",
+        "image": "/assets/images/0edf344e_baa2_4c08_a809_d0294c0f4416_1.webp",
+        "image_alt": "Pareja de carnaval bailando en la playa con vestuario rojo y negro",
+        "kicker": "Experiencia completa",
+        "title": "The Medusa Experience",
+        "tag": "Una experiencia completa, de principio a fin",
+        "description": "Una experiencia de entretenimiento completa de principio a fin: abre con un show de Belly Dance, trae la energía brasileña con Samba Dancers y tamborileros en vivo, presenta un solo de Salsa, y cierra con todo el elenco en un gran final inolvidable.",
+        "includes": [
+          {
+            "label": "Belly Dancers",
+            "show": "belly-dancers"
+          },
+          {
+            "label": "Samba Dancers (tamborileros en vivo)",
+            "show": "garotas"
+          },
+          {
+            "label": "Salsa (Solo)",
+            "show": "salsa"
+          },
+          {
+            "label": "Gran Final",
+            "show": ""
+          }
+        ]
+      },
+      {
+        "accent": "magenta",
+        "image": "/assets/images/imgl5359_1.webp",
+        "image_alt": "Grupo de performers con una bailarina de fuego en una calle de la ciudad",
+        "kicker": "Grandes celebraciones",
+        "title": "The Medusa Spectacle",
+        "tag": "Para espacios abiertos y grandes celebraciones",
+        "description": "Diseñado para espacios abiertos y grandes celebraciones: una combinación poderosa de movimiento, fuego y arte aéreo — energía brasileña con nuestras Samba Dancers, una Performance de Fuego, y una performer de Aro Aéreo que lleva el show al aire.",
+        "includes": [
+          {
+            "label": "Samba Dancers",
+            "show": "garotas"
+          },
+          {
+            "label": "Performer de Fuego",
+            "show": "fuego"
+          },
+          {
+            "label": "Performer de Aro Aéreo",
+            "show": "aerial-hoop"
+          }
+        ]
+      }
+    ]
+  }
+}

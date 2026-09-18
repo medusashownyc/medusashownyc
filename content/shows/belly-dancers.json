@@ -1,0 +1,164 @@
+{
+  "en": {
+    "name": "Belly Dancers",
+    "order": 1,
+    "accent": "gold",
+    "dark": true,
+    "icon": "ondas",
+    "cover": "/assets/images/0edf344e_baa2_4c08_a809_d0294c0f4416_1.webp",
+    "cover_alt": "Belly dance performer spinning on stage",
+    "crop": "center",
+    "seo_title": "Belly Dancers — Medusa Show",
+    "seo_description": "Live belly dance with custom costuming, flexible choreography and real interaction with your guests. Ideal for weddings, gala events and private dinners.",
+    "badge": "Belly Dancers",
+    "eyebrow": "Live belly dance",
+    "headline": "Oriental elegance that magnetizes any room",
+    "paragraphs": [
+      {
+        "text": "Step into the magic of the Middle East with our captivating Belly Dance performances."
+      },
+      {
+        "text": "Live belly dance, with hand-embroidered costuming, veils and choreography that adapts to your event's music and pace. Every movement is built to create closeness with the crowd, not just be watched from a distance."
+      },
+      {
+        "text": "We work with professional dancers who've spent years on the live show circuit — from intimate weddings to full-production gala stages."
+      }
+    ],
+    "stats": [
+      {
+        "value": "10–20 min",
+        "label": "Duration"
+      },
+      {
+        "value": "1–3",
+        "label": "Dancers"
+      },
+      {
+        "value": "3×3 m",
+        "label": "Minimum space"
+      }
+    ],
+    "features": [
+      {
+        "icon": "corona",
+        "title": "Custom costuming",
+        "description": "Embroidered outfits, veils and accessories chosen to match your event's palette."
+      },
+      {
+        "icon": "musica",
+        "title": "Flexible choreography",
+        "description": "We adjust the show to your music, timing and available space."
+      },
+      {
+        "icon": "personas",
+        "title": "Live interaction",
+        "description": "The dancer invites guests to join the rhythm without the show ever losing focus."
+      },
+      {
+        "icon": "fuego",
+        "title": "Sword act (optional)",
+        "description": "A more technically demanding closer for events that want an extra dose of spectacle."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Weddings"
+      },
+      {
+        "label": "Gala events"
+      },
+      {
+        "label": "Private dinners"
+      },
+      {
+        "label": "Brand activations"
+      }
+    ],
+    "related": [
+      "salsa",
+      "fuego",
+      "garotas"
+    ]
+  },
+  "es": {
+    "name": "Belly Dancers",
+    "order": 1,
+    "accent": "gold",
+    "dark": true,
+    "icon": "ondas",
+    "cover": "/assets/images/0edf344e_baa2_4c08_a809_d0294c0f4416_1.webp",
+    "cover_alt": "Bailarina de danza árabe girando sobre el escenario",
+    "crop": "center",
+    "seo_title": "Belly Dancers — Medusa Show",
+    "seo_description": "Danza árabe en vivo con vestuario a medida, coreografía flexible e interacción real con tus invitados. Ideal para bodas, eventos de gala y cenas privadas.",
+    "badge": "Belly Dancers",
+    "eyebrow": "Danza árabe en vivo",
+    "headline": "Elegancia oriental que magnetiza cualquier salón",
+    "paragraphs": [
+      {
+        "text": "Sumérgete en la magia de Medio Oriente con nuestras cautivadoras performances de Belly Dance."
+      },
+      {
+        "text": "La danza árabe en vivo, con vestuario bordado a mano, velos y una coreografía que se adapta a la música y al ritmo de tu evento. Cada movimiento está pensado para generar cercanía con el público, no solo para mirarse desde lejos."
+      },
+      {
+        "text": "Trabajamos con bailarinas profesionales que llevan años en el circuito de shows en vivo — desde bodas íntimas hasta escenarios de gala con producción completa."
+      }
+    ],
+    "stats": [
+      {
+        "value": "10–20 min",
+        "label": "Duración"
+      },
+      {
+        "value": "1–3",
+        "label": "Bailarinas"
+      },
+      {
+        "value": "3×3 m",
+        "label": "Espacio mínimo"
+      }
+    ],
+    "features": [
+      {
+        "icon": "corona",
+        "title": "Vestuario a medida",
+        "description": "Trajes bordados, velos y accesorios elegidos según la paleta de tu evento."
+      },
+      {
+        "icon": "musica",
+        "title": "Coreografía flexible",
+        "description": "Ajustamos el show a tu música, tiempos y espacio disponible."
+      },
+      {
+        "icon": "personas",
+        "title": "Interacción en vivo",
+        "description": "La bailarina invita a los presentes a sumarse al ritmo, sin perder el foco del show."
+      },
+      {
+        "icon": "fuego",
+        "title": "Acto con espada (opcional)",
+        "description": "Un cierre de mayor dificultad técnica para eventos que buscan un extra de espectáculo."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Bodas"
+      },
+      {
+        "label": "Eventos de gala"
+      },
+      {
+        "label": "Cenas privadas"
+      },
+      {
+        "label": "Activaciones de marca"
+      }
+    ],
+    "related": [
+      "salsa",
+      "fuego",
+      "garotas"
+    ]
+  }
+}
